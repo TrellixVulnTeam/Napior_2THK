@@ -34,7 +34,7 @@ CMD if [ $ng_env = prod ]; \
     && nginx \
     & cd /usr/src/app/Server-Napior \
     && python3 manage.py runserver 0.0.0.0:8081; \
-    #Run app in development mode
+    # Run app in development mode.
     else \
     echo "Serving Angular application with the Angular CLI..." \
     && cp /usr/src/app/dev-nginx.conf /etc/nginx/nginx.conf \
