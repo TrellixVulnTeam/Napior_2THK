@@ -1,0 +1,63 @@
+agm-map {
+    height: 250px;
+}
+
+#usgs-data-table {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.usgs-parameter-name {
+    color: #3c5c6c;
+    font-weight: bold;
+    text-align: right;
+}
+
+.usgs-spacer {
+    width:10px;
+}
+
+#loading-place-holder {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #36AE74;
+}
+
+#dot-container {
+    font-size: 60px;
+    height: 30px;
+}
+
+.one {
+    opacity: 0;
+    -webkit-animation: dot 1.3s infinite;
+    -webkit-animation-delay: 0.0s;
+    animation: dot 1.3s infinite;
+    animation-delay: 0.0s;
+    height: 30px;
+}
+
+.two {
+    opacity: 0;
+    -webkit-animation: dot 1.3s infinite;
+    -webkit-animation-delay: 0.2s;
+      animation: dot 1.3s infinite;
+      animation-delay: 0.2s;
+      height: 30px;
+}
+
+.three {
+    opacity: 0;
+    -webkit-animation: dot 1.3s infinite;
+    -webkit-animation-delay: 0.3s;
+     animation: dot 1.3s infinite;
+     animation-delay: 0.3s;
+     height: 30px;
+}
+
+@keyframes dot { /* ADD @-webkit-keyframes for webkit support */
+      0% { opacity: 0; }
+     50% { opacity: 0; }
+    100% { opacity: 1; }
+}

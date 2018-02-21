@@ -1,0 +1,15 @@
+<div class="dialog-title">
+  <h1><i class="fa fa-floppy-o" aria-hidden="true"></i><span style="padding-left: 5px;">Save Calculation Locally</span></h1>
+</div>
+<div class="dialog-content">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Save Calculation As..." [(ngModel)]="fileName">
+    <span matSuffix>.npr</span>
+  </mat-form-field>
+  <div class="save-buttons" fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+    <button mat-raised-button mat-dialog-close>CANCEL</button>
+    <button mat-raised-button color="primary" (click)="saveCalc(dialogRef, fileName, data.inputs)">
+      <i class="fa fa-floppy-o" aria-hidden="true" ></i><span style="padding-left: 5px;">SAVE</span>
+    </button>
+  </div>
+</div>

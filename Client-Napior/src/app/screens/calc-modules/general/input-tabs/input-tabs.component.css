@@ -1,0 +1,38 @@
+#input-tab{
+    height:80px;
+    width: 80px;
+    z-index: 200;
+    margin-top: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+#input-tab:hover{
+    background-color: white;
+    cursor: pointer;
+    color: #3c5c6c;
+    stroke: #3c5c6c;
+    fill: #3c5c6c;
+}
+.active{
+    background-color: white;
+    cursor: pointer;
+    color: #3c5c6c;
+    stroke: #3c5c6c;
+    fill: #3c5c6c;
+}
+
+ul{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+#tab-icon{
+    width:55px;
+    height: 65%;
+}
+#tab-title {
+    height: 35%;
+    width: 80px;
+}

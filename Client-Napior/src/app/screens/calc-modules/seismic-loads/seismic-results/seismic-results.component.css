@@ -1,0 +1,82 @@
+#no-results {
+    width: 100%;
+    text-align: center;
+    font-weight: bolder;
+    color: #3c5c6c;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 3px solid #dddddd;
+    border-bottom: 3px solid #dddddd;
+}
+
+#no-results-container {
+    height: 100%
+}
+
+#individual-results {
+    width: 80%;
+    font-size: 18px;
+}
+
+.results-title {
+    margin-top: 15px;
+}
+
+.ind-result-row {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.ind-result-name {
+    font-weight: bolder;
+    width: 22%;
+    text-align: right;
+    color: #3c5c6c;
+}
+
+.ind-result {
+    width: 22%;
+    text-align: left;
+}
+
+.ind-result-equal {
+    width: 10px;
+    text-align: center
+}
+
+.table-results-container {
+    width: 90%
+}
+
+.table-title {
+    width: 100%;
+    text-align: left;
+    margin: 3px 0px 3px 0px;
+    font-weight: normal;
+    color: #3c5c6c;
+}
+
+#table-results {
+    width:100%;
+    border-collapse: collapse;
+    border: 0px solid transparent;
+}
+
+#table-results-header {
+    background-color: #3c5c6c;
+    color: white;
+}
+
+.table-results-row {
+    text-align: center;
+    border-bottom: 1.5px solid #dddddd;
+}
+
+.table-results-row:nth-child(even){
+    background-color: #dddddd;
+    border: 0px solid #dddddd;
+    border-top: 0px solid #dddddd;
+    border-left: 0px solid #dddddd;
+    border-right: 0px solid #dddddd;
+    border-bottom: 1.5px solid #dddddd;
+}

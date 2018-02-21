@@ -1,0 +1,84 @@
+<div id="menu-container" fxLayout="row" fxLayoutAlign="start center">
+    <div id="logo-container" fxLayout="row" fxLayoutAlign="start center" fxFlex="50%">
+        <img src="/assets/Images/napior-logos/Napior - Logo (White and Green).png" id="menu-napior-logo">
+        <h1 id="app-title">
+            Napior
+        </h1>
+        <span id="page-title">
+            {{activeButtonConfig.pageTitle}}
+        </span>
+    </div>
+    <div id="navigation-buttons"
+        fxFlex="50%" fxLayout="row"
+        fxShow="true"
+        fxShow.sm="false"
+        fxShow.xs="false"
+        fxLayoutAlign="end center"
+        fxLayoutGap="15px">
+        <div *ngIf="activeButtonConfig.aboutButton">
+            <a>
+                <button mat-button fxLayout="row" fxLayoutAlign="center center">
+                    <span>ABOUT</span>
+                </button>
+            </a>
+        </div>
+        <div *ngIf="activeButtonConfig.blogButton">
+            <a href="http://blog.napior.com" target="_blank">
+                <button mat-button fxLayout="row" fxLayoutAlign="center center">
+                    <span>BLOG</span>
+                </button>
+            </a>
+        </div>
+        <div *ngIf="activeButtonConfig.pricingButton">
+            <a>
+                <button mat-button fxLayout="row" fxLayoutAlign="center center">
+                    <span>PRICING</span>
+                </button>
+            </a>
+        </div>
+        <div *ngIf="activeButtonConfig.featuresButton">
+            <a href="splash/#modules-block">
+                <button mat-button fxLayout="row" fxLayoutAlign="center center">
+                    <span>FEATURES</span>
+                </button>
+            </a>
+        </div>
+        <div *ngIf="activeButtonConfig.homeButton">
+            <a routerLink="home">
+                <button mat-button fxLayout="row" fxLayoutAlign="center center">
+                    <i class="fa fa-home"></i>
+                    <span>HOME</span>
+                </button>
+            </a>
+        </div>
+        <div *ngIf="activeButtonConfig.signInButton">
+            <a routerLink="login">
+                <button mat-button fxLayout="row" fxLayoutAlign="center center">
+                    <i class="fa fa-sign-in"></i>
+                    <span>SIGN IN</span>
+                </button>
+            </a>
+        </div>
+        <div *ngIf="activeButtonConfig.tryItButton">
+            <a routerLink="login" (click)="tryit.routeToCreateAccount()" >
+                <button mat-raised-button color="accent" fxLayout="row" fxLayoutAlign="center center">
+                    <span>TRY IT</span>
+                </button>
+            </a>
+        </div>
+        <div *ngIf="activeButtonConfig.accountButton">
+            <a routerLink="account-settings">
+                <button mat-button fxLayout="row" fxLayoutAlign="center center">
+                    <i class="fa fa-gear"></i>
+                    <span>ACCOUNT</span>
+                </button>
+            </a>
+        </div>
+        <div *ngIf="activeButtonConfig.signOutButton">
+            <button (click)="signOut()" mat-button fxLayout="row" fxLayoutAlign="center center">
+                <i class="fa fa-sign-out"></i>
+                <span>SIGN OUT</span>
+            </button>
+        </div>
+    </div>
+</div>

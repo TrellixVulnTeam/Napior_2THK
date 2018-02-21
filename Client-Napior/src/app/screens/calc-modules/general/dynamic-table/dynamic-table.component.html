@@ -1,0 +1,11 @@
+<table class="dynamic-table">
+    <tr class="dynamic-table-header-row" (click)="addStory()">
+        <th class="dynamic-table-header" *ngFor="let header of headers">{{header}}</th>
+        <th class="row-delete-header"></th>
+    </tr>
+    <tr class="dynamic-table-data-row" *ngFor="let story of tableData[0]; let i = index">
+        <td class="dynamic-table-data" [ngStyle]="colStyle" *ngFor="let column of tableData; let j = index"><input  class="dynamic-table-input" [(ngModel)]="tableData[j][i]" (ngModelChange)="parseTableData(j,i)"></td>
+        <td class="row-delete" (click)="deleteStory(i)"><i class="fa fa-minus-square fa-2x" aria-hidden="true"></i></td>
+    </tr>
+</table>
+<div (click)="addStory()" class="add-row-button"><i class="fa fa-plus-square fa-2x" aria-hidden="true"></i></div>

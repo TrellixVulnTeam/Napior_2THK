@@ -1,0 +1,204 @@
+<div id="report-component-container" [ngStyle]="genReport.shadowReportStyle">
+    <div class="report-page-wrapper">
+        <div class="report-page">
+            <div class="report-page-content">
+                <div>
+                    <div class="report-title" >Snow Loads</div>
+                    <div class="report-graphic">
+                        <app-snow-graphics
+                            [graphicControl]="{}"
+                            [storyChange]="1"
+                            [type]="'report'" 
+                            [width]="graphicWidth" 
+                            [height]="graphicHeight"
+                        ></app-snow-graphics>
+                        <img class="report-image">
+                    </div>
+                <!--Properties -->
+                    <div class="report-section-title">1 - Properties</div>
+                    <!--Building Criteria -->
+                    <div class="report-subsection-title">Building Criteria</div>
+                    <div class="math-line">
+                        <span class="left-equals">Building Risk Cat.</span>
+                        <span> = {{this.calc.inputs.riskCategory}}</span>
+                        <span class="reference"> IBC Table 1604.5</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">Importance Factor, I<sub>s</sub></span>
+                        <span> = {{calc.results.Is}}</span>
+                        <span class="reference">ASCE 7-10 Table 1.5-2</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">Roof Type</span>
+                        <span> = {{this.calc.inputs.roofType}}</span>
+                        <span class="reference"></span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">Roof Surface Type</span>
+                        <span> = {{this.calc.inputs.roofSurfaceType}}</span>
+                        <span class="reference">ASCE 7-10 Figure 7-2</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">Temperature Factor, C<sub>t</sub></span>
+                        <span> = {{this.calc.results.temperatureFactor}}</span>
+                        <span class="reference">ASCE 7-10 Table 7-3</span>
+                    </div>
+                    <div class="report-subsection-title">Site Criteria</div>
+                    <div class="math-line">
+                        <span class="left-equals">Ground Snow Load, p<sub>g</sub></span>
+                        <span> = {{this.calc.inputs.groundSnowLoad}}</span>
+                        <span class="reference">ASCE 7-10 Figure 7-1</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">Terrain Category</span>
+                        <span> = {{this.calc.inputs.terrainCategory}}</span>
+                        <span class="reference">ASCE 7-10 26.7</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">Roof Exposure</span>
+                        <span> = {{this.calc.inputs.roofExposure}}</span>
+                        <span class="reference">ASCE 7-10 Table 7-2</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">Exposure Factor, C<sub>e</sub></span>
+                        <span> = {{this.calc.results.exposureFactor}}</span>
+                        <span class="reference">ASCE 7-10 Table 7-2</span>
+                    </div>
+                <!--Loads -->
+                    <div class="report-section-title">2 - Loads</div>
+                    <!--Flat Roof Loads -->
+                    <div class="report-subsection-title">Flat Roof Loads</div>
+                    <div class="math-line">
+                        <span class="left-equals">Flat Roof Load, p<sub>f</sub></span>
+                        <span> = 0.7C<sub>e</sub>C<sub>t</sub>I<sub>s</sub>p<sub>g</sub> = 0.7({{this.calc.results.exposureFactor}})({{this.calc.results.temperatureFactor}})({{calc.results.Is}})({{this.calc.inputs.groundSnowLoad}} psf) = {{this.calc.results.pf}} psf</span>
+                        <span class="reference">ASCE 7-10 Eqn 7.3-1</span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.groundSnowLoad < 20 && this.calc.inputs.roofSlope < 15">
+                        <span class="left-equals">p<sub>g</sub> > 20 psf</span>
+                        <span><span [Math]="'\\therefore'"></span> p<sub>m</sub> = 20 psf (I<sub>s</sub>) = 20 psf({{calc.results.Is}}) = {{calc.results.pm}} psf</span>
+                        <span class="reference">ASCE 7-10 7.3.4</span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.groundSnowLoad > 20 && this.calc.inputs.roofSlope < 15">
+                        <span class="left-equals">p<sub>g</sub> < 20 psf</span>
+                        <span><span [Math]="'\\therefore'"></span> p<sub>m</sub> = p<sub>g</sub>I<sub>s</sub> = ({{this.calc.inputs.groundSnowLoad}} psf)({{calc.results.Is}}) = {{calc.results.pm}} psf</span>
+                        <span class="reference">ASCE 7-10 7.3.4</span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.results.pm < this.calc.results.pf || this.calc.inputs.roofType !== 'Flat'">
+                        <span class="left-equals">p<sub>m</sub> > p<sub>f</sub></span>
+                        <span><span [Math]="'\\therefore'"></span> use {{calc.results.pm}} psf</span>
+                        <span class="reference">ASCE 7-10 7.3.4</span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.results.pm > this.calc.results.pf || this.calc.inputs.roofType !== 'Flat'">
+                        <span class="left-equals">p<sub>f</sub> > p<sub>m</sub></span>
+                        <span><span [Math]="'\\therefore'"></span> use {{calc.results.pf}} psf</span>
+                        <span class="reference">ASCE 7-10 7.3.4</span>
+                    </div>
+                    <!--Sloped Roof Loads -->
+                    <div class="report-subsection-title" [hidden]="this.calc.inputs.roofType === 'Flat' || this.calc.inputs.roofType === 'Stepped'">Sloped Roof Loads</div>
+                    <div class="math-line" [hidden]="this.calc.inputs.roofType === 'Flat' || this.calc.inputs.roofType === 'Stepped' || calc.inputs.roofSlope < calc.results.reportValues.Cs_base">
+                        <span class="left-equals">(&theta; = {{calc.inputs.roofSlope}}&deg;) > {{calc.results.reportValues.Cs_base}}&deg;</span>
+                        <span><span [Math]="'\\therefore'"></span> C<sub>s</sub> {{calc.results.Cs}}</span>
+                        <span class="reference">ASCE 7-10 Figure 7-2</span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.roofType === 'Flat' || this.calc.inputs.roofType === 'Stepped' || calc.inputs.roofSlope > calc.results.reportValues.Cs_base">
+                        <span class="left-equals">(&theta; = {{calc.inputs.roofSlope}}&deg;) < {{calc.results.reportValues.Cs_base}}&deg;</span>
+                        <span><span [Math]="'\\therefore'"></span> C<sub>s</sub> {{calc.results.Cs}}</span>
+                        <span class="reference">ASCE 7-10 Figure 7-2</span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.roofType === 'Flat' || this.calc.inputs.roofType === 'Stepped'">
+                        <span class="left-equals">Sloped Roof Load, p<sub>s</sub></span>
+                        <span> = p<sub>f</sub>C<sub>s</sub> = ({{calc.results.pf}} psf)({{calc.results.Cs}}) = {{calc.results.ps}} psf</span>
+                        <span class="reference">ASCE 7-10 Eqn 7.4-1</span>
+                    </div>
+                    <!--Hip/Gable Roof Loads -->
+                    <div class="report-subsection-title" [hidden]="this.calc.inputs.roofType !== 'Hip/Gable'">Unbalanced Roof Loads</div>
+                    <div class="math-line" [hidden]="this.calc.inputs.roofType !== 'Hip/Gable'">
+                        <span class="left-equals">Snow Density, &gamma;</span>
+                        <span>=0.13p<sub>g</sub>+14 = 0.13({{this.calc.inputs.groundSnowLoad}} psf) + 14 = {{calc.results.reportValues.gamma}} pcf < 30 pcf</span>
+                        <span class="reference">ASCE 7-10 Equation 7.7-1</span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.roofType !== 'Hip/Gable'">
+                        <span class="left-equals">Slope Run, S</span>
+                        <span> = </span>
+                        <span class="math" [Math]="S" style="height:5%"></span>
+                        <span> = {{calc.results.reportValues.S}} ft</span>
+                        <span class="reference">ASCE 7-10 Figure 7-5 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.roofType !== 'Hip/Gable'">
+                        <span class="left-equals">Drift Height, h<sub>d</sub></span>
+                        <span> = </span>
+                        <span class="math" [Math]="hd" style="height:5%"></span>
+                        <span> = {{calc.results.reportValues.hd}} ft</span>
+                        <span class="reference">ASCE 7-10 Figure 7-9 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.roofType !== 'Hip/Gable'">
+                        <span class="left-equals">Surcharge, p<sub>d,max</sub></span>
+                        <span> = </span>
+                        <span class="math" [Math]="pdMaxHipGable" style="height:5%"></span>
+                        <span> = {{calc.results.maxDriftLoad}} psf</span>
+                        <span class="reference">ASCE 7-10 Section 7.6.1</span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.roofType !== 'Hip/Gable'">
+                        <span class="left-equals">Drift Width, w</span>
+                        <span> = </span>
+                        <span class="math" [Math]="wHipGable" style="height:5%"></span>
+                        <span> = {{calc.results.w}} ft</span>
+                        <span class="reference">ASCE 7-10 Section 7.6.1</span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.roofType !== 'Hip/Gable'">
+                        <span class="left-equals">Windward, p<sub>d,min</sub></span>
+                        <span>=0.3p<sub>s</sub> = 0.3({{this.calc.results.ps}} psf) = {{calc.results.minDriftLoad}} psf</span>
+                        <span class="reference">ASCE 7-10 Section 7.6.1</span>
+                    </div>
+                    <!--Stepped Roof Loads -->
+                    <div class="report-subsection-title" [hidden]="this.calc.inputs.roofType !== 'Stepped'">Stepped Roof Loads (Aerodynamic Shade)</div>
+                    <div class="math-line" [hidden]="this.calc.inputs.roofType !== 'Stepped'">
+                        <span class="left-equals">Snow Density, &gamma;</span>
+                        <span>=0.13p<sub>g</sub>+14 = 0.13({{this.calc.inputs.groundSnowLoad}} psf) + 14 = {{calc.results.reportValues.gamma}} pcf < 30 pcf</span>
+                        <span class="reference">ASCE 7-10 Equation 7.7-1</span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.roofType !== 'Stepped'">
+                        <span class="left-equals">Flat Snow Height, h<sub>b</sub></span>
+                        <span> = </span>
+                        <span class="math" [Math]="hb" style="height:5%"></span>
+                        <span> = {{calc.results.reportValues.hb}} ft</span>
+                        <span class="reference">ASCE 7-10 Section 7.1</span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.roofType !== 'Stepped'">
+                        <span class="left-equals">h<sub>c</sub>/h<sub>b</sub></span>
+                        <span>
+                            = {{calc.inputs.stepHeight}} ft/{{calc.results.reportValues.hb}} ft = {{calc.results.reportValues.hchb}}
+                            <span *ngIf="calc.results.reportValues.hchb > 0.2"> > 0.2 <span [Math]="'\\therefore'"></span> Drifted snow loads are required.</span>
+                            <span *ngIf="calc.results.reportValues.hchb <= 0.2"> < 0.2 <span [Math]="'\\therefore'"></span> Drifted snow loads aren't required.</span>
+                        </span>
+                        <span class="reference">ASCE 7-10 Section 7.7.1</span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.roofType !== 'Stepped' && calc.results.reportValues.hchb < 0.2">
+                        <span class="left-equals">Leeward, h<sub>d</sub></span>
+                        <span> = </span>
+                        <span class="math" [Math]="hdLeeward" style="height:5%"></span>
+                        <span> = {{calc.results.reportValues.hd_leeward}} ft</span>
+                        <span class="reference">ASCE 7-10 Figure 7-9 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.roofType !== 'Stepped' && calc.results.reportValues.hchb < 0.2">
+                        <span class="left-equals">Windward, h<sub>d</sub></span>
+                        <span> = </span>
+                        <span class="math" [Math]="hdWindward" style="height:5%"></span>
+                        <span> = {{calc.results.reportValues.hd_windward}} ft</span>
+                        <span class="reference">ASCE 7-10 Figure 7-9 </span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.roofType !== 'Stepped' && calc.results.reportValues.hchb < 0.2">
+                        <span class="left-equals">Drift Width, w</span>
+                        <span>= 4(h<sub>d,max</sub>) = 4({{calc.results.reportValues.hd_max}} ft) = {{calc.results.w}} ft</span>
+                        <span class="reference">ASCE 7-10 Section 7.7.1</span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.roofType !== 'Stepped' && calc.results.reportValues.hchb < 0.2">
+                        <span class="left-equals">p<sub>d, max</sub></span>
+                        <span>= &gamma;(h<sub>d,max</sub>) = ({{calc.results.reportValues.gamma}})({{calc.results.reportValues.hd_max}} ft) = {{calc.results.pd}} psf</span>
+                        <span class="reference">ASCE 7-10 Section 7.7.1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

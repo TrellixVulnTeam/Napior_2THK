@@ -1,0 +1,66 @@
+<div class="input-tab-content">
+  <mat-form-field>
+    <mat-select placeholder="Building Risk Category" [(ngModel)]="this.calc.inputs.riskCategory">
+      <mat-option *ngFor="let category of riskCategories" [value]="category">
+        {{category}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Roof Temperature Factor, Ct" [(ngModel)]="this.calc.inputs.temperatureFactor">
+      <mat-option *ngFor="let factor of temperatureFactors" [value]="factor">
+        {{factor}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Surface Type" [(ngModel)]="this.calc.inputs.roofSurfaceType">
+      <mat-option *ngFor="let surface of surfaceTypes" [value]="surface">
+        {{surface}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Roof Type" [(ngModel)]="this.calc.inputs.roofType" napiorInput [updateGraphic]="true">
+      <mat-option *ngFor="let roof of roofTypes" [value]="roof">
+        {{roof}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div *ngIf="this.calc.inputs.roofType === 'Monoslope'">
+    <mat-form-field>
+      <mat-placeholder>Roof Slope, &theta;</mat-placeholder>
+      <input matInput [(ngModel)]="this.calc.inputs.roofSlope" napiorInput [updateGraphic]="true">
+      <span matSuffix>degrees</span>
+    </mat-form-field>
+  </div>
+  <div *ngIf="this.calc.inputs.roofType === 'Hip/Gable'">
+    <mat-form-field>
+      <mat-placeholder>Roof Slope, &theta;</mat-placeholder>
+      <input matInput [(ngModel)]="this.calc.inputs.roofSlope" napiorInput [updateGraphic]="true">
+      <span matSuffix>degrees</span>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-placeholder>Eave to Ridge Distance, W</mat-placeholder>
+      <input matInput [(ngModel)]="this.calc.inputs.distEaveToRidge">
+      <span matSuffix>ft</span>
+    </mat-form-field>
+  </div>
+  <div *ngIf="this.calc.inputs.roofType === 'Stepped'">
+    <mat-form-field>
+      <mat-placeholder>Upper Roof Length</mat-placeholder>
+      <input matInput [(ngModel)]="this.calc.inputs.lengthUpperRoof" napiorInput [updateGraphic]="true">
+      <span matSuffix>ft</span>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-placeholder>Lower Roof Length</mat-placeholder>
+      <input matInput [(ngModel)]="this.calc.inputs.lengthLowerRoof" napiorInput [updateGraphic]="true">
+      <span matSuffix>ft</span>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-placeholder>Step Height, h<sub>c</sub></mat-placeholder>
+      <input matInput [(ngModel)]="this.calc.inputs.stepHeight" napiorInput [updateGraphic]="true">
+      <span matSuffix>ft</span>
+    </mat-form-field>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="input-tab-content" fxLayout="column">
+  <mat-form-field>
+    <mat-select placeholder="Building Risk Category" [(ngModel)]="calc.inputs.riskCategory">
+      <mat-option *ngFor="let category of riskCategories" [value]="category">
+        {{category}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Building Enclosure Type" [(ngModel)]="calc.inputs.enclosureType">
+      <mat-option *ngFor="let type of enclosureTypes" [value]="type">
+        {{type}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div fxLayout="row" fxLayoutGap="10px" id="gust-factor-inputs">
+    <mat-slide-toggle fxFlex="161px" class="g-switch" [(ngModel)]="calc.inputs.assumeRigid" fxFlex="50%" [checked]="calc.inputs.assumeRigid">
+      <div *ngIf="calc.inputs.assumeRigid">Assume Rigid</div>
+      <div *ngIf="!calc.inputs.assumeRigid">Calculate G</div>
+    </mat-slide-toggle>
+    <mat-form-field fxFlex="161px" *ngIf="!calc.inputs.assumeRigid">
+      <mat-placeholder>Building Period, T</mat-placeholder>
+      <input matInput [(ngModel)]="this.calc.inputs.period">
+      <span matSuffix>seconds</span>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="20px">
+    <mat-form-field fxFlex="161px">
+      <mat-placeholder>Building Width, B</mat-placeholder>
+      <input matInput [(ngModel)]="this.calc.inputs.buildingWidth">
+      <span matSuffix>ft</span>
+    </mat-form-field>
+    <mat-form-field fxFlex="161px">
+      <mat-placeholder>Building Length, L</mat-placeholder>
+      <input matInput [(ngModel)]="this.calc.inputs.buildingLength">
+      <span matSuffix>ft</span>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+    <mat-form-field fxFlex="131px">
+      <mat-placeholder>Roof Area, B</mat-placeholder>
+      <input matInput [(ngModel)]="this.calc.inputs.roofTribB">
+      <span matSuffix>ft<sup>2</sup></span>
+    </mat-form-field>
+    <app-help-tip [title]="roofAreaTipTitle" [image]="roofAreaImage" [subTitle]="roofAreaSubTitle" [text]="roofAreaText"></app-help-tip>
+    <mat-form-field fxFlex="131px">
+        <mat-placeholder>Roof Area, L</mat-placeholder>
+        <input matInput [(ngModel)]="this.calc.inputs.roofTribL">
+        <span matSuffix>ft<sup>2</sup></span>
+    </mat-form-field>
+    <app-help-tip [title]="roofAreaTipTitle" [image]="roofAreaImage" [subTitle]="roofAreaSubTitle" [text]="roofAreaText"></app-help-tip>
+  </div>
+  <div class="input-sub-title">
+    Story Data:
+  </div>
+  <div class="dynamic-table-container">
+    <app-dynamic-table [headers]="tableTitles" [tableData]="storyData" (click)="changeTable()" (keyup)="changeTable()"></app-dynamic-table>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+.login-screen {
+    /*background-color: #e2e1e0;*/
+    background: url('/assets/Images/common/background.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#login-card {
+    width: 440px;
+    margin-top: 6%;
+    padding: 40px;
+}
+
+#login-logo {
+    width: 120px;
+}
+
+#login-title {
+    font-size: 90px;
+    padding-right: 20px;
+    color: #3c5c6c;
+}
+
+#sign-in {
+    margin: 20px 0px 15px 0px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #3c5c6c;
+}
+
+#sign-in-form {
+    width: 100%
+}
+
+#login-error{
+    height: 14px;
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: #7A0000;
+}
+
+#sign-in-button {
+    width: 60%;
+}
+
+#create-account-button {
+    width: 80%;
+}
+
+#create-button {
+    width: 60%;
+}
+
+#dont-have-account {
+    font-size: 14px;
+    color: #3c5c6c;
+    margin: 15px 0px 10px 0px;
+}
+
+#forgot-password {
+    font-size: 14px;
+    color: #3c5c6c;
+    margin: 10px 0px 15px 0px;
+}
+
+#forgot-password:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#create-account-card {
+    width: 440px;
+    margin-top: 4%;
+    padding: 40px;
+}
+
+#create-account-title {
+    font-size: 35px;
+    font-weight: bold;
+    color: #3c5c6c;
+    margin-bottom: 20px;
+}

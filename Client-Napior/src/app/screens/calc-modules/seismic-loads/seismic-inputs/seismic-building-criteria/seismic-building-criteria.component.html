@@ -1,0 +1,37 @@
+<div class="input-tab-content" fxLayout="column">
+  <mat-form-field>
+    <mat-select placeholder="Risk Category" [(ngModel)]="calc.inputs.riskCategory">
+      <mat-option *ngFor="let category of riskCategoryArray" [value]="category">
+        {{category}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Lateral System Category" [(ngModel)]="systemCategoryData" (change)="changeCategory()">
+      <mat-option *ngFor="let systemCategory of systemsByCategory" [value]="systemCategory">
+        {{systemCategory.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Lateral System" [(ngModel)]="system" (change)="changeSystem()">
+      <mat-option *ngFor="let system of systemCategoryData.data" [value]="system">
+        {{system.system}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div fxLayout="row" fxLayoutAlign="start center" id="period-data-container">
+    <mat-slide-toggle [(ngModel)]="calc.inputs.letNapiorCalcPeriod" fxFlex="50%" [checked]="calculatePeriod">
+      <div *ngIf="calc.inputs.letNapiorCalcPeriod">Calculate Period</div>
+      <div *ngIf="!calc.inputs.letNapiorCalcPeriod">Period Known</div>
+    </mat-slide-toggle>
+    <mat-form-field fxFlex="50%" *ngIf="!calc.inputs.letNapiorCalcPeriod">
+      <mat-placeholder>Building Period</mat-placeholder>
+      <input matInput [(ngModel)]="calc.inputs.analyticalPeriod">
+      <span matSuffix>s</span>
+    </mat-form-field>
+  </div>
+  <div class="dynamic-table-container">
+    <app-dynamic-table [headers]="tableTitles" [tableData]="storyData" (click)="changeTable()" (keyup)="changeTable()"></app-dynamic-table>
+  </div>
+</div>

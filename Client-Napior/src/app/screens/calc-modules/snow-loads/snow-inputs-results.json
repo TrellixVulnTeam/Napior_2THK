@@ -1,0 +1,25 @@
+{
+  "inputs": {
+    "type": "snowLoads",
+    "typeName": "Snow Load",
+    "company": "",
+    "project": "Snow Loads",
+    "description": "Determine the snow loads.",
+    "engineer": "",
+    "groundSnowLoad": 15,
+    "temperatureFactor": 1.0,
+    "terrainCategory": "B",
+    "roofExposure": "Sheltered",
+    "riskCategory":"II",
+    "roofType": "Stepped",
+    "roofSlope": 10,
+    "roofSurfaceType": "Slippery",
+    "distEaveToRidge": 25,
+    "lengthUpperRoof": 20,
+    "lengthLowerRoof": 15,
+    "stepHeight":5
+  },
+  "results": {
+
+  }
+}

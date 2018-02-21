@@ -1,0 +1,365 @@
+@media screen {
+    #report-container {
+        height:100%;
+        position: relative; 
+    }
+    .report-title {
+        font-size: calc((100vw - 500px)*0.015);
+    }
+    .report-graphic {
+        height: calc((100vw - 500px)*0.2);
+        width: 80%;
+        margin: 0% 10% 0% 10%;
+    }
+    .report-section-title {
+        font-size: calc((100vw - 500px)*0.015);
+    }
+    .report-subsection-title {
+        font-size: calc((100vw - 500px)*0.011);
+    }
+    .math {
+        font-size: calc((100vw - 500px)*0.006);
+    }
+    #seismic-report-table-title{
+        font-size: calc((100vw - 500px)*0.013);
+    }
+    #report-table-title{
+        font-size: calc((100vw - 500px)*0.013);
+    }
+}
+
+@media print {
+    #report-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 8.5in;
+    }
+    .report-title {
+        font-size: 24px;
+    }
+    .report-graphic {
+        height: 3in;
+        width: 80%;
+        margin: 0% 5% 0% 15%;
+    }
+    .report-section-title {
+        font-size: 24px;
+    }
+    .report-subsection-title {
+        font-size: 18px;
+    }
+    .math {
+        font-size: 10px;
+    }
+    #seismic-report-table-title{
+        font-size: 14px;
+    }
+    #report-table-title{
+        font-size: 14px;
+    }
+}
+
+
+.report-title {
+    text-align: center;
+    font-weight: bold;
+    margin: 0% 0% 2% 0%;
+}
+
+.report-graphic {
+    position: relative;
+}
+
+.report-section-title {
+    font-weight: bold;
+    color:#3c5c6c;
+    text-decoration: none;
+    margin: 4% 0% 2% 0%;
+}
+
+.report-subsection-title {
+    font-weight: bolder;
+    margin: 2% 0% 2% 2%;
+}
+
+.math-line {
+    margin: 0% 0% 1% 4%;
+    vertical-align: middle;
+}
+
+.math {
+    display: inline-block;
+    float: top;
+}
+
+.left-equals {
+    text-align: left;
+    width: 18%;
+    float: left;
+    font-weight: bold;
+    margin-right: 1%;
+    height: 100%;
+    line-height: 100%;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.equals {
+    display: inline-block;
+}
+
+.result{
+    height: 20px;
+     display: inline-block;
+}
+
+.reference {
+    display: inline-block;
+    width: 21%;
+    float:right;
+    font-style: italic;
+    color: #808080;
+    margin: 0% 0% 0% 0%;
+}
+
+.table-reference {
+    width: 60% !important;
+    text-align: center;
+    margin: 0px 20% 0.5% 20%;
+    float: none !important;
+}
+
+.section-break {
+    height: 5%;
+}
+
+#seismic-report-table-title {
+    font-weight: bold;
+    color:#3c5c6c;
+    margin: 20% 20% 1% 20%;
+}
+
+#report-table-title {
+    font-weight: bold;
+    color:#3c5c6c;
+    margin: 20% 20% 1% 20%;
+}
+
+.wide-report-table-title {
+    margin: 20% 10% 1% 10% !important;
+}
+
+.report-table {
+    -webkit-print-color-adjust: exact;
+    width: 60%;
+    margin: 1% 20% 5px 20%;
+    border-collapse: collapse;
+    border: 0px solid transparent;
+}
+
+.wide-report-table {
+    -webkit-print-color-adjust: exact;
+    width: 80%;
+    margin: 1% 10% 3% 10%;
+    border-collapse: collapse;
+    border: 0px solid transparent;
+}
+
+.report-table-header {
+    background-color: #3c5c6c;
+    color: white;
+}
+
+.report-table-row {
+    text-align: center;
+    border-bottom: 1.5px solid #dddddd;
+}
+
+.report-table-row:nth-child(odd){
+    background-color: #dddddd;
+    border-top: 0px solid #dddddd;
+    border-left: 0px solid #dddddd;
+    border-right: 0px solid #dddddd;
+    border-bottom: 1.5px solid #dddddd;
+}
+
+/*canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+}*/
+
+.report-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/*Module specific*/
+@media screen {
+    #report-component-container {
+        height: 100%;
+        background-color: #dddddd;
+        overflow-y: scroll;
+    }
+
+    #report-base {
+        width: 60%;
+        height: 1px;
+        display: block;
+        position: relative;
+        background-color: #dddddd;
+        margin: 15px 20% 15px 20%;
+    }
+
+    .report-page-wrapper {
+        width: 60%;
+        display: block;
+        position: relative;
+        background-color: white;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        margin: 15px 20% 15px 20%;
+    }
+    
+    .report-page-wrapper:after {
+        padding-top: 129.41%;
+        display: block;
+        content: '';
+    }
+    
+    .report-page {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: white;
+        margin: 3% 3% 3% 10%;
+        border: 1px solid black;
+        font-size: calc((100vw - 500px)*0.0080);
+    }
+    
+    .report-page-header {
+        border-collapse: collapse;
+        width: 100.2%;
+        height: 10%;
+        border: 1px solid black;
+    }
+
+}
+
+@media print {
+    #report-component-container {
+        display: block;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        width: 100vmin;
+        margin: 0;
+    }
+
+    #report-base {
+        width: 100vmin;
+        height: 1px;
+        position: relative;
+        background-color: white;
+        margin: 0px 0px 0px 0px;
+        overflow: visible !important;
+    }
+
+    .report-page-wrapper {
+        width: 100vmin;
+        height: calc(100vmin * 1.2941);
+        position: relative;
+        background-color: white;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        margin: 0px 0px 0px 0px;
+        overflow: visible !important;
+    }
+    
+    .report-page-wrapper:after {
+        padding-top: 129.41%;;
+        content: '';
+        overflow: visible !important;
+    }
+    
+    .report-page {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: white;
+        margin: 3% 3% 3% 10%;
+        border: 1px solid black;
+        font-size: 13px;
+        overflow: visible !important;
+    }
+    
+    .report-page-header {
+        border-collapse: collapse;
+        width: 100.2%;
+        height: 10%;
+        border: 1px solid black;
+        overflow: visible !important;
+    }
+}
+
+/*table,
+th,
+td {
+    border: 1px solid black;
+}*/
+
+.report-page-header {
+    border: 1px solid black;
+}
+
+tr {
+    height: 25%;
+}
+
+.report-header-col1 {
+    width: 25%;
+    border: 1px solid black;
+}
+
+td.report-header-col1 {
+    vertical-align: center;
+    border: 1px solid black;
+}
+
+.report-header-col2 {
+    vertical-align: top;
+    border: 1px solid black;
+}
+
+.report-header-col3 {
+    width: 18%;
+    vertical-align: top;
+    border: 1px solid black;
+}
+
+#report-napior-logo {
+    width: 98%;
+}
+
+.report-page-content {
+    height: 87%;
+    width: 94%;
+    margin: 3%;
+}
+
+#report-print-button {
+    position: absolute;
+    top: 70px;
+    right: 22px;
+}
+
+span.frac-line.hide-tail {
+    display: none !important;
+}

@@ -1,0 +1,140 @@
+<div class="screen-container subscription" fxLayout="row" fxLayoutAlign="center start">
+  <mat-card id="subscription-card" fxLayout="column" fxLayoutAlign="start center">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <h1 id="subscription-title">
+        <i class="fa fa-calendar-check-o"></i>Subscription Settings
+      </h1>
+    </div>
+    <div id="subscription-content" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="25px">
+      <div fxFlex="30" fxLayout="column" fxLayoutAlign="start start">
+        <mat-button-toggle-group class="subscription-settings-nav" fxLayout="column" #group="matButtonToggleGroup">
+          <mat-button-toggle value="current" checked="true">
+            Current Subscription
+          </mat-button-toggle>
+          <mat-button-toggle value="update" *ngIf="rtdb.companyData.plan == 'trial' || rtdb.companyData.plan == 'cancelled'">
+            Start Subscription
+          </mat-button-toggle>
+          <mat-button-toggle value="cancel" *ngIf="rtdb.companyData.plan != 'trial' && rtdb.companyData.plan != 'cancelled'">
+            Cancel Subscription
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+        <mat-button-toggle routerLink="/account-settings" id="return-account-settings-button" fxLayout="row" fxLayoutAlign="center center">
+          Account Settings
+        </mat-button-toggle>
+      </div>
+      <div fxFlex="70">
+        <div [hidden]="group.value !== 'current'">
+          <h2 class="subscription-subtitle">
+            Current Subscription
+          </h2>
+          <table class="subscription-table">
+            <tr>
+              <td class="subscription-label">Plan:</td>
+              <td class="subscription-data">{{planTitle.planTypes[rtdb.companyData.plan]}}</td>
+            </tr>
+            <tr>
+              <td class="subscription-label">Fee:</td>
+              <td class="subscription-data">${{rtdb.companyData.subscriptionFee}}/Month</td>
+            </tr>
+            <tr *ngIf="rtdb.companyData.plan == 'trial'">
+              <td class="subscription-label">Trial Length:</td>
+              <td class="subscription-data">{{rtdb.companyData.trialLength}}</td>
+            </tr>
+            <tr *ngIf="rtdb.companyData.plan != 'trial'">
+              <td class="subscription-label">Last Billed On:</td>
+              <td class="subscription-data">{{rtdb.companyData.lastBilled | date:mediumDate}}</td>
+            </tr>
+            <tr *ngIf="rtdb.companyData.plan != 'trial' && rtdb.companyData.plan != 'cancelled'">
+              <td class="subscription-label">Next Billing Date:</td>
+              <td class="subscription-data">{{rtdb.companyData.nextBill | date:mediumDate}}</td>
+            </tr>
+          </table>
+          <p *ngIf="rtdb.companyData.plan == 'cancelled'">
+            You've cancelled your subscription. You'll have access to your previously subscribed modules until {{rtdb.companyData.nextBill
+            | date:mediumDate}}.
+          </p>
+        </div>
+        <div [hidden]="group.value !== 'update'">
+          <h2 class="subscription-subtitle">
+            Start Subscription
+          </h2>
+          <div [hidden]="subscribingStatus !== 'not' && subscribingStatus !== 'subscribing'">
+            <table class="subscription-table">
+              <tr>
+                <td class="subscription-label">Plan:</td>
+                <td class="subscription-data">Seismic, Wind, and Snow Loads</td>
+              </tr>
+              <tr>
+                <td class="subscription-label">Fee:</td>
+                <td class="subscription-data">$24.99/Month (USD)</td>
+              </tr>
+            </table>
+            <div class="cell subscribe">
+              <form novalidate [formGroup]="stripeTest">
+                <div class="row focused">
+                  <div class="field">
+                    <div id="stripe-input" class="input empty focused" #card></div>
+                    <label for="stripe-input" class="focused">Payment Card Information</label>
+                    <div class="baseline focused"></div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div fxLayout="row" id="subscription-buttons" fxLayoutAlign="center center">
+              <button (click)="updatePlan()" fxFlex="80" routerLink="/subscription" id="return-home-button" mat-raised-button color="accent"
+                fxLayout="row" fxLayoutAlign="center center">
+                <i *ngIf="subscribingStatus == 'not'" class="fa fa-credit-card" aria-hidden="true"></i>
+                <i *ngIf="subscribingStatus == 'subscribing'" class="fa fa-circle-o-notch fa-spin fa-fw fa-lg"></i>
+                <span>START SUBSCRIPTION: $24.99/MONTH</span>
+              </button>
+            </div>
+            <div id="powered-by-stripe" fxLayout="row" fxLayoutAlign="center center">
+              <h3 id="powered-by">Payments Powered By:</h3>
+              <a href="https://stripe.com/docs/security/stripe" target="_blank">
+                <img id="stripe-icon" src="/assets/Images/external-logos/stripe-min.png">
+              </a>
+            </div>
+          </div>
+          <div>
+            <div [hidden]="subscribingStatus != 'subscribed'">
+              <h2 class="success">
+                Subscription Successful<i class="fa fa-check" aria-hidden="true"></i>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div [hidden]="group.value !== 'cancel'">
+          <div fxLayout="column">
+            <h2 class="subscription-subtitle">
+              Cancel Subscription
+            </h2>
+            <div [hidden]="cancellingStatus == 'cancelled'">
+              <p>To end your subscription, type "cancel" in the field below, then hit cancel subscription.</p>
+              <mat-form-field>
+                <input matInput placeholder="Type 'cancel' Here" name="cancel" [(ngModel)]="cancel">
+              </mat-form-field>
+              <div id="cancel-error">
+                {{cancelError}}
+              </div>
+              <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px">
+                <button routerLink="/account-settings" mat-raised-button color="primary" id="cancel-button" (click)="cancelSubscription()">
+                  <span>RETURN TO SETTINGS</span>
+                </button>
+                <button mat-raised-button id="cancel-button" (click)="cancelSubscription()">
+                  <i *ngIf="cancellingStatus == 'not'" class="fa fa-times" aria-hidden="true"></i>
+                  <i *ngIf="cancellingStatus == 'cancelling'" class="fa fa-circle-o-notch fa-spin fa-fw fa-lg"></i>
+                  <span>CANCEL SUBSCRIPTION</span>
+                </button>
+              </div>
+            </div>
+            <div [hidden]="cancellingStatus != 'cancelled'">
+              <h2 class="success">
+                Subscription Cancelled <i class="fa fa-check" aria-hidden="true"></i>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

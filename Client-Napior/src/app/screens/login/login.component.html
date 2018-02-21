@@ -1,0 +1,78 @@
+<div class="screen-container login-screen" fxLayout="row" fxLayoutAlign="center start">
+  <mat-card *ngIf="currentCard == 'login'" id="login-card" fxLayout="column" fxLayoutAlign="start center">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <img src="/assets/Images/napior-logos/Napior - Logo (Color).svg" id="login-logo">
+      <div id="login-title">Napior</div>
+    </div>
+    <div id="sign-in">
+      Sign In
+    </div>
+    <form fxLayout="column" fxLayoutAlign="start center" id="sign-in-form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" [(ngModel)]="email" name="email">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password" [(ngModel)]="password" name="password" type="password">
+      </mat-form-field>
+      <div id="login-error">
+        {{loginError}}
+      </div>
+      <button id="sign-in-button" mat-raised-button color="accent" fxLayout="row" fxLayoutAlign="center center" (click)="login()">
+        <i *ngIf="!loggingIn" class="fa fa-sign-in" aria-hidden="true"></i>
+        <i *ngIf="loggingIn" class="fa fa-circle-o-notch fa-spin fa-fw fa-lg"></i>
+        <span>SIGN IN</span>
+      </button>
+      <div id="forgot-password" (click)="openForgotPassDialog()">Forgot your password?</div>
+      <div id="dont-have-account">Don't have a Napior account?</div>
+      <button id="create-button" mat-raised-button color="primary" fxLayout="row" fxLayoutAlign="center center" (click)="createAccountCard()">
+        <span>CREATE ACCOUNT</span>
+      </button>
+    </form>
+  </mat-card>
+  <mat-card *ngIf="currentCard == 'createAccount'" id="create-account-card" fxLayout="column" fxLayoutAlign="start center">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <div id="create-account-title">Create Account</div>
+    </div>
+    <form fxLayout="column" fxLayoutAlign="start center" id="sign-in-form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Engineer Name" [(ngModel)]="rtdb.createName" name="first-name">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Company Name" [(ngModel)]="rtdb.companyName" name="company-name">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" [(ngModel)]="email" name="email">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password" [(ngModel)]="password" name="password" type="password">
+      </mat-form-field>
+      <div style="margin-top: 20px">
+        <mat-checkbox [(ngModel)]="agreeToTerms" name="aggree"></mat-checkbox>
+        <span>I agree to the</span>
+        <span class="terms-and-privacy" (click)="termsPrivacy.openTermsPrivacy('terms')">terms of use</span>
+        <span>and</span>
+        <span class="terms-and-privacy" (click)="termsPrivacy.openTermsPrivacy('privacy')">privacy policy</span>
+        <span>.</span>
+      </div>
+      <div id="login-error">
+        {{loginError}}
+      </div>
+      <button id="create-account-button" mat-raised-button color="accent" fxLayout="row" fxLayoutAlign="center center" (click)="createAccount()">
+        <i *ngIf="loggingIn" class="fa fa-circle-o-notch fa-spin fa-fw fa-lg"></i>
+        <span>CREATE ACCOUNT AND SIGN IN</span>
+      </button>
+      <div id="dont-have-account">Already have an account?</div>
+      <button id="create-account-button" mat-raised-button color="primary" fxLayout="row" fxLayoutAlign="center center" (click)="loginCard()">
+        <span>RETURN TO LOGIN</span>
+      </button>
+    </form>
+  </mat-card>
+  <div class="copyright-statement-container">
+    <span class="copyright-statement">
+      &copy; {{termsPrivacy.copyrightYear}} Napior, LLC - All Rights Reserved |
+      <span class="terms-and-privacy" (click)="termsPrivacy.openTermsPrivacy('privacy')">Privacy Policy</span>
+      and
+      <span class="terms-and-privacy" (click)="termsPrivacy.openTermsPrivacy('terms')">Terms of Use</span>
+    </span>
+  </div>
+</div>

@@ -1,0 +1,175 @@
+<mat-tab-group>
+  <mat-tab label="Main Wind Force Resisting System">
+    <div id="mwfrs-results" fxLayout="row" fxLayoutGap="30px">
+      <mat-card *ngFor="let direction of results; let i = index" fxFlex="50%" fxLayout="column" fxLayoutAlign="start center">
+        <h2 *ngIf="i===0" class="direction-title">Wind Perpendicular to B:</h2>
+        <h2 *ngIf="i===1" class="direction-title">Wind Perpendicular to L:</h2>
+        <table id="individual-results">
+          <tr class=ind-result-row>
+            <td class="ind-result-name">Base Shear, V</td>
+            <td class="ind-result-equal">=</td>
+            <td class="ind-result">{{direction.baseShear}} kips</td>
+          </tr>
+          <tr class=ind-result-row>
+            <td class="ind-result-name">Gust Factor, G</td>
+            <td class="ind-result-equal">=</td>
+            <td class="ind-result">{{direction.gustFactor}}</td>
+          </tr>
+          <tr class=ind-result-row>
+            <td class="ind-result-name">Mean Roof Height, h</td>
+            <td class="ind-result-equal">=</td>
+            <td class="ind-result">{{direction.MeanRoofHeight}} ft</td>
+          </tr>
+          <tr class=ind-result-row>
+            <td class="ind-result-name"><span>K<sub>zt,max</sub></span></td>
+            <td class="ind-result-equal">=</td>
+            <td class="ind-result">{{direction.maxKzt}}</td>
+          </tr>
+        </table>
+        <div class="table-results-container">
+          <h3 class="table-title">
+            Table 1B - Wind Pressures
+          </h3>
+          <table id="table-results">
+            <tr id="table-results-header">
+              <th>Story</th>
+              <th matTooltip="Velocity Pressure (ASCE 7-10 Eqn. 27.3-1)" [matTooltipPosition]="'above'" [matTooltipShowDelay]="500"><span>q<sub>z</sub></span></th>
+              <th matTooltip="Design Pressure (ASCE 7-10 Fig. 27.4-1)" [matTooltipPosition]="'above'" [matTooltipShowDelay]="500"><span>p<sub>z, windward</sub></span></th>
+              <th matTooltip="Design Pressure (ASCE 7-10 Fig. 27.4-1)" [matTooltipPosition]="'above'" [matTooltipShowDelay]="500"><span>p<sub>z, leeward</sub></span></th>
+              <th matTooltip="Total Pressure = Windward - Leeward" [matTooltipPosition]="'above'" [matTooltipShowDelay]="500"><span>p<sub>z, total</sub></span></th>
+            </tr>
+            <tr *ngFor="let story of calc.inputs.storyNames; let i = index" class="table-results-row">
+              <td>{{calc.inputs.storyNames[i]}}</td>
+              <td>{{direction.velocityPressure[i]}} psf</td>
+              <td>{{direction.windwardWallPressure[i]}} psf</td>
+              <td>{{direction.leewardWallPressure}} psf</td>
+              <td>{{direction.totalLateralPressure[i]}} psf</td>
+            </tr>
+          </table>
+        </div>
+        <div class="table-results-container">
+          <h3 class="table-title">
+            Table 2B - Story Forces
+          </h3>
+          <table id="table-results">
+            <tr id="table-results-header">
+              <th>Story</th>
+              <th matTooltip="Story Length * Story Height" [matTooltipPosition]="'above'" [matTooltipShowDelay]="500"><span>A<sub>tributary</sub></span></th>
+              <th matTooltip="Total Pressure (Windward - Leeward)" [matTooltipPosition]="'above'" [matTooltipShowDelay]="500"><span>p<sub>z, total</sub></span></th>
+              <th matTooltip="Total Pressure * Area" [matTooltipPosition]="'above'" [matTooltipShowDelay]="500"><span>F<sub>x</sub></span></th>
+            </tr>
+            <tr *ngFor="let story of calc.inputs.storyNames; let i = index" class="table-results-row">
+              <td>{{calc.inputs.storyNames[i]}}</td>
+              <td>{{direction.tribAreas[i]}} ft<sup>2</sup></td>
+              <td>{{direction.totalLateralPressure[i]}} psf</td>
+              <td>{{direction.storyForces[i]}} k</td>
+            </tr>
+            <tr class="table-results-row" *ngIf="direction.fRoof > 0">
+              <td>Roof Projected</td>
+              <td>{{direction.reportValues.A_roof_trib}} ft<sup>2</sup></td>
+              <td>{{direction.pRoofTotal}} psf</td>
+              <td>{{direction.fRoof}} k</td>
+            </tr>
+          </table>
+        </div>
+        <!--<div class="table-results-container">
+          <h3 class="table-title">
+            Table 3B - Roof Pressures
+          </h3>
+          <table id="table-results" *ngIf="calc.inputs.roofType === 'Flat'">
+            <tr id="table-results-header">
+              <th>Zone</th>
+              <th matTooltip="Based on distance from windward edge (ASCE 7-10 Fig. 27.4-1)" [matTooltipPosition]="'above'" [matTooltipShowDelay]="500">Length</th>
+              <th matTooltip="Pressure Coefficient (ASCE 7-10 Fig. 27.4-1)" [matTooltipPosition]="'above'" [matTooltipShowDelay]="500"><span>C<sub>p</sub></span></th>
+              <th matTooltip="Design Pressure (ASCE 7-10 Fig. 27.4-1)" [matTooltipPosition]="'above'" [matTooltipShowDelay]="500">p<sub>roof</sub></th>
+            </tr>
+            <tr *ngFor="let zone of direction.RoofZoneNames; let i = index" class="table-results-row">
+              <td>{{direction.RoofZoneNames[i]}}</td>
+              <td>{{direction.RoofZoneLengths[i]}} ft</td>
+              <td>{{direction.RoofZoneCps[i]}}</td>
+              <td>{{direction.p_roof_zones[i]}} psf</td>
+            </tr>
+          </table>
+          <table id="table-results" *ngIf="calc.inputs.roofType === 'Monoslope' || calc.inputs.roofType === 'Hip/Gable'">
+            <tr id="table-results-header">
+              <th>Type</th>
+              <th matTooltip="Pressure Coefficient (ASCE 7-10 Fig. 27.4-1)" [matTooltipPosition]="'above'" [matTooltipShowDelay]="500"><span>C<sub>p</sub></span></th>
+              <th matTooltip="Design Pressure (ASCE 7-10 Fig. 27.4-1)" [matTooltipPosition]="'above'" [matTooltipShowDelay]="500"><span>p<sub>roof</sub></span></th>
+            </tr>
+            <tr class="table-results-row">
+              <td>Max Windward</td>
+              <td>{{direction.Cp_roof_windward_max}}</td>
+              <td>{{direction.maximumWindwardRoofPressure}} psf</td>
+            </tr>
+            <tr class="table-results-row">
+              <td>Min Windward</td>
+              <td>{{direction.Cp_roof_windward_min}}</td>
+              <td>{{direction.minimumWindwardRoofPressure}} psf</td>
+            </tr>
+            <tr class="table-results-row">
+              <td>Leeward</td>
+              <td>{{direction.Cp_roof_leeward}}</td>
+              <td>{{direction.leewardRoofPressure}} psf</td>
+            </tr>
+          </table>
+        </div>-->
+      </mat-card>
+    </div>
+  </mat-tab>
+  <mat-tab label="Components and Cladding">
+    <div id="c-and-c-results" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="30px">
+      <mat-card class="component-card" *ngFor="let component of calc.results.B.CandC_results; let i = index">
+        <h2 class="cc-title">
+          {{calc.inputs.componentNames[i]}} - {{calc.inputs.componentAreas[i]}} ft<sup>2</sup>
+        </h2>
+        <div class="component-tables" fxLayout="row" fxLayoutGap="30px">
+          <div class="table-results-container component-tables">
+            <table id="table-results" *ngIf="calc.results.B.MeanRoofHeight < 60">
+              <tr id="table-results-header">
+                <th>Type</th>
+                <th *ngFor="let zone of component.componentResults.zones">
+                  {{zone}}
+                </th>
+              </tr>
+              <tr class="table-results-row">
+                <td>Windward</td>
+                <td *ngFor="let zone of component.componentResults.zones; let j = index">
+                  {{component.componentResults.positive_pressures[j] | number : '1.1-1'}} psf
+                </td>
+              </tr>
+              <tr class="table-results-row">
+                <td>Leeward</td>
+                <td *ngFor="let zone of component.componentResults.zones; let j = index">
+                  {{component.componentResults.negative_pressures[j] | number : '1.1-1'}} psf
+                </td>
+              </tr>
+            </table>
+            <table id="table-results" *ngIf="calc.results.B.MeanRoofHeight >= 60">
+                <tr id="table-results-header">
+                  <th>Type</th>
+                  <th>Height</th>
+                  <th *ngFor="let zone of component.componentResults.zones">
+                    {{zone}}
+                  </th>
+                </tr>
+                <tr class="table-results-row" *ngFor="let height of calc.inputs.storyHeights; let i = index">
+                  <td>Windward</td>
+                  <td>{{height}}</td>
+                  <td *ngFor="let zone of component.componentResults.zones; let j = index">
+                    {{component.componentResults.positive_pressures[j][0][i] | number : '1.1-1'}} psf
+                  </td>
+                </tr>
+                <tr class="table-results-row">
+                  <td>Leeward</td>
+                  <td>All</td>
+                  <td *ngFor="let zone of component.componentResults.zones; let j = index">
+                    {{component.componentResults.negative_pressures[j] | number : '1.1-1'}} psf
+                  </td>
+                </tr>
+              </table>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </mat-tab>
+</mat-tab-group>

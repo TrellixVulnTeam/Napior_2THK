@@ -1,0 +1,15 @@
+<div class="dialog-title">
+  <h1><span style="padding-left: 5px;">Print Report</span></h1>
+</div>
+<div class="dialog-content" fxLayout="column">
+  <div fxFlex>
+      <div id="print-status">
+          <span *ngIf="pr.rendering" id="print-status-text">Rendering Report...</span>
+          <span *ngIf="!pr.rendering" id="print-status-text">Report Downloaded</span>
+          <mat-progress-bar *ngIf="pr.rendering" mode="indeterminate"></mat-progress-bar>
+      </div>
+  </div>
+  <div class="save-buttons" fxLayout="row" fxLayoutAlign="end end" fxFlex="50px">
+    <button color="primary" mat-raised-button mat-dialog-close>CLOSE</button>
+  </div>
+</div>

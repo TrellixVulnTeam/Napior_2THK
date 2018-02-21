@@ -1,0 +1,14 @@
+#menu-bar{
+    background-color: #3c5c6c;
+    color: white;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.48);
+    z-index: 1000;
+}
+#app-title{
+    font-weight: normal;
+    font-size: 40px;
+    margin:0px;
+}
+app-seismic-loads {
+    height: calc(100% - 60px);
+}

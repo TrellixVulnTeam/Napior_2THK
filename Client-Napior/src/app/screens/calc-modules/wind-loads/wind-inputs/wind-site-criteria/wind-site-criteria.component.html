@@ -1,0 +1,65 @@
+<div class="input-tab-content">
+  <mat-form-field>
+    <input matInput placeholder="Basic Wind Speed, V (mph)" [(ngModel)]="this.calc.inputs.V">
+    <span matSuffix>mph</span>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Exposure Category" [(ngModel)]="calc.inputs.expCategory">
+      <mat-option *ngFor="let category of exposureCategories" [value]="category">
+        {{category}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="input-sub-title">
+    Surrounding Topography, K
+    <sub>zt</sub> :
+  </div>
+  <mat-radio-group id="input-radio-group" fxLayout="column" [(ngModel)]="calc.inputs.topography">
+    <mat-radio-button class="input-radio-button align-switch" value="Constant">Constant</mat-radio-button>
+    <mat-radio-button class="input-radio-button align-switch" value="Varied">Varied</mat-radio-button>
+  </mat-radio-group>
+  <div *ngIf="calc.inputs.topography === 'Varied'" fxLayout="column">
+    <mat-slide-toggle class="kzt-switch" [(ngModel)]="calc.inputs.kztSwitch" fxFlex="50%" [checked]="calc.inputs.kztSwitch">
+      <div *ngIf="calc.inputs.kztSwitch">Calculate K
+        <sub>zt</sub>
+      </div>
+      <div *ngIf="!calc.inputs.kztSwitch">K
+        <sub>zt</sub> Known</div>
+    </mat-slide-toggle>
+    <div *ngIf="!calc.inputs.kztSwitch" fxLayout="column">
+      <mat-form-field>
+        <mat-placeholder>Topographic Factor, K
+          <sub>zt</sub>
+        </mat-placeholder>
+        <input matInput [(ngModel)]="this.calc.inputs.kztKnown">
+      </mat-form-field>
+    </div>
+    <div *ngIf="calc.inputs.kztSwitch" fxLayout="column">
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field fxFlex="161px">
+          <mat-select placeholder="Hill Shape" [(ngModel)]="calc.inputs.hillShape">
+            <mat-option *ngFor="let hill of hillShape" [value]="hill">
+              {{hill}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="161px">
+          <mat-placeholder>Hill Height, H</mat-placeholder>
+          <input matInput [(ngModel)]="this.calc.inputs.hillHeight">
+          <span matSuffix>ft</span>
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <mat-placeholder>Crest to Half of Hill Height, L<sub>H</sub></mat-placeholder>
+        <input matInput [(ngModel)]="this.calc.inputs.halfHeightToCrest">
+        <span matSuffix>ft</span>
+      </mat-form-field>
+      <mat-form-field>
+          <mat-placeholder>Distance from Crest to Building, X</mat-placeholder>
+          <input matInput [(ngModel)]="this.calc.inputs.crestToBuilding">
+          <span matSuffix>ft</span>
+      </mat-form-field>
+    </div>
+    <div></div>
+  </div>
+</div>

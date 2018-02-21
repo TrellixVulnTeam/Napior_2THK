@@ -1,0 +1,226 @@
+import { Component, OnInit, DoCheck, ChangeDetectionStrategy, ChangeDetectorRef, HostListener } from '@angular/core';
+import { AuthService } from '../common/auth.service';
+import { RtdbService } from '../common/rtdb.service';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/take';
+import { TryitService } from '../screens/splash/tryit.service';
+import { NavigationCancel, NavigationStart, ResolveEnd } from '@angular/router';
+
+@Component({
+  selector: 'app-menu-bar',
+  templateUrl: './menu-bar.component.html',
+  styleUrls: ['./menu-bar.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class MenuBarComponent implements OnInit {
+
+  public authAgainst = 'napior-firebase.firebaseapp.com';
+  public controlButtonConfig: {} = {
+    '': {
+      'homeButton': false,
+      'signInButton': true,
+      'signOutButton': false,
+      'accountButton': false,
+      'blogButton': true,
+      'aboutButton': false,
+      'pricingButton': false,
+      'featuresButton': false,
+      'tryItButton': true,
+      'logoRoute': '',
+      'pageTitle': ''
+    },
+    '/': {
+      'homeButton': false,
+      'signInButton': true,
+      'signOutButton': false,
+      'accountButton': false,
+      'blogButton': true,
+      'aboutButton': false,
+      'pricingButton': false,
+      'featuresButton': false,
+      'tryItButton': true,
+      'logoRoute': '',
+      'pageTitle': ''
+    },
+    '/splash': {
+      'homeButton': false,
+      'signInButton': true,
+      'signOutButton': false,
+      'accountButton': false,
+      'blogButton': true,
+      'aboutButton': false,
+      'pricingButton': false,
+      'featuresButton': false,
+      'tryItButton': true,
+      'logoRoute': '',
+      'pageTitle': ''
+    },
+    '/login': {
+      'homeButton': false,
+      'signInButton': false,
+      'signOutButton': false,
+      'accountButton': false,
+      'blogButton': false,
+      'aboutButton': false,
+      'pricingButton': false,
+      'featuresButton': false,
+      'tryItButton': false,
+      'logoRoute': '',
+      'pageTitle': ''
+    },
+    '/create-account': {
+      'homeButton': false,
+      'signInButton': false,
+      'signOutButton': false,
+      'accountButton': false,
+      'blogButton': false,
+      'aboutButton': false,
+      'pricingButton': false,
+      'featuresButton': false,
+      'tryItButton': false,
+      'logoRoute': '',
+      'pageTitle': ''
+    },
+    '/home': {
+      'homeButton': false,
+      'signInButton': false,
+      'signOutButton': true,
+      'accountButton': true,
+      'blogButton': true,
+      'aboutButton': false,
+      'pricingButton': false,
+      'featuresButton': false,
+      'tryItButton': false,
+      'logoRoute': '',
+      'pageTitle': '| Home'
+    },
+    '/account-settings': {
+      'homeButton': true,
+      'signInButton': false,
+      'signOutButton': true,
+      'accountButton': false,
+      'blogButton': false,
+      'aboutButton': false,
+      'pricingButton': false,
+      'featuresButton': false,
+      'tryItButton': false,
+      'logoRoute': '',
+      'pageTitle': '| Account Settings'
+    },
+    '/subscription': {
+      'homeButton': true,
+      'signInButton': false,
+      'signOutButton': true,
+      'accountButton': false,
+      'blogButton': false,
+      'aboutButton': false,
+      'pricingButton': false,
+      'featuresButton': false,
+      'tryItButton': false,
+      'logoRoute': '',
+      'pageTitle': '| Subscription'
+    },
+    '/seismic-loads': {
+      'homeButton': true,
+      'signInButton': false,
+      'signOutButton': true,
+      'accountButton': false,
+      'blogButton': false,
+      'aboutButton': false,
+      'pricingButton': false,
+      'featuresButton': false,
+      'tryItButton': false,
+      'logoRoute': '',
+      'pageTitle': '| Seismic Load Calculation'
+    },
+    '/wind-loads': {
+      'homeButton': true,
+      'signInButton': false,
+      'signOutButton': true,
+      'accountButton': false,
+      'blogButton': false,
+      'aboutButton': false,
+      'pricingButton': false,
+      'featuresButton': false,
+      'tryItButton': false,
+      'logoRoute': '',
+      'pageTitle': '| Wind Load Calculation'
+    },
+    '/snow-loads': {
+      'homeButton': true,
+      'signInButton': false,
+      'signOutButton': true,
+      'accountButton': false,
+      'blogButton': false,
+      'aboutButton': false,
+      'pricingButton': false,
+      'featuresButton': false,
+      'tryItButton': false,
+      'logoRoute': '',
+      'pageTitle': '| Snow Load Calculation'
+    },
+  };
+  public activeButtonConfig = {
+    'homeButton': false,
+    'signInButton': false,
+    'signOutButton': false,
+    'accountButton': false,
+    'blogButton': false,
+    'aboutButton': false,
+    'pricingButton': false,
+    'featuresButton': false,
+    'tryItButton': false,
+    'logoRoute': '',
+    'pageTitle': ''
+  };
+
+  constructor(
+    public authService: AuthService,
+    public ref: ChangeDetectorRef,
+    public router: Router,
+    public rtdb: RtdbService,
+    public tryit: TryitService
+  ) {
+
+  }
+
+  public activeButtonObservable = new Observable((observer) => {
+    const url = this.controlButtonConfig[this.router.url];
+    observer.next(url);
+  });
+
+  @HostListener('window:beforeunload', ['$event']) closeWindow($event) {
+    console.log('Window Closed');
+    //this.signOut(); //Uncomment for deploy.
+  }
+
+  signOut() {
+    const authData: any = this.authService.userInfo;
+    this.authService.userInfo = {};
+    // this.rtdb.userIsSignedOut(authData.uid);
+    const signOut = this.rtdb.userIsSignedOut(authData);
+    const logOut = this.authService.logout();
+    signOut.concat(logOut);
+    signOut.subscribe(
+      // tslint:disable-next-line:no-unused-expression
+      () => { this.router.navigate['/login']; }
+    );
+    this.ref.detectChanges();
+  }
+
+  ngOnInit() {
+    this.router.events.subscribe(  // When url changes, buttons in menu-bar display based on url.
+      (value: any) => {
+        if (typeof value.url !== 'undefined' && value instanceof ResolveEnd ) {
+          this.activeButtonConfig = this.controlButtonConfig[value.url];
+          this.ref.detectChanges();
+        }
+      }
+    );
+    this.authService.user.take(1).subscribe({
+      next: (userInfo) => {this.authService.userInfo = userInfo; }
+    });
+  }
+
+}

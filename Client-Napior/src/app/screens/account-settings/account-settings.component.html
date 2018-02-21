@@ -1,0 +1,62 @@
+<div class="screen-container account-settings" fxLayout="row" fxLayoutAlign="center start">
+  <mat-card id="account-settings-card" fxLayout="column" fxLayoutAlign="start center">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <h1 id="account-settings-title">
+        <i class="fa fa-gear"></i>Account Settings
+      </h1>
+    </div>
+    <div id="account-settings-content" fxLayout="column" fxLayoutAlign="start center">
+      <h2 class="account-settings-subtitle">
+        Engineer Info:
+      </h2>
+      <table class="account-settings-table">
+        <tr>
+          <td class="account-settings-label">Name:</td>
+          <td class="account-settings-data">{{rtdb.userData.name}}</td>
+        </tr>
+        <tr>
+          <td class="account-settings-label">Email:</td>
+          <td class="account-settings-data">{{rtdb.userData.email}}</td>
+        </tr>
+      </table>
+      <h2 class="account-settings-subtitle">
+        My Company Info:
+      </h2>
+      <table class="account-settings-table">
+        <tr>
+          <td class="account-settings-label">Company:</td>
+          <td class="account-settings-data">{{rtdb.companyData.name}}</td>
+        </tr>
+        <tr>
+          <td class="account-settings-label">Plan:</td>
+          <td class="account-settings-data">{{planTitle.planTypes[rtdb.companyData.plan]}}</td>
+        </tr>
+        <tr *ngIf="rtdb.companyData.plan == 'trial'">
+          <td class="account-settings-label">Days Left:</td>
+          <td class="account-settings-data">{{rtdb.trialDaysLeft}}</td>
+        </tr>
+        <!--<tr>
+          <td class="account-settings-label">Seats:</td>
+          <td class="account-settings-data">1</td>
+        </tr>-->
+      </table>
+      <button routerLink="/subscription" id="return-home-button" mat-raised-button color="accent" fxLayout="row" fxLayoutAlign="center center" >
+        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+        <span>EDIT SUBSCRIPTION</span>
+      </button>
+      <button routerLink="/home" id="return-home-button" mat-raised-button color="primary" fxLayout="row" fxLayoutAlign="center center">
+        <i class="fa fa-home"></i>
+        <span>HOME</span>
+      </button>
+    </div>
+
+  </mat-card>
+  <div class="copyright-statement-container">
+    <span class="copyright-statement">
+      &copy; {{termsPrivacy.copyrightYear}} Napior, LLC - All Rights Reserved |
+      <span class="terms-and-privacy" (click)="termsPrivacy.openTermsPrivacy('privacy')">Privacy Policy</span>
+      and
+      <span class="terms-and-privacy" (click)="termsPrivacy.openTermsPrivacy('terms')">Terms of Use</span>
+    </span>
+  </div>
+</div>

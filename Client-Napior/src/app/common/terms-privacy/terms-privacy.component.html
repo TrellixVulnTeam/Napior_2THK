@@ -1,0 +1,12 @@
+<div id="terms-privacy">
+  <h1 class="dialog-title cloud-title" mat-dialog-title>Napior | {{this.legal.title}}</h1>
+  <div id="legal-doc">
+    <div *ngFor="let section of this.legal.document">
+      <h2>{{section.sectionTitle}}</h2>
+      <p *ngFor="let paragraph of section.paragraphs">
+        {{paragraph}}
+      </p>
+    </div>
+    <p><strong>Last Updated:</strong> {{this.legal.dateUpdated}}</p>
+  </div>
+</div>

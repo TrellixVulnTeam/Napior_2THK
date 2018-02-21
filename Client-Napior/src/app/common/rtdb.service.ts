@@ -1,0 +1,189 @@
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AuthService } from './auth.service';
+import { UserInfo, CompanyInfo } from './firebase-classes';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+
+@Injectable()
+export class RtdbService {
+  public userDbString: string;
+  public companyDbString: string;
+  public uid: string;
+  public trialDaysLeft: number;
+  public createName: string;
+  public companyName: string;
+  public newCompanyId: number;
+  public userDataObservable: Observable<any[]>;
+  public createCompanyObservable: Observable<any[]>;
+  public companyDataObservable: Observable<any[]>;
+  public userData = new UserInfo(null, 'null', 'null', false, null);
+  public companyData = new CompanyInfo(
+    'null',
+    null,
+    null,
+    'null',
+    'null',
+    'null',
+    null,
+    true,
+    null,
+    null
+  );
+  public combinedData: any;
+  private userDataSource = new Subject<string>();
+  userData$ = this.userDataSource.asObservable();
+
+  constructor(
+    public authService: AuthService,
+    public db: AngularFireDatabase
+  ) {}
+
+  // Retrieve user data from firebase based on authenticated user id.
+  getUserData(authData) {
+    const userDbString = '/users/' + authData.uid;
+    const userDataObservable: Observable<any> = this.db
+      .object(userDbString)
+      .valueChanges();
+    return userDataObservable;
+  }
+
+  // Retrieve company data from firebase based on user's company.
+  getCompanyData(userData) {
+    this.userData = userData;
+    const companyDbString = '/companies/' + userData.companyId;
+    const companyDataObservable = this.db
+      .object(companyDbString)
+      .valueChanges();
+    return companyDataObservable;
+  }
+
+  // Concatenate observables to get user and company data.
+  getCoAndUserData() {
+    const userAndCompany = this.authService.user // Get authstate
+      .concatMap(authData => this.getUserData(authData)) // Get user data
+      .concatMap(userData => this.getCompanyData(userData)); // Get company data
+
+    userAndCompany.subscribe({
+      next: (companyData: CompanyInfo) => {
+        this.companyData = companyData;
+        this.trialDaysLeft = this.calculateTrial();
+        this.userDataSource.next('Recieved Data');
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
+  }
+
+  // Create user in rtdb using auth data.
+  createUser(authData) {
+    const uid = this.authService.uid;
+    const userDbString = '/users/' + uid;
+    const newUser = new UserInfo(
+      2,
+      authData.email,
+      this.createName,
+      false,
+      Date.now()
+    );
+    const createCompanyObservable = this.createCompany();
+    // const createUserObservable = this.db.object(userDbString).set(newUser);
+    const createCompanyAndUser = createCompanyObservable.concatMap(
+      (companyId: any): any => {
+        newUser.companyId = this.newCompanyId;
+        return this.db.object(userDbString).update(newUser);
+      }
+    );
+    return createCompanyAndUser;
+  }
+
+  // Create company in db.
+  createCompany() {
+    const companyMetaString = '_metadata/currentCompanyId';
+    const createCompanyObservable = this.db
+      .object(companyMetaString)
+      .valueChanges()
+      .take(1)
+      .concatMap((companyId: number): any => {
+        this.newCompanyId = Number(companyId) + 1;
+        return this.db.object(companyMetaString).set(this.newCompanyId);
+      })
+      .concatMap((): any => {
+        const newCompany = new CompanyInfo(
+          this.companyName,
+          14,
+          1,
+          'none',
+          'none',
+          'trial',
+          0,
+          true,
+          0,
+          0
+        );
+        return this.db
+          .object('/companies/' + this.newCompanyId)
+          .set(newCompany);
+      })
+      .concat(
+        Observable.create(observer => {
+          observer.next(this.newCompanyId);
+        })
+      );
+    return createCompanyObservable;
+  }
+
+  // Sets database state of signedIn to TRUE if authenticated.
+  userIsSignedIn(userData) {
+    const authData: any = this.authService.userInfo;
+    const userDbRoute = '/users/' + authData.uid;
+    let allowUserLogin = false;
+    if (typeof authData.email !== 'undefined' && userData.signedIn === false) {
+      allowUserLogin = true;
+      userData.signedIn = true;
+    } else {
+      allowUserLogin = false;
+      this.authService.userInfo = {};
+    }
+    const userSignedIn = Observable.create(observer => {
+      this.db
+        .object(userDbRoute)
+        .update({ signedIn: userData.signedIn })
+        .then(() => {
+          observer.next(allowUserLogin);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    });
+    return userSignedIn;
+  }
+
+  // Sets database state of signedIn to FALSE.
+  userIsSignedOut(uid) {
+    const authData: any = uid;
+    const userDbRoute = '/users/' + authData.uid;
+    const userSignOut = Observable.of(
+      this.db
+        .object(userDbRoute)
+        .update({ signedIn: false })
+        .then(() => {
+          console.log('Changed status to signed out.');
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    );
+    return userSignOut;
+  }
+
+  calculateTrial() {
+    const msConvert = 86400000; // miliseconds per day.
+    const expiryDate =
+      this.userData.created + this.companyData.trialLength * msConvert;
+    const now = Date.now();
+    const daysLeft = Math.max(0, (expiryDate - now) / 86400000);
+    return Math.round(daysLeft);
+  }
+}

@@ -1,0 +1,11 @@
+<mat-form-field>
+  <mat-select class="graphic-direction" placeholder="Wind Direction" [(ngModel)]="graphicControl.direction" (ngModelChange)="changeControl()" [disabled]="!calc.calculationStatus.haveResults">
+    <mat-option *ngFor="let direction of directions" [value]="direction.value">
+      {{ direction.title }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-radio-group class="result-type" [(ngModel)]="graphicControl.forceType" (ngModelChange)="changeControl()" [disabled]="!calc.calculationStatus.haveResults">
+    <mat-radio-button class="result-type-option" value="pressures">Pressures</mat-radio-button>
+    <mat-radio-button class="result-type-option" value="forces">Story Forces</mat-radio-button>
+</mat-radio-group>

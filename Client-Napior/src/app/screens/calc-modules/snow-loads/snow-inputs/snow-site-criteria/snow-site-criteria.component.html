@@ -1,0 +1,21 @@
+<div class="input-tab-content">
+  <mat-form-field>
+    <mat-placeholder>Ground Snow Load, p<sub>g</sub></mat-placeholder>
+    <input matInput [(ngModel)]="this.calc.inputs.groundSnowLoad">
+    <span matSuffix> psf </span>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Terrain Category" [(ngModel)]="this.calc.inputs.terrainCategory">
+      <mat-option *ngFor="let category of terrainCategories" [value]="category">
+        {{category}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Roof Exposure" [(ngModel)]="this.calc.inputs.roofExposure">
+      <mat-option *ngFor="let exposure of roofExposures" [value]="exposure">
+        {{exposure}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

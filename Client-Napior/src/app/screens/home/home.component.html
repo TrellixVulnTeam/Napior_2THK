@@ -1,0 +1,42 @@
+<div class="screen-container menu-screen" fxLayout="row" fxLayoutAlign="center start">
+  <div id="calc-menu-container" fxLayout="column" fxLayoutGap="30px">
+    <div id="calc-menu-title-card" fxLayout="row" fxLayoutAlign="center center">
+      <h1 id="calc-menu-title">Calculation Modules</h1>
+    </div>
+    <div id="modules" fxLayout="row" fxLayoutGap="30px">
+      <a routerLink="/seismic-loads">
+        <div class="calculation-card" fxLayout="column" fxLayoutAlign="center center">
+          <div *ngIf="checkPayment.checkingPaymentStatus" class="checking-payment-status" fxLayout="column" fxLayoutAlign="center center">
+            <mat-spinner></mat-spinner>
+          </div>
+          <div *ngIf="rtdb.companyData.paid === false" class="calc-module-unavailable">{{ checkPayment.blockModuleMessage }}</div>
+          <img class="calculation-icon" src="/assets/Images/module-icons/seismic-module-icon.png" id="menu-napior-logo">
+          <h2 class="calculation-title">Seismic Loads</h2>
+        </div>
+      </a>
+      <a routerLink="/wind-loads">
+        <div class="calculation-card" fxLayout="column" fxLayoutAlign="center center">
+          <div *ngIf="checkPayment.checkingPaymentStatus" class="checking-payment-status" fxLayout="column" fxLayoutAlign="center center">
+            <mat-spinner></mat-spinner>
+          </div>
+          <div *ngIf="rtdb.companyData.paid === false" class="calc-module-unavailable">{{ checkPayment.blockModuleMessage }}</div>
+          <img class="calculation-icon" src="/assets/Images/module-icons/wind-module-icon.png" id="menu-napior-logo">
+          <h2 class="calculation-title">Wind Loads</h2>
+        </div>
+      </a>
+      <a routerLink="/snow-loads">
+        <div class="calculation-card" fxLayout="column" fxLayoutAlign="center center">
+          <div *ngIf="checkPayment.checkingPaymentStatus" class="checking-payment-status" fxLayout="column" fxLayoutAlign="center center">
+            <mat-spinner></mat-spinner>
+          </div>
+          <div *ngIf="rtdb.companyData.paid === false" class="calc-module-unavailable">{{ checkPayment.blockModuleMessage }}</div>
+          <img class="calculation-icon" src="/assets/Images/module-icons/snow-module-icon.png" id="menu-napior-logo">
+          <h2 class="calculation-title">Snow Loads</h2>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="copyright-statement-container">
+    <span class="copyright-statement">&copy; {{termsPrivacy.copyrightYear}} Napior, LLC - All Rights Reserved.</span>
+  </div>
+</div>

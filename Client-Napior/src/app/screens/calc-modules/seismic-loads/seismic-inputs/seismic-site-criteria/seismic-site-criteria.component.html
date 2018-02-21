@@ -1,0 +1,33 @@
+<div class="input-tab-content">
+  <mat-radio-group class= "input-radio-group" fxLayout="column" [(ngModel)]="calc.inputs.usgsDataType">
+    <mat-radio-button class="input-radio-button" value="usgsDirect" >Get From USGS</mat-radio-button>
+    <mat-radio-button class="input-radio-button" value="giveMax" >Input S<sub>S</sub>, S<sub>1</sub>, and T<sub>L</sub></mat-radio-button>
+  </mat-radio-group>
+  <div *ngIf="calc.inputs.usgsDataType == 'giveMax'">
+    <mat-form-field>
+      <mat-select placeholder="Site Class" [(ngModel)]="calc.inputs.siteClass">
+        <mat-option *ngFor="let class of siteClasses" [value]="class">
+          {{class}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-placeholder>S<sub>s</sub></mat-placeholder>
+      <input type="number" matInput [(ngModel)]="calc.inputs.Ss ">
+      <span matSuffix> g </span>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-placeholder>S<sub>1</sub></mat-placeholder>
+      <input type="number" matInput [(ngModel)]="calc.inputs.S1">
+      <span matSuffix> g </span>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-placeholder>T<sub>L</sub></mat-placeholder>
+      <input type="number" matInput [(ngModel)]="calc.inputs.Tl">
+      <span matSuffix>seconds</span>
+    </mat-form-field>
+  </div>
+  <div *ngIf="calc.inputs.usgsDataType == 'usgsDirect'">
+    <app-usgs-seismic [inputs]="calc.inputs"></app-usgs-seismic>
+  </div>
+</div>

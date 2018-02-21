@@ -1,0 +1,50 @@
+[
+  {
+    "system": "Steel special concentrically braced frames",
+    "R": 6,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Special reinforced concrete shear walls",
+    "R": 6.5,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Ordinary reinforced masonry shear walls",
+    "R": 3,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Intermediate reinforced masonry shear walls",
+    "R": 3.5,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Steel & conc comp. special concentrically braced frames",
+    "R": 5.5,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Steel & conc comp. ordinary concentrically braced frames",
+    "R": 3.5,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Steel & conc comp. ordinary shear walls",
+    "R": 5,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Ordinary reinforced concrete shear walls",
+    "R": 5.5,
+    "Ct": 0.02,
+    "x": 0.75
+  }
+]

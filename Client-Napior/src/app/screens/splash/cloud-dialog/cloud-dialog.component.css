@@ -1,0 +1,44 @@
+mat-dialog-content {
+    width: 100%;
+    overflow: hidden !important;
+    /*margin: 0px 3vw 0px 3vw;*/
+}
+.mat-dialog-content {
+    padding: 0px;
+}
+button {
+    margin: 20px 3vw 20px 3vw;
+}
+#cloud-dialog {
+    overflow: hidden;
+}
+mat-dialog-actions {
+    background-color: transparent;
+}
+.checks {
+    color: #36AE74;
+}
+.benefits {
+    color: #3c5c6c;
+    margin-left: 10px;
+    font-size: 26px;
+    font-weight: bold;
+}
+.cloud-title {
+    text-align: center;
+    font-size: 36px;
+    padding: 20px 0px 20px 0px;
+    font-weight: bolder;
+}
+#cloud-pic {
+    height: 160px;
+}
+#button-icon {
+    height: 38px;
+}
+#try-it-button {
+    font-size: 22px;
+    margin-top: 40px;
+    width: 220px;
+    height: 50px;
+}

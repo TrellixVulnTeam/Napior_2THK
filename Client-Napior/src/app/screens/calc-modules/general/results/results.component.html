@@ -1,0 +1,26 @@
+<div id="results" class="rectangle" 
+    [ngStyle]="style" 
+    mwlResizable 
+    [enableGhostResize]="true" 
+    [validateResize]="validate"
+    (resizeEnd)="onResizeEnd($event)" 
+    (window:resize)="onWindowResize($event)">
+    <div id="result-flex" fxLayout="column">
+        <div mwlResizeHandle [resizeEdges]="{bottom: false, right: false, top: true, left: false}" fxFlex="15px" id="results-top-border" fxLayout="row" fxLayoutAlign="center center">
+            <div id="resize-handle"  fxFlex="60px">
+                =
+            </div>
+        </div>
+        <div *ngIf="calc.calculationStatus.noResults" fxLayout="column" fxLayoutAlign="center center" id="no-results-container">
+            <div id="no-results">
+                No Results
+            </div>
+        </div>
+        <div *ngIf="calc.calculationStatus.isRunning" fxLayout="column" fxLayoutAlign="center center" id="no-results-container">
+            <mat-spinner></mat-spinner>
+        </div>
+        <div *ngIf="calc.calculationStatus.haveResults && !calc.calculationStatus.isRunning" id="results-container">
+            <ng-content ></ng-content>
+        </div>
+    </div>
+</div>

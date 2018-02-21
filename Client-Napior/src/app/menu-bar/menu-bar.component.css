@@ -1,0 +1,25 @@
+#app-title{
+    font-weight: normal;
+    font-size: 40px;
+    margin:0px;
+}
+#page-title{
+    font-size: 35px;
+    font-family: Roboto-Thin;
+    margin-left: 15px;
+}
+#menu-napior-logo{
+    height: 48px;
+    width: 33.188px;
+    padding-left: 10px;
+    padding-right: 8px;
+}
+#menu-container{
+    height: 60px
+}
+#logo-container{
+    height:100%;
+}
+#navigation-buttons{
+    padding: 0px 20px 0px 20px;
+}

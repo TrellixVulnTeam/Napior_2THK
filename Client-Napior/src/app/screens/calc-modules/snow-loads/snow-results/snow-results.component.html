@@ -1,0 +1,60 @@
+<h2 class="results-title">Results</h2>
+<div fxLayout="row" fxLayoutAlign="start start">
+    <div fxFlex="33%" fxLayout="column" fxLayoutAlign="start center">
+        <table id="individual-results">
+            <tr class=ind-result-row>
+                <td class="ind-result-name">Thermal Factor, C<sub>t</sub></td>
+                <td class="ind-result-equal">=</td>
+                <td class="ind-result">{{ calc.results.temperatureFactor }}</td>
+            </tr>
+            <tr class=ind-result-row>
+                <td class="ind-result-name">Exposure Factor, C<sub>e</sub></td>
+                <td class="ind-result-equal">=</td>
+                <td class="ind-result">{{ calc.results.exposureFactor }}</td>
+            </tr>
+            <tr class=ind-result-row>
+                <td class="ind-result-name">Slope Factor, C<sub>s</sub></td>
+                <td class="ind-result-equal">=</td>
+                <td class="ind-result">{{ calc.results.Cs }}</td>
+            </tr>
+        </table>
+    </div>
+    <div fxFlex="33%" fxLayout="column" fxLayoutAlign="start center">
+        <table id="individual-results">
+            <tr class=ind-result-row>
+                <td class="ind-result-name">Importance Factor, I<sub>s</sub></td>
+                <td class="ind-result-equal">=</td>
+                <td class="ind-result">{{ calc.results.Is }}</td>
+            </tr>
+            <tr class=ind-result-row>
+                <td class="ind-result-name">Flat Roof Snow Load, p<sub>f</sub></td>
+                <td class="ind-result-equal">=</td>
+                <td class="ind-result">{{ calc.results.pf }} psf</td>
+            </tr>
+            <tr class=ind-result-row *ngIf="calc.inputs.roofType === 'Monoslope' || calc.inputs.roofType === 'Hip/Gable'">
+                <td class="ind-result-name">Sloped Roof Snow Load, p<sub>s</sub></td>
+                <td class="ind-result-equal">=</td>
+                <td class="ind-result">{{ calc.results.ps }} psf</td>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="calc.inputs.roofType === 'Hip/Gable' || calc.inputs.roofType === 'Stepped'" fxFlex="33%" fxLayout="column" fxLayoutAlign="start center">
+        <table id="individual-results">
+            <tr class=ind-result-row>
+                <td class="ind-result-name">Drift Width, w</td>
+                <td class="ind-result-equal">=</td>
+                <td class="ind-result">{{ calc.results.w }} ft</td>
+            </tr>
+            <tr class=ind-result-row>
+                <td class="ind-result-name">Drift Surcharge, p<sub>d, max</sub></td>
+                <td class="ind-result-equal">=</td>
+                <td class="ind-result">{{ calc.results.maxDriftLoad }} psf</td>
+            </tr>
+            <tr class=ind-result-row>
+                <td class="ind-result-name">Drift Surcharge, p<sub>d, min</sub></td>
+                <td class="ind-result-equal">=</td>
+                <td class="ind-result">{{ calc.results.minDriftLoad }} psf</td>
+            </tr>
+        </table>
+    </div>
+</div>

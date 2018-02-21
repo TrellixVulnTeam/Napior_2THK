@@ -1,0 +1,95 @@
+{
+    "inputs": {
+        "type": "seismicLoads",
+        "typeName": "Seismic Load",
+        "company": "",
+        "project": "Seismic Loads",
+        "description": "Determine the seismic loads.",
+        "engineer": "",
+        "usgsDataType": "usgsDirect",
+        "usgsIsLoading": false,
+        "latitude": 47.6062,
+        "longitude": -122.3321,
+        "Ss": 1.37,
+        "S1": 0.50,
+        "Sds": 0.91,
+        "Sd1": 0.53,
+        "Fa": 1.00,
+        "Fv": 1.50,
+        "Tl": 6,
+        "R": 6,
+        "Ct": 0.02,
+        "x": 0.75,
+        "siteClass": "D",
+        "riskCategory": "II",
+        "structCategory": "Building Frames",
+        "structSystem": "Special reinforced concrete shear walls",
+        "letNapiorCalcPeriod": true,
+        "analyticalPeriod": 0.5,
+        "storyHeights": [18, 12, 12, 12],
+        "storyCumulativeHeights": [18, 30, 42, 54],
+        "storyWeights": [500, 300, 300, 150],
+        "storyNames": [1, 2, 3, 4],
+        "initialStory": 1,
+        "siteAddress": "Seattle, WA"
+    },
+    "results": {
+        "Cs": 0,
+        "Sds": 0,
+        "Weight": [
+            0
+        ],
+        "V": 0,
+        "Sd1": 0,
+        "Ta": [
+            0
+        ],
+        "Story_Forces": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "storyNames": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "Height": [
+            0
+        ],
+        "CuTa": 0,
+        "reportValues":{
+            "k": 0,
+            "sum_Whk": 0,
+            "Ct": 0,
+            "x": 0,
+            "Ta_1": 0,
+            "Cu": 0,
+            "Ta": 0,
+            "CuTa": 0,
+            "Sds": 0,
+            "Sd1": 0,
+            "Fa": 0,
+            "Fv": 0,
+            "Stest": 0,
+            "Smax": 0,
+            "Tra": 0,
+            "TLr": 0,
+            "T_m": 0,
+            "R": 0,
+            "Ie": 0,
+            "Cs":0,
+            "Cs1":0,
+            "CsMin":0,
+            "Cs2":0,
+            "Cs3":0,
+            "Cs4":0,
+            "CsMax":0,
+            "heightArray": [0, 0, 0, 0],
+            "Whk": [0,0,0,0],
+            "Cvx": [0,0,0,0]
+        }
+    }
+}

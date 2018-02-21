@@ -1,0 +1,43 @@
+.graphic-input {
+    border: 0px solid transparent;
+    background-color: transparent;
+    font-size: 16px;
+    width: 40px;
+    text-align: center;
+    text-shadow: 0px 1px 3px #36AE74;
+}
+
+.graphic-input:hover {
+    text-shadow: 0px 1px 8px #36AE74;
+    cursor: pointer;
+}
+
+app-graphics {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+app-graphics-controls {
+    position: absolute;
+    right: 10px;
+    margin: 10px 0 0 20px;
+    z-index: 10;
+    /*width: 190px;*/
+}
+
+#svg-scene {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+#scene-container{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.text-loop {
+    height: 0px;
+    z-index: 100;
+}

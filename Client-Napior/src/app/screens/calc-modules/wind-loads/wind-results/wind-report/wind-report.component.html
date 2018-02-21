@@ -1,0 +1,853 @@
+<div id="report-component-container" [ngStyle]="genReport.shadowReportStyle">
+    <div class="report-page-wrapper">
+        <div class="report-page">
+            <div class="report-page-content">
+                <div>
+                    <div class="report-title" >Wind Loads</div>
+                <!--Properties -->
+                    <div class="report-section-title">1 - Properties</div>
+                    <!--Building Criteria -->
+                    <div class="report-subsection-title">Building Criteria</div>
+                    <div class="math-line">
+                        <span class="left-equals">Building Risk Cat.</span>
+                        <span> = {{this.calc.inputs.riskCategory}}</span>
+                        <span class="reference"> IBC Table 1604.5</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">Enclosure Type</span>
+                        <span> = {{this.calc.inputs.enclosureType}}</span>
+                        <span class="reference"> ASCE 7-10 Table 26.11-1</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">Building Width, B</span>
+                        <span> = {{this.calc.inputs.buildingWidth}} ft</span>
+                        <span class="reference"> </span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">Building Length, L</span>
+                        <span> = {{this.calc.inputs.buildingLength}} ft</span>
+                        <span class="reference"> </span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">Roof Slope, &theta;</span>
+                        <span> = {{this.calc.inputs.roofSlope}} &deg;</span>
+                        <span class="reference"> </span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">Eave Height</span>
+                        <span> = {{this.calc.results.B.Height}} ft</span>
+                        <span class="reference"> </span>
+                    </div>
+                    <div appMathLine class="math-line">
+                        <span class="left-equals">Mean Roof Height</span>
+                        <span> = </span>
+                        <span class="math" [Math]="meanRoof" style="height:5%"></span>
+                        <span> = {{this.calc.results.B.Height}} ft</span>
+                        <span class="reference"> </span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.assumeRigid">
+                        <span class="left-equals">Building Period</span>
+                        <span> = {{this.calc.inputs.period}} seconds</span>
+                        <span class="reference"> </span>
+                    </div>
+                <!--Site Criteria -->
+                    <div class="report-subsection-title">Site Criteria</div>
+                    <div class="math-line">
+                        <span class="left-equals">Wind Speed, V</span>
+                        <span> = {{this.calc.inputs.V}}</span>
+                        <span class="reference"> ASCE 7-10 Figure 26.5-1</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">Exposure Category</span>
+                        <span> = {{this.calc.inputs.expCategory}}</span>
+                        <span class="reference"> ASCE 7-10 Section 26.7.3</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">Topography</span>
+                        <span> = {{this.calc.inputs.topography}}</span>
+                        <span class="reference"> </span>
+                    </div>
+                    <div class="math-line" [hidden]="!this.calc.inputs.kztSwitch || this.calc.inputs.topography === 'Constant'">
+                        <span class="left-equals">Hill Shape</span>
+                        <span> = {{this.calc.inputs.hillShape}}</span>
+                        <span class="reference"> ASCE 7-10 Figure 26.8-1</span>
+                    </div>
+                    <div class="math-line" [hidden]="!this.calc.inputs.kztSwitch || this.calc.inputs.topography === 'Constant'">
+                        <span class="left-equals">Hill Height H</span>
+                        <span> = {{this.calc.inputs.hillHeight}} ft</span>
+                        <span class="reference"> ASCE 7-10 Figure 26.8-1</span>
+                    </div>
+                    <div class="math-line" [hidden]="!this.calc.inputs.kztSwitch || this.calc.inputs.topography === 'Constant'">
+                        <span class="left-equals">L<sub>h</sub></span>
+                        <span> = {{this.calc.inputs.halfHeightToCrest}} ft</span>
+                        <span class="reference"> ASCE 7-10 Figure 26.8-1</span>
+                    </div>
+                    <div class="math-line" [hidden]="!this.calc.inputs.kztSwitch || this.calc.inputs.topography === 'Constant'">
+                        <span class="left-equals">Crest to Building, x</span>
+                        <span> = {{this.calc.inputs.crestToBuilding}} ft</span>
+                        <span class="reference"> ASCE 7-10 Figure 26.8-1</span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.kztSwitch || this.calc.inputs.topography === 'Constant'">
+                        <span class="left-equals">Topographic Factor, K<sub>zt</sub></span>
+                        <span> = {{this.calc.inputs.kztKnown}}</span>
+                        <span class="reference"> </span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.topography !== 'Constant'">
+                        <span class="left-equals">Topographic Factor, K<sub>zt</sub></span>
+                        <span> = 1.0</span>
+                        <span class="reference"> </span>
+                    </div>
+                <!--Velocity Pressures -->
+                    <div class="report-section-title">2 - Velocity Pressures</div>
+                    <div class="report-subsection-title">Wind Directionality Factor</div>
+                    <div class="math-line">
+                        <span class="left-equals">K<sub>d</sub></span>
+                        <span> = 0.85</span>
+                        <span class="reference"> ASCE 7-10 Table 26.6-1</span>
+                    </div>
+                    <div class="report-subsection-title">Velocity Pressure Coefficient</div>
+                    <div class="math-line">
+                        <span class="left-equals">z<sub>g</sub></span>
+                        <span> = {{this.calc.results.B.reportValues.Gust_Coeff.z_g}} ft</span>
+                        <span class="reference">ASCE 7-10 Table 26.9-1 </span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">&alpha;</span>
+                        <span> = {{this.calc.results.B.reportValues.Gust_Coeff.alpha}}</span>
+                        <span class="reference">ASCE 7-10 Table 26.9-1 </span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">For z < 15 ft: K<sub>z</sub></span>
+                        <span> = <span class="math" [Math]="kzSmall" style="height:5%"></span></span>
+                        <span class="reference"> ASCE 7-10 Table 27.3-1</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">For 15 ft &le; z < z<sub>g</sub>: K<sub>z</sub> </span>
+                        <span> = <span class="math" [Math]="kzLarge" style="height:5%"></span></span>
+                        <span class="reference"> ASCE 7-10 Table 27.3-1</span>
+                    </div>
+                    <div class="math-line" style="margin-top: 4%;">
+                        <span id = "report-table-title">Velocity Pressure Coefficient</span>
+                        <table class ="report-table">
+                            <tr class = "report-table-header">
+                                <th>Story</th>
+                                <th>Height</th>
+                                <th>K<sub>z</sub></th>
+                            </tr>
+                            <tr class = "report-table-row" *ngFor="let story of calc.inputs.storyNames; let i = index">
+                                <td> {{story}} </td>
+                                <td> {{calc.results.B.reportValues.seq_height_array[i]}} ft</td>
+                                <td> {{calc.results.B.reportValues.Kz_array[i] | number : '1.2-2'}} </td>
+                            </tr>
+                        </table>
+                        <span class="reference table-reference"> ASCE 7-10 Table 27.3-1</span>
+                    </div>
+                    <!--Topographic Factor -->
+                    <div class="report-subsection-title" [hidden]="this.calc.inputs.topography === 'Constant' || !this.calc.inputs.kztSwitch">Topographic Factor</div>
+                    <div class="math-line" [hidden]="this.calc.inputs.topography === 'Constant'">
+                        <span class="left-equals">K<sub>1</sub>/(H/L<sub>h</sub>)</span>
+                        <span> = {{this.calc.results.B.reportValues.K1HLh}}</span>
+                        <span class="reference">ASCE 7-10 Figure 26.8-1 </span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.topography === 'Constant' || !this.calc.inputs.kztSwitch">
+                        <span class="left-equals">&mu;</span>
+                        <span> = {{this.calc.results.B.reportValues.mu}}</span>
+                        <span class="reference">ASCE 7-10 Figure 26.8-1 </span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.topography === 'Constant' || !this.calc.inputs.kztSwitch">
+                        <span class="left-equals">&gamma;</span>
+                        <span> = {{this.calc.results.B.reportValues.gamma}}</span>
+                        <span class="reference">ASCE 7-10 Figure 26.8-1 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.topography === 'Constant' || !this.calc.inputs.kztSwitch">
+                        <span class="left-equals">K<sub>1</sub></span>
+                        <span> = </span>
+                        <span class="math" [Math]="K1" style="height:5%"></span>
+                        <span> = {{this.calc.results.B.reportValues.K1}}</span>
+                        <span class="reference">ASCE 7-10 Figure 26.8-1 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.topography === 'Constant' || !this.calc.inputs.kztSwitch">
+                        <span class="left-equals">K<sub>2</sub></span>
+                        <span> = </span>
+                        <span class="math" [Math]="K2" style="height:5%"></span>
+                        <span> = {{this.calc.results.B.reportValues.K2}}</span>
+                        <span class="reference">ASCE 7-10 Figure 26.8-1 </span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.topography === 'Constant' || !this.calc.inputs.kztSwitch">
+                        <span class="left-equals">K<sub>3</sub></span>
+                        <span> = <span class="math" [Math]="K3" style="height:5%"></span></span>
+                        <span class="reference">ASCE 7-10 Figure 26.8-1 </span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.topography === 'Constant' || !this.calc.inputs.kztSwitch">
+                        <span class="left-equals">K<sub>zt</sub></span>
+                        <span> = <span class="math" [Math]="Kzt" style="height:5%"></span></span>
+                        <span class="reference">ASCE 7-10 Figure 26.8-1 </span>
+                    </div>
+                    <div class="math-line" style="margin-top:5%" [hidden]="this.calc.inputs.topography === 'Constant' || !this.calc.inputs.kztSwitch">
+                        <span id = "report-table-title">Topographic Factor</span>
+                        <table class ="report-table">
+                            <tr class = "report-table-header">
+                                <th>Story</th>
+                                <th>Height</th>
+                                <th>K<sub>3</sub></th>
+                                <th>K<sub>zt</sub></th>
+                            </tr>
+                            <tr class = "report-table-row" *ngFor="let story of calc.inputs.storyNames; let i = index">
+                                <td> {{story}} </td>
+                                <td> {{calc.results.B.reportValues.seq_height_array[i]}} ft</td>
+                                <td> {{calc.results.B.reportValues.K3[i] | number : '1.2-2'}} </td>
+                                <td> {{calc.results.B.reportValues.Kzt_arr[i] | number : '1.2-2'}} </td>
+                            </tr>
+                        </table>
+                        <span class="reference table-reference"> ASCE 7-10 Table 27.3-1</span>
+                    </div>
+                    <!--Velocity Pressures-->
+                    <div class="report-subsection-title">Velocity Pressures</div>
+                    <div class="math-line">
+                        <span class="left-equals">q<sub>z</sub></span>
+                        <span> = <span class="math" [Math]="qz" style="height:5%"></span></span>
+                        <span class="reference">ASCE 7-10 Eqn 27.3-1 </span>
+                    </div>
+                    <div class="math-line" style="margin-top:5%" >
+                        <span id = "report-table-title">Velocity Pressures</span>
+                        <table class ="report-table">
+                            <tr class = "report-table-header">
+                                <th>Story</th>
+                                <th>Height</th>
+                                <th>K<sub>z</sub></th>
+                                <th>K<sub>zt</sub></th>
+                                <th>q<sub>z</sub></th>
+                            </tr>
+                            <tr class = "report-table-row" *ngFor="let story of calc.inputs.storyNames; let i = index">
+                                <td> {{story}} </td>
+                                <td> {{calc.results.B.reportValues.seq_height_array[i]}} ft</td>
+                                <td> {{calc.results.B.reportValues.Kz_arr[i] | number : '1.2-2'}} </td>
+                                <td> {{calc.results.B.reportValues.Kzt_arr[i] | number : '1.2-2'}} </td>
+                                <td> {{calc.results.B.velocityPressure[i] | number : '1.2-2'}} psf</td>
+                            </tr>
+                        </table>
+                        <span class="reference table-reference"></span>
+                    </div>
+                <!--Gust Factor -->
+                    <div class="report-subsection-title">Gust Factor</div>
+                    <div class="math-line" [hidden]="!this.calc.inputs.assumeRigid">
+                        <span class="left-equals">Assumed Rigid</span>
+                        <span class="result"><span [Math]="'\\therefore'"></span> G = {{this.calc.results.B.gustFactor}}</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-6</span>
+                    </div>
+                    <div class="math-line" style="margin-top:5%; margin-bottom:5%" [hidden]="this.calc.inputs.assumeRigid">
+                        <span id = "report-table-title">Terrain Exposure Coefficients</span>
+                        <table class ="report-table">
+                            <tr class = "report-table-header">
+                                <th>&alpha;</th>
+                                <th>z<sub>g</sub> ft</th>
+                                <th><span [Math]="'\\hat{a}'"></span></th>
+                                <th><span [Math]="'\\hat{b}'"></span></th>
+                                <th><span [Math]="'\\bar{\\alpha}'"></span></th>
+                                <th><span [Math]="'\\bar{b}'"></span></th>
+                                <th>c</th>
+                                <th>l (ft)</th>
+                                <th><span Math [Math]="'\\bar{\\epsilon}'"></span></th>
+                                <th>z<sub>min</sub> ft</th>
+                            </tr>
+                            <tr class = "report-table-row">
+                                <td> {{calc.results.B.reportValues.Gust_Coeff.alpha}}</td>
+                                <td> {{calc.results.B.reportValues.Gust_Coeff.z_g}}</td>
+                                <td> {{calc.results.B.reportValues.Gust_Coeff.a_hat | number : '1.2-2'}}</td>
+                                <td> {{calc.results.B.reportValues.Gust_Coeff.b_hat | number : '1.2-2'}}</td>
+                                <td> {{calc.results.B.reportValues.alpha_bar}}</td>
+                                <td> {{calc.results.B.reportValues.Gust_Coeff.b_bar}}</td>
+                                <td> {{calc.results.B.reportValues.Gust_Coeff.c}}</td>
+                                <td> {{calc.results.B.reportValues.Gust_Coeff.l}}</td>
+                                <td> {{calc.results.B.reportValues.Gust_Coeff.epsilon_bar}}</td>
+                                <td> {{calc.results.B.reportValues.Gust_Coeff.z_min}}</td>
+                            </tr>
+                        </table>
+                        <span class="reference table-reference">ASCE 7-10 Table 26.9-1</span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.assumeRigid">
+                        <span class="left-equals"><span [Math]="'\\bar{z}'"></span></span>
+                        <span> > (z<sub>min</sub> = 30 ft)</span>
+                        <span class="reference">ASCE 7-10 Sec. 26.9.4 </span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.assumeRigid">
+                        <span class="left-equals"><span [Math]="'\\bar{z}'"></span></span>
+                        <span> > (0.6H = {{calc.results.B.reportValues['0.6H']}} ft)</span>
+                        <span class="reference">ASCE 7-10 Sec. 26.9.4 </span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.assumeRigid">
+                        <span class="left-equals"><span [Math]="'\\therefore\\bar{z}'"></span></span>
+                        <span> = {{calc.results.B.reportValues.z_bar}} ft</span>
+                        <span class="reference">ASCE 7-10 Sec. 26.9.4 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid">
+                        <span class="left-equals">L<sub><span [Math]="'\\bar{z}'"></span></sub></span>
+                        <span> = </span>
+                        <span class="math" [Math]="Lz" ></span>
+                        <span> = {{this.calc.results.B.reportValues.L_z}} ft</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-9 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid">
+                        <span class="left-equals">I<sub><span [Math]="'\\bar{z}'"></span></sub></span>
+                        <span> = </span>
+                        <span class="math" [Math]="Iz"></span>
+                        <span> = {{this.calc.results.B.reportValues.I_z}}</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-7 </span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.assumeRigid">
+                        <span class="left-equals">g<sub>Q</sub> = g<sub>v</sub></span>
+                        <span class="equals"> = </span>
+                        <span class="result">3.4</span>
+                        <span class="reference">ASCE 7-10 Sec. 26.9.4</span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.assumeRigid">
+                        <span class="left-equals">n<sub>1</sub> = f</span>
+                        <span> = </span>
+                        <span>{{this.calc.results.B.reportValues.n1}} hz</span>
+                        <span class="reference">Determined Analytically</span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.assumeRigid || !this.rigid">
+                        <span class="left-equals">n<sub>1</sub> > 1.0 hz</span>
+                        <span class="result"><span [Math]="'\\therefore'"></span> building is Rigid</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.2</span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.assumeRigid || this.rigid">
+                        <span class="left-equals">n<sub>1</sub> < 1.0 hz</span>
+                        <span class="result"><span [Math]="'\\therefore'"></span> building is Flexible</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.2</span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid || this.rigid">
+                        <span class="left-equals"><span [Math]="'\\bar{V}_{\\bar{z}}'"></span></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="VbarZbar" style="height:5%"></span> 
+                        <span class="result">= {{this.calc.results.B.reportValues.flex_factors.V_z_bar}} ft/s</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-16 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid || this.rigid">
+                        <span class="left-equals">N<sub>1</sub></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="N1"></span> 
+                        <span class="result">= {{this.calc.results.B.reportValues.flex_factors.N1}}</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-14 </span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.assumeRigid || this.rigid">
+                        <span class="left-equals">R<sub>n</sub></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="Rn"></span> 
+                        <span class="result">= {{this.calc.results.B.reportValues.flex_factors.R_n}}</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-13 </span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.assumeRigid || this.rigid">
+                        <span class="left-equals"><span [Math]="'\\eta_{h}'"></span></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="etah"></span> 
+                        <span class="result">= {{this.calc.results.B.reportValues.flex_factors.nu_h}}</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9.5 </span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.assumeRigid || this.rigid">
+                        <span class="left-equals"><span [Math]="'\\eta_{B}'"></span></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="etaB"></span> 
+                        <span class="result">= {{this.calc.results.B.reportValues.flex_factors.nu_B}}</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9.5 </span>
+                    </div>
+                    <div class="math-line" [hidden]="this.calc.inputs.assumeRigid || this.rigid">
+                        <span class="left-equals"><span [Math]="'\\eta_{L}'"></span></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="etaL"></span> 
+                        <span class="result">= {{this.calc.results.B.reportValues.flex_factors.nu_L}}</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9.5 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid || this.rigid">
+                        <span class="left-equals">R<sub>h</sub></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="Rh"></span> 
+                        <span class="result">= {{this.calc.results.B.reportValues.flex_factors.R_h}}</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-15a </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid || this.rigid">
+                        <span class="left-equals">R<sub>B</sub></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="RB"></span> 
+                        <span class="result">= {{this.calc.results.B.reportValues.flex_factors.R_B}}</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-15a </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid || this.rigid">
+                        <span class="left-equals">R<sub>L</sub></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="RL"></span> 
+                        <span class="result">= {{this.calc.results.B.reportValues.flex_factors.R_L}}</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-15a </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid || this.rigid">
+                        <span class="left-equals">R</span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="R"></span> 
+                        <span class="result">= {{this.calc.results.B.reportValues.flex_factors.R}}</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-12 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid || this.rigid">
+                        <span class="left-equals">g<sub>R</sub></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="gR"></span> 
+                        <span class="result">= {{this.calc.results.B.reportValues.flex_factors.g_R}}</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-11 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid">
+                        <span class="left-equals">Perpendicular to B:</span>
+                        <span class="equals"> </span> 
+                        <span class="result"> </span>
+                        <span class="reference"> </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid">
+                        <span class="left-equals">Q<sub>&perp;B</sub></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="QB"></span> 
+                        <span class="result">= {{this.calc.results.B.reportValues.Q}}</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-8 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid || !this.rigid">
+                        <span class="left-equals">G<sub>&perp;B</sub></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="GRigidB"></span> 
+                        <span class="result">= {{this.calc.results.B.reportValues.G}}</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-6 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid || this.rigid">
+                        <span class="left-equals">G<sub>&perp;B</sub></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="GFlexVarB"></span> 
+                        <span class="result"> </span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-10 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid || this.rigid">
+                        <span class="left-equals">  </span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="GFlexNumB"></span> 
+                        <span class="result">= {{this.calc.results.B.reportValues.G}}</span>
+                        <span class="reference"> </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid">
+                        <span class="left-equals">Perpendicular to L:</span>
+                        <span class="equals"> </span> 
+                        <span class="result"> </span>
+                        <span class="reference"> </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid">
+                        <span class="left-equals">Q<sub>&perp;L</sub></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="QL"></span> 
+                        <span class="result">= {{this.calc.results.L.reportValues.Q}}</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-8 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid || !this.rigid">
+                        <span class="left-equals">G<sub>&perp;L</sub></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="GRigidL"></span> 
+                        <span class="result">= {{this.calc.results.L.reportValues.G}}</span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-6 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid || this.rigid">
+                        <span class="left-equals">G<sub>&perp;L</sub></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="GFlexVarL"></span> 
+                        <span class="result"> </span>
+                        <span class="reference">ASCE 7-10 Eqn. 26.9-10 </span>
+                    </div>
+                    <div appMathLine class="math-line" [hidden]="this.calc.inputs.assumeRigid || this.rigid">
+                        <span class="left-equals">  </span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="GFlexNumL"></span> 
+                        <span class="result">= {{this.calc.results.L.reportValues.G}}</span>
+                        <span class="reference"> </span>
+                    </div>
+                <!--Wall Pressures -and Story Forces Perp B-->
+                    <div class="report-section-title">3 - Wall Pressures and Story Forces, MWFRS</div>
+                    <div class="report-subsection-title">Wind Perpendicular to Side B</div>
+                    <div class="math-line" style="margin-top:5%; margin-bottom:5%" [hidden]="this.calc.inputs.assumeRigid">
+                        <span id = "report-table-title">Wall Pressure Coefficients, &perp;B</span>
+                        <table class ="report-table">
+                            <tr class = "report-table-header">
+                                <th>Direction</th>
+                                <th>C<sub>p</sub></th>
+                            </tr>
+                            <tr class = "report-table-row">
+                                <td>Windward</td>
+                                <td>{{calc.results.B.reportValues.Cp_windward}}</td>
+                            </tr>
+                            <tr class = "report-table-row">
+                                <td>Leeward</td>
+                                <td>{{calc.results.B.reportValues.Cp_leeward}}</td>
+                            </tr>
+                        </table>
+                        <span class="reference table-reference">ASCE 7-10 Table 27.4-1</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">p<sub>z, windward</sub></span>
+                        <span> = q<sub>z</sub>GC<sub>p</sub></span>
+                        <span class="reference">ASCE 7-10 Eqn. 27.4-1</span>
+                    </div>
+                    <div class="math-line" style="margin-top:5%">
+                        <span id = "report-table-title">Windward Wall Pressures, &perp;B</span>
+                        <table class ="report-table">
+                            <tr class = "report-table-header">
+                                <th>Story</th>
+                                <th>Height</th>
+                                <th>q<sub>z</sub></th>
+                                <th>p<sub>z</sub></th>
+                            </tr>
+                            <tr class = "report-table-row" *ngFor="let story of calc.inputs.storyNames; let i = index">
+                                <td> {{story}} </td>
+                                <td> {{calc.results.B.reportValues.seq_height_array[i]}} ft</td>
+                                <td> {{calc.results.B.velocityPressure[i] | number : '1.1-1'}} psf</td>
+                                <td> {{calc.results.B.windwardWallPressure[i] | number : '1.1-1'}} psf</td>
+                            </tr>
+                        </table>
+                        <span class="reference table-reference"></span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">p<sub>z, leeward</sub></span>
+                        <span> = q<sub>h</sub>GC<sub>p</sub> = ({{this.calc.results.B.reportValues.q_h | number : '1.1-1'}} psf)({{this.calc.results.B.reportValues.G}})({{calc.results.B.reportValues.Cp_leeward}}) = {{calc.results.B.leewardWallPressure | number : '1.1-1'}} psf</span>
+                        <span class="reference">ASCE 7-10 Eqn. 27.4-1</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">p<sub>z, total</sub></span>
+                        <span> = p<sub>z</sub> - p<sub>h</sub></span>
+                        <span class="reference">ASCE 7-10 Figure 27.4-1</span>
+                    </div>
+                    <div class="math-line" style="margin-top:5%">
+                        <span id = "report-table-title">Total Wall Pressures,  &perp;B</span>
+                        <table class ="report-table">
+                            <tr class = "report-table-header">
+                                <th>Story</th>
+                                <th>Height</th>
+                                <th>p<sub>z</sub></th>
+                                <th>p<sub>total</sub></th>
+                            </tr>
+                            <tr class = "report-table-row" *ngFor="let story of calc.inputs.storyNames; let i = index">
+                                <td> {{story}} </td>
+                                <td> {{calc.results.B.reportValues.seq_height_array[i]}} ft</td>
+                                <td> {{calc.results.B.windwardWallPressure[i] | number : '1.1-1'}} psf</td>
+                                <td> {{calc.results.B.totalLateralPressure[i] | number : '1.1-1'}} psf</td>
+                            </tr>
+                        </table>
+                        <span class="reference table-reference"></span>
+                    </div>
+                    <div class="report-graphic">
+                        <app-wind-graphics
+                            [graphicControl]="{'direction': 'B','forceType': 'pressures'}"
+                            [storyChange]="calc.inputs.storyHeights.length"
+                            [type]="'report'" 
+                            [width]="graphicWidth" 
+                            [height]="graphicHeight"
+                        ></app-wind-graphics>
+                        <img class="report-image">
+                    </div>
+                    <div appMathLine class="math-line">
+                        <span class="left-equals">Story Force, F<sub>x</sub></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="FxB"></span> 
+                        <span class="result">.</span>
+                        <span class="reference">Tributary Area </span>
+                    </div>
+                    <div class="math-line" style="margin-top:5%">
+                        <span id = "report-table-title">Story Forces,  &perp;B</span>
+                        <table class ="report-table">
+                            <tr class = "report-table-header">
+                                <th>Story</th>
+                                <th>Height</th>
+                                <th>B</th>
+                                <th>p<sub>total</sub></th>
+                                <th>F<sub>x</sub></th>
+                            </tr>
+                            <tr class = "report-table-row" *ngFor="let story of calc.inputs.storyNames; let i = index">
+                                <td> {{story}} </td>
+                                <td> {{calc.inputs.storyHeights[i]}} ft</td>
+                                <td> {{calc.inputs.storyWidths[i]}} ft</td>
+                                <td> {{calc.results.B.totalLateralPressure[i] | number : '1.1-1'}} psf</td>
+                                <td> {{calc.results.B.storyForces[i] | number : '1.1-1'}} kips</td>
+                            </tr>
+                            <tr class = "report-table-row" [hidden]="calc.results.B.fRoof < 0.01">
+                                <td> Roof Projected </td>
+                                <td> - </td>
+                                <td> - </td>
+                                <td> {{calc.results.B.pRoofTotal | number : '1.1-1'}} psf</td>
+                                <td> {{calc.results.B.fRoof | number : '1.1-1'}} k</td>
+                            </tr>
+                        </table>
+                        <span class="reference table-reference"></span>
+                    </div>
+                    <div class="report-graphic">
+                        <app-wind-graphics
+                            [graphicControl]="{'direction': 'B','forceType': 'forces'}"
+                            [storyChange]="calc.inputs.storyHeights.length"
+                            [type]="'report'" 
+                            [width]="graphicWidth" 
+                            [height]="graphicHeight"
+                        ></app-wind-graphics>
+                        <img class="report-image">
+                    </div>
+                    <div appMathLine class="math-line">
+                        <span class="left-equals">Base Shear, V</span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="V"></span> 
+                        <span class="result"> = {{calc.results.B.baseShear}} kips</span>
+                        <span class="reference"> </span>
+                    </div>
+                    <!--<div class="report-graphic" style="background-color: gray">
+                    </div>-->
+                    <!--Wall Pressures -and Story Forces Perp L-->
+                    <div class="report-subsection-title">Wind Perpendicular to Side L</div>
+                    <div class="math-line" style="margin-top:5%; margin-bottom:5%" [hidden]="this.calc.inputs.assumeRigid">
+                        <span id = "report-table-title">Wall Pressure Coefficients, &perp;L</span>
+                        <table class ="report-table">
+                            <tr class = "report-table-header">
+                                <th>Direction</th>
+                                <th>C<sub>p</sub></th>
+                            </tr>
+                            <tr class = "report-table-row">
+                                <td>Windward</td>
+                                <td>{{calc.results.L.reportValues.Cp_windward}}</td>
+                            </tr>
+                            <tr class = "report-table-row">
+                                <td>Leeward</td>
+                                <td>{{calc.results.L.reportValues.Cp_leeward}}</td>
+                            </tr>
+                        </table>
+                        <span class="reference table-reference">ASCE 7-10 Table 27.4-1</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">p<sub>z, windward</sub></span>
+                        <span> = q<sub>z</sub>GC<sub>p</sub></span>
+                        <span class="reference">ASCE 7-10 Eqn. 27.4-1</span>
+                    </div>
+                    <div class="math-line" style="margin-top:5%">
+                        <span id = "report-table-title">Windward Wall Pressures, &perp;L</span>
+                        <table class ="report-table">
+                            <tr class = "report-table-header">
+                                <th>Story</th>
+                                <th>Height</th>
+                                <th>q<sub>z</sub></th>
+                                <th>p<sub>z</sub></th>
+                            </tr>
+                            <tr class = "report-table-row" *ngFor="let story of calc.inputs.storyNames; let i = index">
+                                <td> {{story}} </td>
+                                <td> {{calc.results.L.reportValues.seq_height_array[i]}} ft</td>
+                                <td> {{calc.results.L.velocityPressure[i] | number : '1.1-1'}} psf</td>
+                                <td> {{calc.results.L.windwardWallPressure[i] | number : '1.1-1'}} psf</td>
+                            </tr>
+                        </table>
+                        <span class="reference table-reference"></span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">p<sub>z, leeward</sub></span>
+                        <span> = q<sub>h</sub>GC<sub>p</sub> = ({{this.calc.results.L.reportValues.q_h | number : '1.1-1'}} psf)({{this.calc.results.L.reportValues.G}})({{calc.results.L.reportValues.Cp_leeward}}) = {{calc.results.L.leewardWallPressure | number : '1.1-1'}} psf</span>
+                        <span class="reference">ASCE 7-10 Eqn. 27.4-1</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">p<sub>z, total</sub></span>
+                        <span> = p<sub>z</sub> - p<sub>h</sub></span>
+                        <span class="reference">ASCE 7-10 Figure 27.4-1</span>
+                    </div>
+                    <div class="math-line" style="margin-top:5%">
+                        <span id = "report-table-title">Total Wall Pressures,  &perp;L</span>
+                        <table class ="report-table">
+                            <tr class = "report-table-header">
+                                <th>Story</th>
+                                <th>Height</th>
+                                <th>p<sub>z</sub></th>
+                                <th>p<sub>total</sub></th>
+                            </tr>
+                            <tr class = "report-table-row" *ngFor="let story of calc.inputs.storyNames; let i = index">
+                                <td> {{story}} </td>
+                                <td> {{calc.results.L.reportValues.seq_height_array[i]}} ft</td>
+                                <td> {{calc.results.L.windwardWallPressure[i] | number : '1.1-1'}} psf</td>
+                                <td> {{calc.results.L.totalLateralPressure[i] | number : '1.1-1'}} psf</td>
+                            </tr>
+                        </table>
+                        <span class="reference table-reference"></span>
+                    </div>
+                    <div class="report-graphic">
+                        <app-wind-graphics
+                            [graphicControl]="{'direction': 'L','forceType': 'pressures'}"
+                            [storyChange]="calc.inputs.storyHeights.length"
+                            [type]="'report'" 
+                            [width]="graphicWidth" 
+                            [height]="graphicHeight"
+                        ></app-wind-graphics>
+                        <img class="report-image">
+                    </div>
+                    <div appMathLine class="math-line">
+                        <span class="left-equals">Story Force, F<sub>x</sub></span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="FxL"></span> 
+                        <span class="result">.</span>
+                        <span class="reference">Tributary Area </span>
+                    </div>
+                    <div class="math-line" style="margin-top:5%">
+                        <span id = "report-table-title">Story Forces,  &perp;L</span>
+                        <table class ="report-table">
+                            <tr class = "report-table-header">
+                                <th>Story</th>
+                                <th>Height</th>
+                                <th>L</th>
+                                <th>p<sub>total</sub></th>
+                                <th>F<sub>x</sub></th>
+                            </tr>
+                            <tr class = "report-table-row" *ngFor="let story of calc.inputs.storyNames; let i = index">
+                                <td> {{story}} </td>
+                                <td> {{calc.inputs.storyHeights[i]}} ft</td>
+                                <td> {{calc.inputs.storyLengths[i]}} ft</td>
+                                <td> {{calc.results.L.totalLateralPressure[i] | number : '1.1-1'}} psf</td>
+                                <td> {{calc.results.L.storyForces[i] | number : '1.1-1'}} kips</td>
+                            </tr>
+                            <tr class = "report-table-row" [hidden]="calc.results.L.fRoof < 0.01">
+                                <td> Roof Projected </td>
+                                <td> - </td>
+                                <td> - </td>
+                                <td> {{calc.results.L.pRoofTotal | number : '1.1-1'}} psf</td>
+                                <td> {{calc.results.L.fRoof | number : '1.1-1'}} k</td>
+                            </tr>
+                        </table>
+                        <span class="reference table-reference"></span>
+                    </div>
+                    <div class="report-graphic">
+                        <app-wind-graphics
+                            [graphicControl]="{'direction': 'L','forceType': 'forces'}"
+                            [storyChange]="calc.inputs.storyHeights.length"
+                            [type]="'report'" 
+                            [width]="graphicWidth" 
+                            [height]="graphicHeight"
+                        ></app-wind-graphics>
+                        <img class="report-image">
+                    </div>
+                    <div appMathLine class="math-line">
+                        <span class="left-equals">Base Shear, V</span>
+                        <span class="equals"> = </span>
+                        <span class="math" [Math]="V"></span> 
+                        <span class="result"> = {{calc.results.L.baseShear}} kips</span>
+                        <span class="reference"> </span>
+                    </div>
+                    <!--<div class="report-graphic" style="background-color: gray">
+                    </div>-->
+                <!--Wall Pressures -and Story Forces Perp B-->
+                    <div class="report-section-title" [hidden]="!this.calc.inputs.calcCandC">4 - Components and Cladding</div>
+                    <div class="math-line" [hidden]="!this.calc.inputs.calcCandC">
+                        <span class="left-equals">p</span>
+                        <span> = q<sub>h</sub>[GC<sub>p</sub>-GC<sub>pi</sub>]</span>
+                        <span class="reference">ASCE 7-10 Eqn. 30.4-1</span>
+                    </div>
+                    <div class="math-line" [hidden]="!this.calc.inputs.calcCandC">
+                        <span class="left-equals">GC<sub>pi</sub></span>
+                        <span> = 0<!--{{calc.results.B.CandC_results[0].componentResults.GCpi}}--></span>
+                        <span class="reference">ASCE 7-10 Tab. 26.11-1</span>
+                    </div>
+                    <div class="math-line" [hidden]="!this.calc.inputs.calcCandC">
+                        <span class="left-equals">q<sub>h</sub></span>
+                        <span> = {{calc.results.B.reportValues.q_h}} psf</span>
+                        <span class="reference">ASCE 7-10 Eqn 27.3-1</span>
+                    </div>
+                    <div  class="math-line" *ngFor="let component of calc.results.B.CandC_results; let i = index" [hidden]="!this.calc.inputs.calcCandC">
+                        <div class="report-subsection-title">
+                            {{calc.inputs.componentNames[i]}} - {{calc.inputs.componentAreas[i]}} ft<sup>2</sup>
+                        </div>
+                        <span id = "report-table-title" class="wide-report-table-title">
+                            Zone GC<sub>p</sub>
+                        </span>
+                        <div class="component-tables">
+                            <table class ="wide-report-table" *ngIf="calc.results.B.MeanRoofHeight < 60">
+                                <tr class = "report-table-header">
+                                    <th>Type</th>
+                                    <th *ngFor="let zone of component.componentResults.zones">
+                                        {{zone}}
+                                    </th>
+                                </tr>
+                                <tr class = "report-table-row">
+                                    <td>Windward</td>
+                                    <td *ngFor="let zone of component.componentResults.zones; let j = index">
+                                        {{component.componentResults.GCp_positive[j] | number : '1.2-2'}} psf
+                                    </td>
+                                </tr>
+                                <tr class = "report-table-row">
+                                    <td>Leeward</td>
+                                    <td *ngFor="let zone of component.componentResults.zones; let j = index">
+                                        {{component.componentResults.GCp_negative[j] | number : '1.2-2'}} psf
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class ="wide-report-table" *ngIf="calc.results.B.MeanRoofHeight >= 60">
+                                <tr class = "report-table-header">
+                                    <th>Type</th>
+                                    <th>Height</th>
+                                    <th *ngFor="let zone of component.componentResults.zones">
+                                    {{zone}}
+                                    </th>
+                                </tr>
+                                <tr class = "report-table-row" *ngFor="let height of calc.inputs.storyHeights; let i = index">
+                                    <td>Windward</td>
+                                    <td>{{height}}</td>
+                                    <td *ngFor="let zone of component.componentResults.zones; let j = index">
+                                    {{component.componentResults.positive_pressures[j][0][i] | number : '1.1-1'}} psf
+                                    </td>
+                                </tr>
+                                <tr class = "report-table-row">
+                                    <td>Leeward</td>
+                                    <td>All</td>
+                                    <td *ngFor="let zone of component.componentResults.zones; let j = index">
+                                    {{component.componentResults.negative_pressures[j] | number : '1.1-1'}} psf
+                                    </td>
+                                </tr>
+                            </table>
+                            <span id = "report-table-title" class="wide-report-table-title">
+                                Zone Pressures
+                            </span>
+                            <table class ="wide-report-table" *ngIf="calc.results.B.MeanRoofHeight < 60">
+                                <tr class = "report-table-header">
+                                    <th>Type</th>
+                                    <th *ngFor="let zone of component.componentResults.zones">
+                                        {{zone}}
+                                    </th>
+                                </tr>
+                                <tr class = "report-table-row">
+                                    <td>Windward</td>
+                                    <td *ngFor="let zone of component.componentResults.zones; let j = index">
+                                        {{component.componentResults.positive_pressures[j] | number : '1.1-1'}} psf
+                                    </td>
+                                </tr>
+                                <tr class = "report-table-row">
+                                    <td>Leeward</td>
+                                    <td *ngFor="let zone of component.componentResults.zones; let j = index">
+                                        {{component.componentResults.negative_pressures[j] | number : '1.1-1'}} psf
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class ="wide-report-table" *ngIf="calc.results.B.MeanRoofHeight >= 60">
+                                <tr class = "report-table-header">
+                                    <th>Type</th>
+                                    <th>Height</th>
+                                    <th *ngFor="let zone of component.componentResults.zones">
+                                    {{zone}}
+                                    </th>
+                                </tr>
+                                <tr class = "report-table-row" *ngFor="let height of calc.inputs.storyHeights; let i = index">
+                                    <td>Windward</td>
+                                    <td>{{height}}</td>
+                                    <td *ngFor="let zone of component.componentResults.zones; let j = index">
+                                    {{component.componentResults.positive_pressures[j][0][i] | number : '1.1-1'}} psf
+                                    </td>
+                                </tr>
+                                <tr class = "report-table-row">
+                                    <td>Leeward</td>
+                                    <td>All</td>
+                                    <td *ngFor="let zone of component.componentResults.zones; let j = index">
+                                    {{component.componentResults.negative_pressures[j] | number : '1.1-1'}} psf
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

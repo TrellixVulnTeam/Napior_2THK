@@ -1,0 +1,80 @@
+[
+  {
+    "system": "Steel eccentrically braced frames",
+    "R": 8,
+    "Ct": 0.03,
+    "x": 0.75
+  },
+  {
+    "system": "Special steel concentrically braced frames",
+    "R": 7,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Special reinforced concrete shear walls",
+    "R": 7,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Ordinary reinforced concrete shear walls",
+    "R": 6,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Steel & conc composite eccentrically braced frames",
+    "R": 8,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Steel & conc composite concentrically braced frames",
+    "R": 6,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Steel & conc composite plate shear walls",
+    "R": 7.5,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Steel & conc composite special shear walls",
+    "R": 7,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Steel & conc composite ordinary shear walls",
+    "R": 6,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Special reinforced masonry shear walls",
+    "R": 5.5,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Intermediate reinforced masonry shear walls",
+    "R": 4,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Steel buckling-restrained braced frame",
+    "R": 8,
+    "Ct": 0.03,
+    "x": 0.75
+  },
+  {
+    "system": "Steel special plate shear walls",
+    "R": 8,
+    "Ct": 0.02,
+    "x": 0.75
+  }
+]

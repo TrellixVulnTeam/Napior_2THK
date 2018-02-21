@@ -1,0 +1,74 @@
+[
+  {
+    "system": "Steel special moment frames",
+    "R": 8,
+    "Ct": 0.028,
+    "x": 0.8
+  },
+  {
+    "system": "Steel special truss moment frames",
+    "R": 7,
+    "Ct": 0.028,
+    "x": 0.8
+  },
+  {
+    "system": "Steel intermediate moment frames",
+    "R": 4.5,
+    "Ct": 0.028,
+    "x": 0.8
+  },
+  {
+    "system": "Steel ordinary moment frames",
+    "R": 3.5,
+    "Ct": 0.028,
+    "x": 0.8
+  },
+  {
+    "system": "Special reinforced concrete moment frames",
+    "R": 8,
+    "Ct": 0.016,
+    "x": 0.9
+  },
+  {
+    "system": "Intermediate reinforced concrete moment frames",
+    "R": 5,
+    "Ct": 0.016,
+    "x": 0.9
+  },
+  {
+    "system": "Ordinary reinforced concrete moment frames",
+    "R": 3,
+    "Ct": 0.016,
+    "x": 0.9
+  },
+  {
+    "system": "Steel & conc comp. special moment frames",
+    "R": 8,
+    "Ct": 0.016,
+    "x": 0.9
+  },
+  {
+    "system": "Steel & conc comp. intermediate moment frames",
+    "R": 5,
+    "Ct": 0.016,
+    "x": 0.9
+  },
+  {
+    "system": "Steel & conc comp. partially restrained moment frames",
+    "R": 6,
+    "Ct": 0.016,
+    "x": 0.9
+  },
+  {
+    "system": "Steel & conc comp. ordinary moment frames",
+    "R": 3,
+    "Ct": 0.016,
+    "x": 0.9
+  },
+  {
+    "system": "Cold-formed steel - special bolted moment frame",
+    "R": 3.5,
+    "Ct": 0.028,
+    "x": 0.8
+  }
+]

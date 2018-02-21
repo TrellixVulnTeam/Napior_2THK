@@ -1,0 +1,48 @@
+<h2 class="results-title">Results</h2>
+<div fxLayout="row">
+    <div fxFlex="50%" fxLayout="column" fxLayoutAlign="start center">
+        <table id="individual-results">
+            <tr class=ind-result-row>
+                <td class="ind-result-name">Weight</td>
+                <td class="ind-result-equal">=</td>
+                <td class="ind-result">{{calc.results['Weight']}} kips</td>
+                <td class="ind-result-name">Height</td>
+                <td class="ind-result-equal">=</td>
+                <td class="ind-result">{{calc.results['Height']}} ft</td>
+            </tr>
+            <tr class=ind-result-row>
+                <td class="ind-result-name">T<sub>a</sub></td>
+                <td class="ind-result-equal">=</td>
+                <td class="ind-result">{{calc.results['Ta']}} s</td>
+                <td class="ind-result-name">C<sub>s</sub></td>
+                <td class="ind-result-equal">=</td>
+                <td class="ind-result">{{calc.results['Cs']}}</td>
+            </tr>
+            <tr class=ind-result-row>
+                <td class="ind-result-name">C<sub>u</sub>T<sub>a</sub></td>
+                <td class="ind-result-equal">=</td>
+                <td class="ind-result">{{calc.results['CuTa']}} s</td>
+                <td class="ind-result-name">V</td>
+                <td class="ind-result-equal">=</td>
+                <td class="ind-result">{{calc.results['V']}} kips</td>
+            </tr>
+        </table>
+    </div>
+    <div fxFlex="50%" fxLayout="column" fxLayoutAlign="start center">
+        <div class="table-results-container">
+            <h3 class="table-title">
+                Table 1 - Story Forces
+            </h3>
+            <table id="table-results">
+                <tr id="table-results-header">
+                    <th>Story</th>
+                    <th>Force</th>
+                </tr>
+                <tr *ngFor="let story of calc.results['Story_Forces']; let i = index" class="table-results-row">
+                    <td>{{calc.results['storyNames'][i]}}</td>
+                    <td>{{calc.results['Story_Forces'][i]}} k</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

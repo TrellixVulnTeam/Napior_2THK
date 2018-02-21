@@ -1,0 +1,110 @@
+[
+  {
+    "system": "Special reinforced concrete shear walls",
+    "R": 5,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Ordinary reinforced concrete shear walls",
+    "R": 4,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Detailed plain concrete shear walls",
+    "R": 2,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Ordinary plain concrete shear walls",
+    "R": 1.5,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Intermediate precast shear walls",
+    "R": 4,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Ordinary precast shear walls",
+    "R": 3,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Special reinforced masonry shear walls",
+    "R": 5,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Intermediate reinforced masonry shear walls",
+    "R": 3.5,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Ordinary reinforced masonry shear walls",
+    "R": 2,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Detailed plain masonry shear walls",
+    "R": 2,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Ordinary plain masonry shear walls",
+    "R": 1.5,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Prestressed masonry shear walls",
+    "R": 1.5,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Ordinary reinforced AAC masonry shear walls",
+    "R": 2,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Ordinary plain AAC masonry shear walls",
+    "R": 1.5,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Light-framed wood shear walls",
+    "R": 6.5,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Light-framed cold-formed steel shear walls",
+    "R": 6.5,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Light-framed walls with shear panels of all other materials",
+    "R": 2,
+    "Ct": 0.02,
+    "x": 0.75
+  },
+  {
+    "system": "Cold-formed steel walls with flat strap bracing",
+    "R": 4,
+    "Ct": 0.02,
+    "x": 0.75
+  }
+]

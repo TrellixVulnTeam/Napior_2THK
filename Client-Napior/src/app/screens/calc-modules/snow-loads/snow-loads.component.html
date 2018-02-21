@@ -1,0 +1,34 @@
+<div class="screen-container" fxLayout="row" fxLayoutAlign="start start">
+  <app-inputs [moduleType] = "this.calc.inputs.type">
+    <app-snow-calculation-info *ngIf="inputTabs.activeTab.title == 'Calculation Info'"></app-snow-calculation-info><!-- MODULE SPECIFIC -->
+    <app-snow-site-criteria *ngIf="inputTabs.activeTab.title == 'Site Criteria'"></app-snow-site-criteria><!-- MODULE SPECIFIC -->
+    <app-snow-building-criteria *ngIf="inputTabs.activeTab.title == 'Building Criteria'"></app-snow-building-criteria><!-- MODULE SPECIFIC -->
+      <button id="run-button" mat-raised-button color="accent" (click)="calc.runCalculation('post')">
+          <i class="fa fa-play" aria-hidden="true"></i> RUN</button>
+  </app-inputs>
+  <app-graphics-results-container fxLayout="column">
+      <mat-button-toggle-group #group="matButtonToggleGroup" id="results-button-group" [(ngModel)]="resultsOrReport">
+          <mat-button-toggle value="results">RESULTS</mat-button-toggle>
+          <mat-button-toggle [disabled]="!calc.calculationStatus.haveResults" value="report">REPORT</mat-button-toggle><!--!calc.calculationStatus.haveResults -->
+      </mat-button-toggle-group>
+      <div id="results-container" fxLayout="column" *ngIf="resultsOrReport == 'results'">
+          <!--<app-graphics-controls [ngStyle]="graphicControlStyle">
+              <app-wind-graphics-controls></app-wind-graphics-controls>
+          </app-graphics-controls>-->
+          <app-snow-graphics
+            [graphicControl]="{}"
+            [storyChange]="1"
+            [type]="'ui'" 
+            [width]="graphicWidth" 
+            [height]="graphicHeight"
+          class="module-graphics"></app-snow-graphics><!-- MODULE SPECIFIC -->
+          <app-results>
+              <app-snow-results></app-snow-results><!-- MODULE SPECIFIC -->
+          </app-results>
+      </div>
+      <div id="report-container" *ngIf="resultsOrReport == 'report'">
+          <app-snow-report class="module-report" ></app-snow-report><!-- MODULE SPECIFIC -->
+          <app-report></app-report>
+      </div>
+  </app-graphics-results-container>
+</div>

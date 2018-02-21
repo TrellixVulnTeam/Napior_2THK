@@ -1,0 +1,341 @@
+.subscription {
+    /*background-color: #e2e1e0;*/
+    background: url('/assets/Images/common/background.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.subscription-settings-nav {
+  width: 87%;
+  margin: 15px 0px 15px 0px;
+  text-align:center
+}
+
+#return-account-settings-button {
+  width: 87%;
+  margin: 15px 0px 15px 0px;
+}
+
+#subscription-card {
+    width:800px;
+    height: 490px;
+    margin-top: 8%;
+    padding: 40px 40px 40px 10px;
+}
+
+#subscription-title {
+    font-size: 35px;
+    font-weight: bold;
+    color: #3c5c6c;
+    margin: 0px 0px 30px 0px;
+}
+
+#subscription-content {
+    width: 90%;
+}
+
+.subscription-subtitle {
+    font-size: 26px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+}
+
+p {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.subscription-table {
+    width: calc(100% - 30px);
+    margin: 28px 15px 28px 15px;
+    border-collapse: collapse;
+}
+
+td {
+  border-top: 1px solid #dddddd; 
+  border-bottom: 1px solid #dddddd;
+  height: 28px;
+}
+
+.subscription-label {
+    color: #B0B0B0; 
+    font-weight: normal;
+    width: 140px;
+    text-align: right;
+}
+
+.subscription-data {
+    color: #3c5c6c;
+    padding-left: 20px;
+}
+
+#powered-by-stripe {}
+
+#powered-by {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+#stripe-icon {
+    color: #6772e5;
+    height: 38px;
+}
+
+#subscription-buttons {
+    width: 100%;
+    margin: 32px 0px 15px 0px
+}
+
+#new-fee {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 30px;
+}
+
+#fee-final {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3c5c6c;
+}
+
+#display-fee {
+    margin: 15px 0px 25px 0px;
+}
+
+.stripe-form {
+    width: 100%;
+}
+
+.subscribe {
+    background-color: #fff;
+    width: 100%;
+  }
+  
+  .subscribe * {
+    font-family: Roboto, Source Code Pro, Consolas, Menlo, monospace;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .subscribe .row {
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 5px 10px;
+  }
+  
+  .subscribe .field {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 0 10px;
+  }
+  
+  .subscribe .field.half-width {
+    width: 50%;
+  }
+  
+  .subscribe .field.quarter-width {
+    width: calc(25% - 10px);
+  }
+  
+  .subscribe .baseline {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    left: 0;
+    bottom: 0;
+    background-color: #cfd7df;
+    transition: background-color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  
+  .subscribe label {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 8px;
+    color: #cfd7df;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transform-origin: 0 50%;
+    cursor: text;
+    transition-property: color, transform;
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  
+  .subscribe .input {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    padding-bottom: 7px;
+    color: #32325d;
+    background-color: transparent;
+  }
+  
+  .subscribe .input::-webkit-input-placeholder {
+    color: transparent;
+    transition: color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  
+  .subscribe .input::-moz-placeholder {
+    color: transparent;
+    transition: color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  
+  .subscribe .input:-ms-input-placeholder {
+    color: transparent;
+    transition: color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  
+  .subscribe .input.StripeElement {
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    will-change: opacity;
+  }
+  
+  .subscribe .input.focused,
+  .subscribe .input:not(.empty) {
+    opacity: 1;
+  }
+  
+  .subscribe .input.focused::-webkit-input-placeholder,
+  .subscribe .input:not(.empty)::-webkit-input-placeholder {
+    color: #cfd7df;
+  }
+  
+  .subscribe .input.focused::-moz-placeholder,
+  .subscribe .input:not(.empty)::-moz-placeholder {
+    color: #cfd7df;
+  }
+  
+  .subscribe .input.focused:-ms-input-placeholder,
+  .subscribe .input:not(.empty):-ms-input-placeholder {
+    color: #cfd7df;
+  }
+  
+  .subscribe .input.focused + label,
+  .subscribe .input:not(.empty) + label {
+    color: #aab7c4;
+    transform: scale(0.75) translateY(-25px);
+    cursor: default;
+  }
+  
+  .subscribe .input.focused + label {
+    color: #3c5c6c;
+  }
+  
+  .subscribe .input.invalid + label {
+    color: #ffa27b;
+  }
+  
+  .subscribe .input.focused + label + .baseline {
+    background-color: #3c5c6c;
+  }
+  
+  .subscribe .input.focused.invalid + label + .baseline {
+    background-color: #e25950;
+  }
+  
+  .subscribe input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border-style: none;
+  }
+  
+  .subscribe input:-webkit-autofill {
+    -webkit-text-fill-color: #e39f48;
+    transition: background-color 100000000s;
+    -webkit-animation: 1ms void-animation-out;
+  }
+  
+  .subscribe .StripeElement--webkit-autofill {
+    background: transparent !important;
+  }
+  
+  .subscribe input {
+    -webkit-animation: 1ms void-animation-out;
+  }
+  
+  .subscribe input[type="submit"] {
+    display: block;
+    width: calc(100% - 30px);
+    height: 40px;
+    margin: 40px 15px 0;
+    background-color: #3c5c6c;
+    border-radius: 4px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .subscribe input[type="submit"]:active {
+    background-color: #3c5c6c;
+  }
+  
+  .subscribe .error svg {
+    margin-top: 0 !important;
+  }
+  
+  .subscribe .error svg .base {
+    fill: #e25950;
+  }
+  
+  .subscribe .error svg .glyph {
+    fill: #fff;
+  }
+  
+  .subscribe .error .message {
+    color: #e25950;
+  }
+  
+  .subscribe .success .icon .border {
+    stroke: #abe9d2;
+  }
+  
+  .subscribe .success .icon .checkmark {
+    stroke: #3c5c6c;
+  }
+  
+  .subscribe .success .title {
+    color: #32325d;
+    font-size: 16px !important;
+  }
+  
+  .subscribe .success .message {
+    color: #8898aa;
+    font-size: 13px !important;
+  }
+  
+  .subscribe .success .reset path {
+    fill: #3c5c6c;
+  }
+
+  #cancel-button {
+
+  }
+
+  #cancel-error{
+    height: 14px;
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #7A0000;
+}
+
+.success {
+  font-size:  28px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  color: #36AE74;
+  text-decoration: none;
+  text-align: center;
+}

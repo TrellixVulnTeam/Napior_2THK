@@ -1,0 +1,60 @@
+.account-settings {
+    /*background-color: #e2e1e0;*/
+    background: url('/assets/Images/common/background.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#return-home-button {
+    width: 80%;
+    margin: 15px;
+}
+
+#account-settings-card {
+    width: 500px;
+    margin-top: 4%;
+    padding: 40px;
+}
+
+#account-settings-title {
+    font-size: 35px;
+    font-weight: bold;
+    color: #3c5c6c;
+    margin: 0px 0px 30px 0px;
+}
+
+#account-settings-content {
+    width: 85%;
+}
+
+.account-settings-subtitle{
+    text-decoration: none;
+    text-align: left;
+    width: 100%;
+}
+
+.account-settings-table {
+    width: 100%;
+    margin: 15px 0px 30px 0px;
+    border-collapse: collapse;
+}
+
+td {
+    border-top: 1px solid #dddddd; 
+    border-bottom: 1px solid #dddddd;
+    height: 28px;
+  }
+
+.account-settings-label {
+    color: #B0B0B0; 
+    font-weight: normal;
+    text-align: right;
+    width: 90px;
+    padding-right: 20px;
+}
+
+.account-settings-data {
+    color: #3c5c6c;
+}

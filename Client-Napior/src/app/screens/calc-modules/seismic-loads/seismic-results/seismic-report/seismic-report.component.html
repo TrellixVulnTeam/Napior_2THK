@@ -1,0 +1,212 @@
+<div id="report-component-container" [ngStyle]="genReport.shadowReportStyle">
+    <div class="report-page-wrapper">
+        <div class="report-page">
+            <div class="report-page-content">
+                <div>
+                    <div class="report-title">Seismic Loads</div>
+                    <div class="report-graphic">
+                        <app-seismic-graphics 
+                        [storyChange]="calc.inputs.storyCumulativeHeights.length"
+                        [type]="'report'"
+                        [width]="width"
+                        [height]="height">
+                        </app-seismic-graphics>
+                        <img class="report-image">
+                    </div>
+                    <div class="report-section-title">1 - Properties</div>
+                    <div class="report-subsection-title">Site Criteria</div>
+                    <div class="math-line" *ngIf="calc.inputs.usgsDataType == 'usgsDirect'">
+                        <span class="left-equals">Address</span><span> = {{this.calc.inputs.siteAddress}}</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">Seismic Site Class</span>
+                        <span> = {{this.calc.inputs.siteClass}}</span>
+                        <span class="reference"> ASCE 7-10 Chapter 20</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">T<sub>L</sub></span>
+                        <span> = {{this.calc.inputs.Tl}} seconds</span>
+                        <span class="reference"> USGS.gov</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">S<sub>S</sub></span>
+                        <span> = {{this.calc.inputs.Ss | number : '1.2-2'}} g</span>
+                        <span class="reference"> USGS.gov</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">S<sub>1</sub></span>
+                        <span> = {{this.calc.inputs.S1 | number : '1.2-2'}} g</span>
+                        <span class="reference"> USGS.gov</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">F<sub>a</sub></span>
+                        <span> = {{this.calc.inputs.Fa | number : '1.2-2'}}</span>
+                        <span class="reference"> ASCE 7-10 Table 11.4-1</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">F<sub>v</sub></span>
+                        <span> = {{this.calc.inputs.Fv | number : '1.2-2'}}</span>
+                        <span class="reference"> ASCE 7-10 Table 11.4-2</span>
+                    </div>
+                    <div class="math-line" style="height:5%">
+                        <span class="left-equals">S<sub>ds</sub></span>
+                        <span> = <span class="math"[Math]="sdsCalc" style="height:5%"></span>= {{this.calc.inputs.Sds | number:
+                        '1.2-2'}} g</span>
+                        <span class="reference">ASCE 7-10 11.4-3</span>
+                    </div>
+                    <div class="math-line" style="height:5%">
+                        <span class="left-equals">S<sub>d1</sub></span>
+                        <span> = <span class="math"[Math]="sd1Calc" style="height:5%"></span>= {{this.calc.inputs.Sd1 | number:
+                        '1.2-2'}} g</span>
+                        <span class="reference">ASCE 7-10 11.4-4</span>
+                    </div>
+                    <div class="report-subsection-title">Building Criteria</div>
+                    <div class="math-line">
+                        <span class="left-equals">Building Risk Category</span>
+                        <span> = {{this.calc.inputs.riskCategory}}</span>
+                        <span class="reference"> IBC Table 1604.5</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">System Category</span>
+                        <span> = {{this.calc.inputs.structCategory}}</span>
+                        <span class="reference"> ASCE 7-10 Table 12.02-1</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">Structural System</span>
+                        <span> = {{this.calc.inputs.structSystem}}</span>
+                        <span class="reference"> ASCE 7-10 Table 12.02-1</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">R</span>
+                        <span> = {{this.calc.inputs.R}}</span>
+                        <span class="reference"> ASCE 7-10 Table 12.02-1</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">C<sub>t</sub></span>
+                        <span> = {{this.calc.inputs.Ct}}</span>
+                        <span class="reference"> ASCE 7-10 Table 12.8-2</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">x</span>
+                        <span> = {{this.calc.inputs.x}}</span>
+                        <span class="reference"> ASCE 7-10 Table 12.8-2</span>
+                    </div>
+
+                    <div class="report-section-title">2 - Calculate Base Shear</div>
+                    <div class="report-subsection-title">Determine Building Period</div>
+                    <div class="math-line" [hidden]="calc.inputs.letNapiorCalcPeriod == true">
+                        <span> Building period is known.</span>
+                    </div>
+                    <div class="math-line" [hidden]="calc.inputs.letNapiorCalcPeriod == true">
+                        <span class="left-equals">Known Period, T</span>
+                        <span> = {{this.calc.inputs.analyticalPeriod}} seconds</span>
+                        <span class="reference"> ASCE 7-10 Table 12.8-2</span>
+                    </div>
+                    <div class="math-line">
+                        <span class="left-equals">T<sub>a</sub></span>
+                        <span> = <span class="math"[Math]="periodCalc1" style="height:5%"></span>= {{this.calc.results.Ta }} seconds</span>
+                        <span class="reference"> ASCE 7-10 Eqn. 12.8-7</span>
+                    </div>
+                    <div class="math-line" [hidden]="calc.inputs.letNapiorCalcPeriod == true">
+                        <span class="left-equals">C<sub>u</sub></span>
+                        <span> = {{this.calc.results.reportValues.Cu}}</span>
+                        <span class="reference"> ASCE 7-10 Table 12.8-1</span>
+                    </div>
+                    <div class="math-line" [hidden]="calc.inputs.letNapiorCalcPeriod == true">
+                        <span class="left-equals">C<sub>u</sub>T<sub>a</sub></span>
+                        <span> = <span class="math"[Math]="CuTaCalc" style="height:5%"></span>= {{this.calc.results.CuTa }} seconds</span>
+                        <span class="reference"> ASCE 7-10 Section 12.8.2</span>
+                    </div>
+                    <div class="math-line" [hidden]="taStatus != 'knownGreaterThanCuTa'">
+                        <span class="left-equals">T > C<sub>u</sub>T<sub>a</sub></span>
+                        <span> &#8756; T<sub>a</sub> = C<sub>u</sub>T<sub>a</sub> = {{this.calc.results.CuTa }} seconds</span>
+                        <span class="reference"> ASCE 7-10 Section 12.8.2</span>
+                    </div>
+                    <div class="math-line" [hidden]="taStatus != 'knownBetweenCuTaandTa'">
+                        <span class="left-equals">T<sub>a</sub> > T > C<sub>u</sub>T<sub>a</sub></span>
+                        <span> &#8756; T<sub>a</sub> = T = {{this.calc.inputs.analyticalPeriod}} seconds</span>
+                        <span class="reference"> ASCE 7-10 Section 12.8.2</span>
+                    </div>
+                    <div class="math-line" [hidden]="taStatus != 'knownLessThanTa'">
+                        <span class="left-equals">T<sub>a</sub> < T </span>
+                        <span> &#8756; T<sub>a</sub> = {{this.calc.results.Ta}} seconds</span>
+                        <span class="reference"> ASCE 7-10 Section 12.8.2</span>
+                    </div>
+                    <div class="report-subsection-title">Determine Base Shear</div>
+                    <div class="math-line" >
+                        <span class="left-equals">C<sub>s</sub></span>
+                        <span> = <span class="math"[Math]="CsCalc" style="height:5%"></span>= {{this.calc.results.reportValues.Cs }}</span>
+                        <span class="reference"> ASCE 7-10 Eqn. 12.8-2</span>
+                    </div>
+                    <div class="math-line" [hidden]="calc.results.reportValues.Tra > calc.results.reportValues.TLr">
+                            <span class="left-equals" style="color:transparent"> _ </span>
+                            <span> < <span class="math"[Math]="CsCalc1" style="height:5%"></span>= {{this.calc.results.reportValues.Cs1 }}</span>
+                            <span class="reference"> ASCE 7-10 Eqn. 12.8-3</span>
+                    </div>
+                    <div class="math-line" [hidden]="calc.results.reportValues.Tra <= calc.results.reportValues.TLr">
+                            <span class="left-equals" style="color:transparent"> _ </span>
+                            <span> < <span class="math"[Math]="CsCalc2" style="height:5%"></span>= {{this.calc.results.reportValues.Cs1 }}</span>
+                            <span class="reference"> ASCE 7-10 Eqn. 12.8-4</span>
+                    </div>
+                    <div class="math-line">
+                            <span class="left-equals" style="color:transparent"> _ </span>
+                            <span> > <span class="math"[Math]="CsCalc3" style="height:5%"></span>= {{this.calc.results.reportValues.Cs3 }}</span>
+                            <span class="reference"> ASCE 7-10 Eqn. 12.8-5</span>
+                    </div>
+                    <div class="math-line" [hidden]="calc.inputs.S1 <= 0.6">
+                            <span class="left-equals" style="color:transparent"> _ </span>
+                            <span> > <span class="math"[Math]="CsCalc4" style="height:5%"></span>= {{this.calc.results.reportValues.Cs4 }}</span>
+                            <span class="reference"> ASCE 7-10 Eqn. 12.8-6</span>
+                    </div>
+                    <div class="math-line" >
+                            <span class="left-equals">C<sub>s</sub></span>
+                            <span> = {{this.calc.results.Cs }}</span>
+                    </div>
+                    <div class="math-line" style="margin-top: 5%">
+                            <span class="left-equals">V</span>
+                            <span> = C<sub>s</sub> * W = ({{this.calc.results.Cs }})({{this.calc.results.Weight}} kips) = {{this.calc.results.V}} kips</span>
+                            <span class="reference"> ASCE 7-10 Eqn. 12.8-1</span>
+                    </div>
+                    <div class="report-section-title">3 - Vertical Force Distribution</div>
+                    <div class="math-line" >
+                            <span class="left-equals">k</span>
+                            <span> = {{ this.calc.results.reportValues.k }}</span>
+                            <span class="reference"> ASCE 7-10 Section 12.8.3</span>
+                    </div>
+                    <div class="math-line">
+                            <span class="left-equals">C<sub>vx</sub> </span>
+                            <span> = <span class="math" [Math]="cvxCalc" style="height:5%"></span></span>
+                            <span class="reference"> ASCE 7-10 Eqn. 12.8-6</span>
+                    </div>
+                    <div class="math-line">
+                            <span class="left-equals">F<sub>x</sub> </span>
+                            <span> = C<sub>vx</sub>* w<sub>x</sub></span>
+                            <span class="reference"> ASCE 7-10 Eqn. 12.8-6</span>
+                    </div>
+                    <div class="math-line" style="margin-top:5%">
+                        <span id = "seismic-report-table-title">Table 1 - Story Forces</span>
+                        <table class ="report-table">
+                            <tr class = "report-table-header">
+                                <th>Story</th>
+                                <th>Height</th>
+                                <th>Weight</th>
+                                <th>w<sub>x</sub>h<sub>x</sub><sup>k</sup></th>
+                                <th>C<sub>vx</sub></th>
+                                <th>F<sub>x</sub> (kips)</th>
+                            </tr>
+                            <tr class = "report-table-row" *ngFor="let story of calc.inputs.storyNames; let i = index">
+                                <td> {{story}} </td>
+                                <td> {{calc.results.reportValues.heightArray[i]}} </td>
+                                <td> {{calc.inputs.storyWeights[i]}} </td>
+                                <td> {{calc.results.reportValues.Whk[i]}} </td>
+                                <td> {{calc.results.reportValues.Cvx[i] | number : '1.2-2'}} </td>
+                                <td> {{calc.results.Story_Forces[i]}} </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

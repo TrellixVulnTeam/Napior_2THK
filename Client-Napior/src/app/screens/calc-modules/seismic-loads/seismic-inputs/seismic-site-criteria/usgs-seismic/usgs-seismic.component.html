@@ -1,0 +1,64 @@
+<mat-form-field>
+    <mat-select placeholder="Site Class" [(ngModel)]="inputs.siteClass" (change)="changeAddress(inputs, map)">
+        <mat-option *ngFor="let class of siteClasses" [value]="class">
+            {{class}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field>
+    <mat-placeholder>Site Address</mat-placeholder>
+    <input matInput [(ngModel)]="inputs.siteAddress" (change)="changeAddress(inputs, map)" (keyup.enter)="changeAddress(inputs, map)">
+</mat-form-field>
+<agm-map [zoom]="12" [latitude]="inputs.latitude" [longitude]="inputs.longitude" [usePanning]='true' [streetViewControl]="false">
+    <!--<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
+    <map-child (onMapLoad)="loadAPIWrapper($event)"></map-child>
+</agm-map>
+<div class="input-sub-title">
+    Parameters from USGS.gov:
+</div>
+<div fxLayout="column" fxLayoutAlign="start center">
+    <table id="usgs-data-table" *ngIf="!inputs.usgsIsLoading">
+        <tr>
+            <td class="usgs-parameter-name">Latitude</td>
+            <td>=</td>
+            <td>{{inputs.latitude | number : '1.4-4'}}&deg;</td>
+            <td class="usgs-spacer"></td>
+            <td class="usgs-parameter-name">Longitude</td>
+            <td>=</td>
+            <td>{{inputs.longitude | number : '1.4-4'}}&deg;</td>
+        </tr>
+        <tr>
+            <td class="usgs-parameter-name">S<sub>s</sub></td>
+            <td>=</td>
+            <td>{{inputs.Ss | number : '1.2-2'}} g</td>
+            <td class="usgs-spacer"></td>
+            <td class="usgs-parameter-name">S<sub>1</sub></td>
+            <td>=</td>
+            <td>{{inputs.S1 | number : '1.2-2'}} g</td>
+        </tr>
+        <tr>
+            <td class="usgs-parameter-name">F<sub>a</sub></td>
+            <td>=</td>
+            <td>{{inputs.Fa | number : '1.2-2'}}</td>
+            <td class="usgs-spacer"></td>
+            <td class="usgs-parameter-name">F<sub>v</sub></td>
+            <td>=</td>
+            <td>{{inputs.Fv | number : '1.2-2'}}</td>
+        </tr>
+        <tr>
+            <td class="usgs-parameter-name">S<sub>ds</sub></td>
+            <td>=</td>
+            <td>{{inputs.Sds | number : '1.2-2'}} g</td>
+            <td class="usgs-spacer"></td>
+            <td class="usgs-parameter-name">S<sub>d1</sub></td>
+            <td>=</td>
+            <td>{{inputs.Sd1 | number : '1.2-2'}} g</td>
+        </tr>
+    </table>
+    <div  fxLayout="column" *ngIf="inputs.usgsIsLoading" fxLayoutAlign="start center" id="loading-place-holder">
+        Loading USGS Data
+        <section id="dot-container">
+            <span class="one">.</span><span class="two">.</span><span class="three">.</span>
+        </section>
+    </div>
+</div>

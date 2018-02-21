@@ -1,0 +1,24 @@
+<div class="input-tab-content" fxLayout="column">
+  <mat-slide-toggle fxFlex="8%" class="ccSwitch" [(ngModel)]="calc.inputs.calcCandC" fxFlex="50%" [checked]="calc.inputs.calcCandC">
+    <div *ngIf="calc.inputs.calcCandC">Calculate Components and Cladding</div>
+    <div *ngIf="!calc.inputs.calcCandC">Don't Calculate Components and Cladding</div>
+  </mat-slide-toggle>
+  <div class="dynamic-table-container" [hidden]="!calc.inputs.calcCandC">
+    <div fxLayout="row" fxLayoutGap="20px">
+      <mat-form-field fxFlex="161px">
+        <mat-select placeholder="Roof Type" [(ngModel)]="calc.inputs.roofType">
+          <mat-option *ngFor="let type of roofTypes" [value]="type">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field fxFlex="161px" *ngIf="calc.inputs.roofType !== 'Flat'">
+        <mat-placeholder>Roof Slope</mat-placeholder>
+        <input matInput [(ngModel)]="this.calc.inputs.roofSlope">
+        <span matSuffix>degrees</span>
+      </mat-form-field>
+    </div>
+    <div></div>
+    <app-dynamic-table [headers]="tableTitles" [tableData]="componentData" (click)="changeTable()" (keyup)="changeTable()"></app-dynamic-table>
+  </div>
+</div>

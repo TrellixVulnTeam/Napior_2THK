@@ -1,0 +1,7 @@
+<ul>
+    <li *ngFor="let tab of inputTabs.tabs" id="input-tab" [class.active]="tab.active" (click)="this.inputTabs.selectTab(tab)" fxLayout = "column" fxLayoutAlign="center center">
+        <svg-icon src="{{tab.icon}}" id="tab-icon"></svg-icon>
+        <div id="tab-title">{{tab.title}}</div>
+    </li>
+</ul>
+<ng-content></ng-content>

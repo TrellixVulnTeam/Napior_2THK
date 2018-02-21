@@ -1,0 +1,178 @@
+@media screen {
+    #report-component-container {
+        height: 100%;
+        background-color: #dddddd;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    #report-base {
+        width: 60%;
+        height: 1px;
+        display: block;
+        position: relative;
+        background-color: #dddddd;
+        margin: 15px 20% 15px 20%;
+    }
+
+    .report-page-wrapper {
+        width: 60%;
+        display: block;
+        position: relative;
+        background-color: white;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        margin: 15px 20% 15px 20%;
+    }
+    
+    .report-page-wrapper:after {
+        padding-top: 129.41%;
+        display: block;
+        content: '';
+    }
+    
+    .report-page {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: white;
+        margin: 3% 3% 3% 10%;
+        border: 1px solid black;
+        font-size: calc((100vw - 500px)*0.0080);
+    }
+    
+    .report-page-header {
+        border-collapse: collapse;
+        width: 100.2%;
+        height: 10%;
+        border: 1px solid black;
+        border-style: none none solid none;
+    }
+
+}
+
+@media print {
+    #report-component-container {
+        display: block;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        width: 100vmin;
+        margin: 0;
+    }
+
+    #report-base {
+        width: 100vmin;
+        height: 1px;
+        position: relative;
+        background-color: white;
+        margin: 0px 0px 0px 0px;
+        overflow: visible !important;
+    }
+
+    .report-page-wrapper {
+        width: 100vmin;
+        height: calc(100vmin * 1.2941);
+        position: relative;
+        background-color: white;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        margin: 0px 0px 0px 0px;
+        overflow: visible !important;
+    }
+    
+    .report-page-wrapper:after {
+        padding-top: 129.41%;;
+        content: '';
+        overflow: visible !important;
+    }
+    
+    .report-page {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: white;
+        margin: 3% 3% 3% 10%;
+        border: 1px solid black;
+        font-size: 13px;
+        overflow: visible !important;
+    }
+    
+    .report-page-header {
+        border-collapse: collapse;
+        width: 100.2%;
+        height: 10%;
+        border: 1px solid black;
+        border-style: none none solid none;
+        overflow: visible !important;
+    }
+}
+
+/*table,
+th,
+td {
+    border: 1px solid black;
+}*/
+
+.report-page-header {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-style: none none solid none;
+}
+
+tr {
+    height: 25%;
+}
+
+.report-header-col1 {
+    width: 25%;
+    border: 1px solid black;
+    height: 100%;
+}
+
+td.report-header-col1 {
+    vertical-align: center;
+    border: 1px solid black;
+}
+
+.report-header-col2 {
+    vertical-align: top;
+    border: 1px solid black;
+}
+
+.report-header-col3 {
+    width: 18%;
+    vertical-align: top;
+    border: 1px solid black;
+}
+
+#report-napior-logo {
+    width: 98%;
+}
+
+.report-page-content {
+    height: 87%;
+    width: 94%;
+    margin: 3%;
+}
+
+#report-print-button {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+}
+
+span.frac-line.hide-tail {
+    display: none !important;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+

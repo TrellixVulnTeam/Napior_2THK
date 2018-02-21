@@ -1,0 +1,36 @@
+<div id="scene-container">
+    <div id="svg-scene" #svgScene></div>
+    <div class="text-loop" *ngFor="let text of snowGraphic.graphicTextArray">
+        <div [innerHTML]="text | sanitizeHTML"></div>
+    </div>
+    <div *ngIf="calc.inputs.roofType === 'Monoslope' || calc.inputs.roofType === 'Hip/Gable'" [ngStyle]="angleText.style" fxLayout="row" fxLayoutAlign="center start">
+        <span [innerHTML]="angleText.prefix"></span>
+        <input *ngIf="type == 'ui'" class="graphic-input" [(ngModel)]="calc.inputs.roofSlope" (keyup.enter)="drawSnowGraphic()" (clickOutside)="drawSnowGraphic()" [attachOutsideOnClick]="true">
+        <span *ngIf="type == 'report'" style="padding-right:3px; padding-left: 3px;"> {{calc.inputs.roofSlope}} </span>
+        <span [innerHTML]="angleText.suffix"></span>
+    </div>
+    <div *ngIf="calc.inputs.roofType === 'Hip/Gable'" [ngStyle]="eaveToRidgeText.style" fxLayout="row" fxLayoutAlign="center start">
+        <span [innerHTML]="eaveToRidgeText.prefix"></span>
+        <input *ngIf="type == 'ui'" class="graphic-input" [(ngModel)]="calc.inputs.distEaveToRidge" (keyup.enter)="drawSnowGraphic()" (clickOutside)="drawSnowGraphic()" [attachOutsideOnClick]="true">
+        <span *ngIf="type == 'report'" style="padding-right:3px; padding-left: 3px;"> {{calc.inputs.distEaveToRidge}} </span>
+        <span [innerHTML]="eaveToRidgeText.suffix"></span>
+    </div>
+    <div *ngIf="calc.inputs.roofType === 'Stepped'" [ngStyle]="upperRoofInputText.style" fxLayout="row" fxLayoutAlign="center start" >
+        <span [innerHTML]="upperRoofInputText.prefix"></span>
+        <input *ngIf="type == 'ui'" class="graphic-input" [(ngModel)]="calc.inputs.lengthUpperRoof" (keyup.enter)="drawSnowGraphic()" (clickOutside)="drawSnowGraphic()" [attachOutsideOnClick]="true">
+        <span *ngIf="type == 'report'" style="padding-right:3px; padding-left: 3px;"> {{calc.inputs.lengthUpperRoof}} </span>
+        <span [innerHTML]="upperRoofInputText.suffix"></span>
+    </div>
+    <div *ngIf="calc.inputs.roofType === 'Stepped'" [ngStyle]="lowerRoofInputText.style" fxLayout="row" fxLayoutAlign="center start">
+        <span [innerHTML]="lowerRoofInputText.prefix"></span>
+        <input *ngIf="type == 'ui'" class="graphic-input" [(ngModel)]="calc.inputs.lengthLowerRoof" (keyup.enter)="drawSnowGraphic()" (clickOutside)="drawSnowGraphic()" [attachOutsideOnClick]="true">
+        <span *ngIf="type == 'report'" style="padding-right:3px; padding-left: 3px;"> {{calc.inputs.lengthLowerRoof}} </span>
+        <span [innerHTML]="lowerRoofInputText.suffix"></span>
+    </div>
+    <div *ngIf="calc.inputs.roofType === 'Stepped'" [ngStyle]="stepHeightText.style" fxLayout="row" fxLayoutAlign="center start">
+        <span [innerHTML]="stepHeightText.prefix"></span>
+        <input *ngIf="type == 'ui'" class="graphic-input" [(ngModel)]="calc.inputs.stepHeight" (keyup.enter)="drawSnowGraphic()" (clickOutside)="drawSnowGraphic()" [attachOutsideOnClick]="true">
+        <span *ngIf="type == 'report'" style="padding-right:3px; padding-left: 3px;"> {{calc.inputs.stepHeight}} </span>
+        <span [innerHTML]="stepHeightText.suffix"></span>
+    </div>
+</div>

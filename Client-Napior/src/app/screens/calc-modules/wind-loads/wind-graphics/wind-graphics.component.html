@@ -1,0 +1,14 @@
+<div id="scene-container">
+  <div id="svg-scene" #svgScene></div>
+  <div class="text-loop" *ngFor="let text of windGraphic.graphicTextArray">
+    <div [innerHTML]="text | sanitizeHTML"></div>
+  </div>
+  <div class="text-loop" *ngFor="let input of windGraphic.heightInputArray; let i=index">
+    <div [ngStyle]="input.style" fxLayout="row" fxLayoutAlign="center start">
+        <span [innerHTML]="input.prefix"></span>
+        <input *ngIf="type == 'ui'" class="graphic-input" [(ngModel)]="calc.inputs.storyHeights[i]" (keyup.enter)="drawWindGraphic()" (clickOutside)="drawWindGraphic()" [attachOutsideOnClick]="true">
+        <span *ngIf="type == 'report'" style="padding-right:3px; padding-left: 3px;"> {{calc.inputs.storyHeights[i]}} </span>
+        <span [innerHTML]="input.suffix"></span>
+    </div>
+  </div>
+</div>
