@@ -1,0 +1,17 @@
+certifi==2017.7.27.1
+chardet==3.0.4
+Django==1.11.3
+django-cors-headers==2.1.0
+djangorestframework==3.6.3
+gunicorn==19.7.1
+httpie==0.9.9
+idna==2.5
+mpmath==0.19
+numpy==1.13.1
+Pygments==2.2.0
+pytz==2017.2
+requests==2.18.2
+sympy==1.1.1
+urllib3==1.22
+xmltodict==0.11.0
+stripe==1.73.0
