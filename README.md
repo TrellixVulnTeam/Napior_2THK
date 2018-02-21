@@ -7,10 +7,10 @@ This repository contains the front-end application and back-end API. The app and
 When running the container in development, your can take advantage of the Angular CLI's hot reloading. To run the app in development (i.e. using ng serve), run the following commands:
 
     npm install
-    docker-compose build --build-arg ng_arg=dev docker-angular
+    docker-compose build --build-arg ng_arg=dev napior
     docker-compose up
     
-The statement `--build-arg ng_arg=dev` configures the container to execute the ng serve command. 
+The statement `--build-arg ng_arg=dev napior` configures the container to execute the ng serve command. 
 
 ## In Production (ng build)
 
@@ -20,5 +20,5 @@ When running the container in development, you can take advantage of the Angular
     docker-compose build
     docker-compose up
     
-If no build argument is provided, the container will default to production. If you would like, you can set the build argument `--build-arg ng_arg=prod`.
+If no build argument is provided, the container will default to production. If you would like, you can set the build argument `--build-arg ng_arg=prod napior`.
 

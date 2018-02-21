@@ -1,5 +1,6 @@
 FROM alpine:3.7
 
+# Install required alpine linux packages.
 RUN apk update \
     && apk add --update nodejs nodejs-npm \
     && apk add python3-dev \
@@ -8,19 +9,23 @@ RUN apk update \
 RUN mkdir /tmp/nginx
 RUN chown -R nginx /var/lib/nginx
 RUN mkdir /run/nginx
-COPY ./prod-nginx.conf /etc/nginx/nginx.conf
 
+# Configure app directory in container.
 WORKDIR /usr/src/app
 RUN npm i -g @angular/cli@1.7.0 --silent
 COPY ./Server-Napior/requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 COPY . .
+
+#Set build arguments.
 ARG ng_arg=prod
 ENV ng_env $ng_arg
 
 CMD if [ $ng_env = prod ]; \
+    # Run app in production mode.
     then \
     echo "Building Angular application for production..." \
+    && cp /usr/src/app/prod-nginx.conf /etc/nginx/nginx.conf \
     && cd /usr/src/app/Client-Napior \
     && ng build --aot -prod \
     && mkdir -p /usr/src/build \
@@ -29,9 +34,10 @@ CMD if [ $ng_env = prod ]; \
     && nginx \
     & cd /usr/src/app/Server-Napior \
     && python3 manage.py runserver 0.0.0.0:8081; \
-  
+    #Run app in development mode
     else \
     echo "Serving Angular application with the Angular CLI..." \
+    && cp /usr/src/app/dev-nginx.conf /etc/nginx/nginx.conf \
     && nginx \
     & cd /usr/src/app/Client-Napior \
     && ng serve --aot --host 0.0.0.0 --port 8082 --disable-host-check \
