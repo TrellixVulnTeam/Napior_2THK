@@ -1,15 +1,24 @@
-         ___        ______     ____ _                 _  ___  
-        / \ \      / / ___|   / ___| | ___  _   _  __| |/ _ \ 
-       / _ \ \ /\ / /\___ \  | |   | |/ _ \| | | |/ _` | (_) |
-      / ___ \ V  V /  ___) | | |___| | (_) | |_| | (_| |\__, |
-     /_/   \_\_/\_/  |____/   \____|_|\___/ \__,_|\__,_|  /_/ 
- ----------------------------------------------------------------- 
+# Napior Container
 
+This repository contains the front-end application and back-end API. The app and API run inside of a docker container. The docker container can be built to run in either development or in production utilizing the CLI's ng serve and ng build commands, respectively.
 
-Hi there! Welcome to AWS Cloud9!
+## In Development (ng serve)
 
-To get started, create some files, play with the terminal,
-or visit https://docs.aws.amazon.com/console/cloud9/ for our documentation.
+When running the container in development, your can take advantage of the Angular CLI's hot reloading. To run the app in development (i.e. using ng serve), run the following commands:
 
-Happy coding!
+    npm install
+    docker-compose build --build-arg ng_arg=dev docker-angular
+    docker-compose up
+    
+The statement `--build-arg ng_arg=dev` configures the container to execute the ng serve command. 
+
+## In Production (ng build)
+
+When running the container in development, you can take advantage of the Angular CLI's Ahead of Time Compilation. To run the app in production (i.e. using ng build --aot), run the following commands:
+
+    npm install
+    docker-compose build
+    docker-compose up
+    
+If no build argument is provided, the container will default to production. If you would like, you can set the build argument `--build-arg ng_arg=prod`.
 
