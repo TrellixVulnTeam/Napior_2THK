@@ -30,7 +30,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1', 'localhost',
     'server-napior.herokuapp.com',
     'server-napior.napior.com',
-    'a39846e93e2140748fb97c845c607b9a.vfs.cloud9.us-west-2.amazonaws.com'
+    'a39846e93e2140748fb97c845c607b9a.vfs.cloud9.us-west-2.amazonaws.com',
+    '0.0.0.0'
 ]
 
 
