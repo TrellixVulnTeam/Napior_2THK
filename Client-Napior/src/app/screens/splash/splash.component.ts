@@ -6,6 +6,7 @@ import { ReportDialogComponent } from './report-dialog/report-dialog.component';
 import { UserInterfaceDialogComponent } from './user-interface-dialog/user-interface-dialog.component';
 import { TryitService } from './tryit.service'
 import { TermsPrivacyService } from '../../common/terms-privacy/terms-privacy.service';
+import { SeismicModuleLogo, Background } from '../../common/napior-images';
 
 @Component({
   selector: 'app-splash',
@@ -20,6 +21,8 @@ export class SplashComponent implements OnInit {
 
   private dialogWidth: number;
   private dialogHeight: number;
+  public backgroundImageObject = new Background();
+  public backgroundCSS = this.backgroundImageObject.backgroundCSSJSONTop;
 
   constructor(
     public splashStyles: SplashStylesService, 

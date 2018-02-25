@@ -15,9 +15,10 @@ export class HomeComponent implements OnInit {
   moduleUnavailable = false;
   public seismicImageObject = new SeismicModuleLogo();
   public seismicImageString = this.seismicImageObject.imageElement;
+  public backgroundImageObject = new Background();
+  public backgroundCSS = this.backgroundImageObject.backgroundCSSJSON;
 
   constructor(public rtdb: RtdbService, public checkPayment: CheckPaymentService, public termsPrivacy: TermsPrivacyService) {
-    console.log(this.seismicImageString);
   }
 
   ngOnInit() {

@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/count';
 import * as domToImage from 'dom-to-image';
 import * as html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+import * as jsPDF from 'jspdf';
 
 @Injectable()
 export class PrintService {

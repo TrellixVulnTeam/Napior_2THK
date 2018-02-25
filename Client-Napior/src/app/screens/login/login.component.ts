@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { TryitService } from '../splash/tryit.service';
 import { TermsPrivacyService } from '../../common/terms-privacy/terms-privacy.service';
+import { Background } from '../../common/napior-images';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,8 @@ export class LoginComponent implements OnInit {
   passwordsMatch = true;
   agreeToTerms = false;
   currentCard = 'login';
+  public backgroundImageObject = new Background();
+  public backgroundCSS = this.backgroundImageObject.backgroundCSSJSON;
 
   constructor(
     public authService: AuthService,

@@ -20,6 +20,8 @@
     "stepHeight":5
   },
   "results": {
-
+    "reportValues":{
+      "hchb": 0
+    }
   }
 }

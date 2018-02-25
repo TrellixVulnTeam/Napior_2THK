@@ -266,7 +266,7 @@ class Snow_Loads(Calculation):
             p_total_min = pf + pd_min
             self.set_output('p_total_min', '%0.1f' %p_total_min)
 
-        self.snow_values = {
+        self.reportValues = {
             'risk_category': risk_category,
             'pg': pg,
             'Ct': Ct,
@@ -308,8 +308,8 @@ class Snow_Loads(Calculation):
             'wmax': '%0.1f' %wmax,
             'pd': '%0.1f' %pd,
             'pd_min': '%0.1f' %pd_min,
-
         }
+        self.set_output('reportValues', self.reportValues)
 
     if __name__ == '__main__':
         main()

@@ -17,6 +17,7 @@ import {
   ElementsOptions
 } from 'ngx-stripe';
 import { Plans } from './plans';
+import { Background } from '../../common/napior-images';
 
 @Component({
   selector: 'app-subscription',
@@ -36,6 +37,8 @@ export class SubscriptionComponent implements OnInit {
   cancel: string;
   cancelError: string;
   planTitle = new Plans();
+  public backgroundImageObject = new Background();
+  public backgroundCSS = this.backgroundImageObject.backgroundCSSJSON;
 
   @ViewChild('card') cardRef: ElementRef;
 
