@@ -214,6 +214,9 @@ export class MenuBarComponent implements OnInit {
       (value: any) => {
         if (typeof value.url !== 'undefined' && value instanceof ResolveEnd ) {
           this.activeButtonConfig = this.controlButtonConfig[value.url];
+          if (this.activeButtonConfig == null){
+            this.activeButtonConfig = this.controlButtonConfig[''];
+          }
           this.ref.detectChanges();
         }
       }

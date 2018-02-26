@@ -131,9 +131,10 @@ h2 {
 .mat-dialog-container {
   padding: 0px !important;
   max-width: none !important;
+  overflow: hidden !important;
 }
 
-md-dialog-container {
+mat-dialog-container {
   margin: 0px !important;
   max-width: none !important;
   overflow: hidden !important;

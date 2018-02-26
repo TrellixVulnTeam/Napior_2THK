@@ -1,13 +1,13 @@
 export class TermsOfUse {
   title = 'Terms of Use';
-  dateUpdated = 'December 8th, 2017';
+  dateUpdated = 'February 26th, 2018';
   document = [
     {
       sectionTitle: 'General',
       paragraphs: [
         'Napior, its officers, owners, employees or consultants (hereinafter “Napior”) exclusively and unrestrictedly retains ownership and all rights, title and interest in this product (hereinafter “Software”), including all data and intellectual property rights, such as e.g., trademarks, design patents, utility models, copyrights, know-how, etc., unless explicitly otherwise stated in these Terms of Use.',
-        'Copyright 2017 Napior, All Rights Reserved',
-        'BY USING OR ACCESSING THE WEBSITE, YOU ARE ACCEPTING THE PRACTICES DESCRIBED IN THESE TERMS OF USE.'
+        'Copyright 2018 Napior, All Rights Reserved',
+        'By selecting “I accept” when creating a user or account, or by using the software, You herewith irrevocably agree to comply with the terms and conditions of these Terms of Use.'
       ]
     },
     {
@@ -20,7 +20,8 @@ export class TermsOfUse {
     {
       sectionTitle: 'Disclaimer of Warranty',
       paragraphs: [
-        'YOU ACCEPT THE SOFTWARE AND THE RELEVANT DOCUMENTATION (IF PROVIDED) ON AN “AS IS” BASIS. BY MAKING THE SOFTWARE AVAILABLE TO YOU, NAPIOR DOES IN RELATION TO THE SOFTWARE, UPDATES OR IN RELATION TO THE RIGHT BEING GRANTED TO YOU UNDER THESE TERMS OF USE NOT PROVIDE A WARRANTY OF ANY KIND, ANY SPECIAL, INCIDENTAL, EXPLICIT OR IMPLIED WARRANTY, INCLUDING BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE. YOU ASSUME THE ENTIRE RISK AS TO THE ACCURACY AND THE USE OF THE SOFTWARE.'
+        ' YOU ACCEPT THE SOFTWARE AND THE RELEVANT DOCUMENTATION (IF PROVIDED) ON AN “AS IS” BASIS. NAPIOR EXPRESSLY DISCLAIMS ANY AND ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, AS WELL AS ANY WARRANTIES ALLEGED TO HAVE ARISEN FROM CUSTOM, USAGE, OR THE COURSE OF DEALING BETWEEN THE PARTIES. VENDOR DOES NOT WARRANT THAT THE FUNCTIONS CONTAINED IN THE SOFTWARE WILL MEET YOUR REQUIREMENTS OR THAT THE OPERATION OF THE SOFTWARE WILL BE UNINTERRUPTED OR ERROR-FREE. IN ADDITION, VENDOR DOES NOT WARRANT OR GUARANTEE THAT YOU WILL BE ABLE TO ACCESS THE SOFTWARE AT ALL TIMES. YOU UNDERSTAND AND ACKNOWLEDGE THAT INTERNET CONGESTION AND OUTAGES, AS WELL AS MAINTENANCE, DOWNTIME, AND OTHER INTERRUPTIONS, MAY INTERFERE AT TIMES WITH YOUR ABILITY TO ACCESS THE SOFTWARE. YOU ASSUME THE ENTIRE RISK AS TO THE ACCURACY AND THE USE OF THE SOFTWARE.',
+        'In no event shall Napior or its suppliers be liable for any damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or other pecuniary loss) arising out of the use of or inability to use this Software, even if Napior has been advised of the possibility of such damages.'
       ]
     },
     {
@@ -42,6 +43,24 @@ export class TermsOfUse {
         'We reserve the right to adjust pricing for our service or any components thereof in any manner and at any time as we may determine in our sole and absolute discretion. Except as otherwise expressly provided for in these Terms of Use, any price changes to your service will take effect following email notice to you.',
         'The subscription fee for our service will be billed at the beginning of the paying portion of your subscription and each month thereafter unless and until you cancel your subscription. We automatically bill your Payment Method each month on the calendar day corresponding to the commencement of your subscription. Subscription fees are fully earned upon payment. We reserve the right to change the timing of our billing, in particular, as indicated below, if your Payment Method has not successfully settled. In the event your subscription began on a day not contained in a given month, we may bill your Payment Method on a day in the applicable month or such other day as we deem appropriate. For example, if you started your Napior subscription on January 31st, your next payment date is likely to be February 28th, and your Payment Method would be billed on that date. We may authorize your Payment Method in anticipation of subscription or service-related charges. As used in these Terms of Use, "billing" shall indicate a charge, debit or other payment clearance, as applicable, against your Payment Method. Unless otherwise stated differently, month or monthly refers to your billing cycle.',
         'You may cancel your Napior subscription at any time, and you will continue to have access to the Napior software through the end of your monthly billing period. If you cancel your subscription, your account will automatically close at the end of your current billing period.'
+      ]
+    },
+    {
+      sectionTitle: 'Severability',
+      paragraphs: [
+        'If any one or more of the provisions contained in this Agreement shall, for any reason, be held to be invalid, illegal, or unenforceable in any respect, then to the maximum extent permitted by law, such invalidity, illegality, or unenforceability shall not affect any other provision of this Agreement.'
+      ]
+    },
+    {
+      sectionTitle: 'Modification',
+      paragraphs: [
+        'This Agreement may be modified or amended at the sole discretion of Napior.'
+      ]
+    },
+    {
+      sectionTitle: 'Acknowledgement and Exclusivity',
+      paragraphs: [
+        'YOU ACKNOWLEDGE THAT YOU HAVE READ THIS AGREEMENT, UNDERSTAND IT, AND AGREE TO BE BOUND BY ITS TERMS AND CONDITIONS. YOU FURTHER AGREE THAT IT IS THE COMPLETE AND EXCLUSIVE STATEMENT OF THE AGREEMENT BETWEEN YOU AND NAPIOR, AND THAT IT SUPERSEDES ANY PROPOSAL, PRIOR AGREEMENT, OR UNDERSTANDING, ORAL OR WRITTEN, AND ANY OTHER COMMUNICATION BETWEEN YOU AND NAPIOR RELATING TO THE SUBJECT MATTER OF THIS AGREEMENT.'
       ]
     }
   ];

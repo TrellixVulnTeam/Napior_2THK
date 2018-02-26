@@ -1,6 +1,6 @@
 export class PrivacyPolicy {
   title = 'Privacy Policy';
-  dateUpdated = 'December 8th, 2017';
+  dateUpdated = 'February 26th, 2018';
   document = [
     {
       sectionTitle: 'General',

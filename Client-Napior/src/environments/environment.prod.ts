@@ -7,5 +7,6 @@ export const environment = {
     projectId: "napior-firebase",
     storageBucket: "",
     messagingSenderId: "1068757474109"
-  }
+  },
+  logOutOnExit: true
 };

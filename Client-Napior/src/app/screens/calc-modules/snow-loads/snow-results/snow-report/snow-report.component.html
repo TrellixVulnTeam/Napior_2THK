@@ -83,12 +83,12 @@
                         <span><span [Math]="'\\therefore'"></span> p<sub>m</sub> = p<sub>g</sub>I<sub>s</sub> = ({{this.calc.inputs.groundSnowLoad}} psf)({{calc.results.Is}}) = {{calc.results.pm}} psf</span>
                         <span class="reference">ASCE 7-10 7.3.4</span>
                     </div>
-                    <div class="math-line" [hidden]="this.calc.results.pm < this.calc.results.pf || this.calc.inputs.roofType !== 'Flat'">
+                    <div class="math-line" [hidden]="this.calc.results.reportValues.pm < this.calc.results.pf || this.calc.inputs.roofType !== 'Flat'">
                         <span class="left-equals">p<sub>m</sub> > p<sub>f</sub></span>
-                        <span><span [Math]="'\\therefore'"></span> use {{calc.results.pm}} psf</span>
+                        <span><span [Math]="'\\therefore'"></span> use {{calc.results.reportValues.pm}} psf</span>
                         <span class="reference">ASCE 7-10 7.3.4</span>
                     </div>
-                    <div class="math-line" [hidden]="this.calc.results.pm > this.calc.results.pf || this.calc.inputs.roofType !== 'Flat'">
+                    <div class="math-line" [hidden]="this.calc.results.reportValues.pm > this.calc.results.pf || this.calc.inputs.roofType !== 'Flat'">
                         <span class="left-equals">p<sub>f</sub> > p<sub>m</sub></span>
                         <span><span [Math]="'\\therefore'"></span> use {{calc.results.pf}} psf</span>
                         <span class="reference">ASCE 7-10 7.3.4</span>

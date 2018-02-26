@@ -53,13 +53,16 @@ export class PrintService {
       img.toDataURL("image/png");
       if (this.pageCount === 1){
         doc.addImage(img, 'JPEG', 0, 0, 8.5, 11);
+        if (reportPageNumber === 1){
+          doc.save('report.pdf')
+        }
       } else if (this.pageCount < reportPageNumber){
         doc.addPage();
         doc.addImage(img, 'JPEG', 0, 0, 8.5, 11);
       } else {
         doc.addPage();
         doc.addImage(img, 'JPEG', 0, 0, 8.5, 11);
-        doc.save('test.pdf');
+        doc.save('report.pdf');
         this.rendering = false
       }
       this.pageCount += 1;
