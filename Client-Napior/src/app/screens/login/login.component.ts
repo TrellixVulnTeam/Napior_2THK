@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   agreeToTerms = false;
   currentCard = 'login';
   public backgroundImageObject = new Background();
-  public backgroundCSS = this.backgroundImageObject.backgroundCSSJSON;
+  public backgroundCSS = this.backgroundImageObject.backgroundCSSJSONTop;
 
   constructor(
     public authService: AuthService,
@@ -43,13 +43,13 @@ export class LoginComponent implements OnInit {
 
   // Attempts to log user in given email and password.
   login() {
+    this.loginError = '';
     this.loggingIn = true;
     try {
       const authInfo = this.authService
         .login(this.email, this.password) // Authenticate.
         .concatMap(authData => this.rtdb.getUserData(authData)) // Get userdata.
         .concatMap((userData): any => this.rtdb.userIsSignedIn(userData)); // Check if user is already signed in.
-
       authInfo.subscribe({
         next: signInUser => {
           console.log(signInUser);
@@ -64,7 +64,9 @@ export class LoginComponent implements OnInit {
         },
         error: err => {
           console.log(err);
-          this.loginError = 'Please enter a valid email and password.';
+          if (this.loginError === ''){
+            this.loginError = 'Please enter a valid email and password.';
+          };
           this.loggingIn = false;
           this.authService.userInfo = {};
         }
@@ -72,7 +74,9 @@ export class LoginComponent implements OnInit {
     } catch (exception) {
       // tslint:disable-next-line:one-line
       console.log(exception);
-      this.loginError = 'Please enter a valid email and password.';
+      if (this.loginError === ''){
+        this.loginError = 'Please enter a valid email and password.';
+      };
       this.authService.userInfo = {};
       this.loggingIn = false;
     }

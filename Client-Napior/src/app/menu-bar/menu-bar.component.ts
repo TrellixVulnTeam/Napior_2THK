@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/take';
 import { TryitService } from '../screens/splash/tryit.service';
 import { NavigationCancel, NavigationStart, ResolveEnd } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-menu-bar',
@@ -192,7 +193,9 @@ export class MenuBarComponent implements OnInit {
 
   @HostListener('window:beforeunload', ['$event']) closeWindow($event) {
     console.log('Window Closed');
-    //this.signOut(); //Uncomment for deploy.
+    if(environment.production){
+      this.signOut(); //Uncomment for deploy.
+    }
   }
 
   signOut() {

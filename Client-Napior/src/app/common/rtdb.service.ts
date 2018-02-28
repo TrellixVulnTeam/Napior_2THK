@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { AuthService } from './auth.service';
 import { UserInfo, CompanyInfo } from './firebase-classes';
 import { Observable } from 'rxjs/Observable';
@@ -14,9 +14,9 @@ export class RtdbService {
   public createName: string;
   public companyName: string;
   public newCompanyId: number;
-  public userDataObservable: Observable<any[]>;
-  public createCompanyObservable: Observable<any[]>;
-  public companyDataObservable: Observable<any[]>;
+  public userRef: AngularFireObject<any>;
+  public companyRef: AngularFireObject<any>;
+  public userConnectionRef: any;
   public userData = new UserInfo(null, 'null', 'null', false, null);
   public companyData = new CompanyInfo(
     'null',
@@ -33,6 +33,7 @@ export class RtdbService {
   public combinedData: any;
   private userDataSource = new Subject<string>();
   userData$ = this.userDataSource.asObservable();
+  public amOnline: any;
 
   constructor(
     public authService: AuthService,
@@ -42,9 +43,10 @@ export class RtdbService {
   // Retrieve user data from firebase based on authenticated user id.
   getUserData(authData) {
     const userDbString = '/users/' + authData.uid;
-    const userDataObservable: Observable<any> = this.db
-      .object(userDbString)
-      .valueChanges();
+    this.userRef = this.db.object(userDbString); //
+    this.userConnectionRef = this.db.database.refFromURL('https://napior-firebase.firebaseio.com/users/' + authData.uid);
+    this.userConnectionRef.onDisconnect().update({signedIn: false});
+    const userDataObservable: Observable<any> = this.userRef.valueChanges();
     return userDataObservable;
   }
 
@@ -52,9 +54,8 @@ export class RtdbService {
   getCompanyData(userData) {
     this.userData = userData;
     const companyDbString = '/companies/' + userData.companyId;
-    const companyDataObservable = this.db
-      .object(companyDbString)
-      .valueChanges();
+    this.companyRef = this.db.object(companyDbString);
+    const companyDataObservable: Observable<any> = this.companyRef.valueChanges();
     return companyDataObservable;
   }
 
@@ -63,7 +64,6 @@ export class RtdbService {
     const userAndCompany = this.authService.user // Get authstate
       .concatMap(authData => this.getUserData(authData)) // Get user data
       .concatMap(userData => this.getCompanyData(userData)); // Get company data
-
     userAndCompany.subscribe({
       next: (companyData: CompanyInfo) => {
         this.companyData = companyData;
@@ -138,6 +138,12 @@ export class RtdbService {
   userIsSignedIn(userData) {
     const authData: any = this.authService.userInfo;
     const userDbRoute = '/users/' + authData.uid;
+
+    const isConnectedRoute = '/.info/connected';
+    this.amOnline = this.db.object(isConnectedRoute)
+      .valueChanges()
+      .subscribe((data)=>{console.log(data)});
+
     let allowUserLogin = false;
     if (typeof authData.email !== 'undefined' && userData.signedIn === false) {
       allowUserLogin = true;
@@ -176,6 +182,10 @@ export class RtdbService {
         })
     );
     return userSignOut;
+  }
+
+  presenceConnection(){
+    
   }
 
   calculateTrial() {
