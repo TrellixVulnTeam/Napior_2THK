@@ -8,5 +8,6 @@ export const environment = {
     storageBucket: "",
     messagingSenderId: "1068757474109"
   },
-  logOutOnExit: true
+  logOutOnExit: true,
+  stripeKey: 'pk_test_srCBU6I3eLaNzy6BX2U5m9ur'
 };

@@ -85,7 +85,7 @@ import { LoginCardsService } from './screens/login/login-cards.service';
   ],
   imports: [
     BrowserModule,
-    NgxStripeModule.forRoot('pk_test_srCBU6I3eLaNzy6BX2U5m9ur'),
+    NgxStripeModule.forRoot(environment.stripeKey),
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
