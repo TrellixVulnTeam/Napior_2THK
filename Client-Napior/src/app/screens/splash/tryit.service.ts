@@ -8,9 +8,5 @@ export class TryitService {
 
   constructor(private router: Router) {}
 
-  routeToCreateAccount():void {
-    this.goToCreate = true;
-    console.log(this.goToCreate);
-  }
 
 }

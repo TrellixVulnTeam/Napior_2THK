@@ -1,5 +1,5 @@
 <div class="screen-container" [ngStyle]="this.backgroundCSS" fxLayout="row" fxLayoutAlign="center start">
-  <mat-card *ngIf="currentCard == 'login'" id="login-card" fxLayout="column" fxLayoutAlign="start center">
+  <mat-card *ngIf="loginCard.currentCard == 'login'" id="login-card" fxLayout="column" fxLayoutAlign="start center">
     <div fxLayout="row" fxLayoutAlign="center center">
       <img src="/assets/Images/napior-logos/Napior - Logo (Color).svg" id="login-logo">
       <div id="login-title">Napior</div>
@@ -24,12 +24,12 @@
       </button>
       <div id="forgot-password" (click)="openForgotPassDialog()">Forgot your password?</div>
       <div id="dont-have-account">Don't have a Napior account?</div>
-      <button id="create-button" mat-raised-button color="primary" fxLayout="row" fxLayoutAlign="center center" (click)="createAccountCard()">
+      <button id="create-button" mat-raised-button color="primary" fxLayout="row" fxLayoutAlign="center center" (click)="selectCreateAccountCard()">
         <span>CREATE ACCOUNT</span>
       </button>
     </form>
   </mat-card>
-  <mat-card *ngIf="currentCard == 'createAccount'" id="create-account-card" fxLayout="column" fxLayoutAlign="start center">
+  <mat-card *ngIf="loginCard.currentCard == 'createAccount'" id="create-account-card" fxLayout="column" fxLayoutAlign="start center">
     <div fxLayout="row" fxLayoutAlign="center center">
       <div id="create-account-title">Create Account</div>
     </div>
@@ -62,7 +62,7 @@
         <span>CREATE ACCOUNT AND SIGN IN</span>
       </button>
       <div id="dont-have-account">Already have an account?</div>
-      <button id="create-account-button" mat-raised-button color="primary" fxLayout="row" fxLayoutAlign="center center" (click)="loginCard()">
+      <button id="return-to-login-button" mat-raised-button color="primary" fxLayout="row" fxLayoutAlign="center center" (click)="selectLoginCard()">
         <span>RETURN TO LOGIN</span>
       </button>
     </form>

@@ -7,6 +7,7 @@ import { UserInterfaceDialogComponent } from './user-interface-dialog/user-inter
 import { TryitService } from './tryit.service'
 import { TermsPrivacyService } from '../../common/terms-privacy/terms-privacy.service';
 import { SeismicModuleLogo, Background } from '../../common/napior-images';
+import { LoginCardsService } from '../login/login-cards.service';
 
 @Component({
   selector: 'app-splash',
@@ -28,7 +29,8 @@ export class SplashComponent implements OnInit {
     public splashStyles: SplashStylesService, 
     public dialog: MatDialog,
     public termsPrivacy: TermsPrivacyService,
-    public tryit: TryitService
+    public tryit: TryitService,
+    public loginCard: LoginCardsService
   ) { }
 
   openUserInterfaceDialog(): void {

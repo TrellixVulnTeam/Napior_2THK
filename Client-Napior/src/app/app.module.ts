@@ -62,6 +62,7 @@ import { CloudDialogComponent } from './screens/splash/cloud-dialog/cloud-dialog
 import { TermsPrivacyComponent } from './common/terms-privacy/terms-privacy.component';
 import { PrintStatusComponent } from './screens/calc-modules/general/report/print-status/print-status.component';
 import { HelpDialogComponent } from './screens/calc-modules/general/help-tip/help-dialog/help-dialog.component';
+import { LoginCardsService } from './screens/login/login-cards.service';
 
 @NgModule({
   declarations: [
@@ -132,6 +133,7 @@ import { HelpDialogComponent } from './screens/calc-modules/general/help-tip/hel
     CheckPaymentService,
     AngularFireAuth,
     AngularFireDatabase,
+    LoginCardsService,
     //{ provide: MATERIAL_COMPATIBILITY_MODE, useValue: true },
     // { provide: ErrorHandler, useClass: RollbarService },
     // { provide: Rollbar, useFactory: rollbarFactory}

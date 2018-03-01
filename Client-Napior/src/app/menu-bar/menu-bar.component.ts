@@ -7,12 +7,14 @@ import 'rxjs/add/operator/take';
 import { TryitService } from '../screens/splash/tryit.service';
 import { NavigationCancel, NavigationStart, ResolveEnd } from '@angular/router';
 import { environment } from '../../environments/environment';
+import { LoginCardsService } from '../screens/login/login-cards.service';
 
 @Component({
   selector: 'app-menu-bar',
   templateUrl: './menu-bar.component.html',
   styleUrls: ['./menu-bar.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  
 })
 export class MenuBarComponent implements OnInit {
 
@@ -181,7 +183,8 @@ export class MenuBarComponent implements OnInit {
     public ref: ChangeDetectorRef,
     public router: Router,
     public rtdb: RtdbService,
-    public tryit: TryitService
+    public tryit: TryitService,
+    public login: LoginCardsService
   ) {
 
   }

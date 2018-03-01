@@ -11,6 +11,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { TryitService } from '../splash/tryit.service';
 import { TermsPrivacyService } from '../../common/terms-privacy/terms-privacy.service';
 import { Background } from '../../common/napior-images';
+import { LoginCardsService } from './login-cards.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,6 @@ export class LoginComponent implements OnInit {
   loggingIn = false;
   passwordsMatch = true;
   agreeToTerms = false;
-  currentCard = 'login';
   public backgroundImageObject = new Background();
   public backgroundCSS = this.backgroundImageObject.backgroundCSSJSONTop;
 
@@ -38,7 +38,8 @@ export class LoginComponent implements OnInit {
     public rtdb: RtdbService,
     public checkPaymentService: CheckPaymentService,
     public tryit: TryitService,
-    public termsPrivacy: TermsPrivacyService
+    public termsPrivacy: TermsPrivacyService,
+    public loginCard: LoginCardsService
   ) {}
 
   // Attempts to log user in given email and password.
@@ -121,14 +122,14 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  createAccountCard() {
-    this.currentCard = 'createAccount';
+  selectCreateAccountCard() {
+    this.loginCard.createAccountCard();
     this.loginError = '';
     this.password = '';
   }
 
-  loginCard() {
-    this.currentCard = 'login';
+  selectLoginCard() {
+    this.loginCard.loginCard();
     this.loginError = '';
     this.password = '';
     this.confirmPassword = '';
@@ -147,9 +148,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.tryit.goToCreate === true) {
-      this.createAccountCard();
-      this.tryit.goToCreate = false;
-    }
+    
   }
 }

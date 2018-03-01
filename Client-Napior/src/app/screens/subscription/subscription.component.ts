@@ -105,8 +105,8 @@ export class SubscriptionComponent implements OnInit {
           this.cancellingStatus = 'not';
         },
         error: err => {
+          this.subscribingStatus = 'not';
           console.log(err);
-          this.subscribingStatus = 'not;';
         },
         complete: () => {
           this.subscribingStatus = 'subscribed';

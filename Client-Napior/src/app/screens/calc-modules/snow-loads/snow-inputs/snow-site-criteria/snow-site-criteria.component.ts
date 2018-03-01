@@ -17,7 +17,7 @@ export class SnowSiteCriteriaComponent implements OnInit {
   ];
   public roofExposures = [
     'Fully Exposed',
-    'PartiallyExposed',
+    'Partially Exposed',
     'Sheltered'
   ]
 
