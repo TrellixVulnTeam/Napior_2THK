@@ -44,8 +44,8 @@ export class RtdbService {
   getUserData(authData) {
     const userDbString = '/users/' + authData.uid;
     this.userRef = this.db.object(userDbString); //
-    this.userConnectionRef = this.db.database.refFromURL('https://napior-firebase.firebaseio.com/users/' + authData.uid);
-    this.userConnectionRef.onDisconnect().update({signedIn: false});
+    //this.userConnectionRef = this.db.database.refFromURL('https://napior-firebase.firebaseio.com/users/' + authData.uid);
+    //this.userConnectionRef.onDisconnect().update({signedIn: false});
     const userDataObservable: Observable<any> = this.userRef.valueChanges();
     return userDataObservable;
   }
@@ -185,7 +185,8 @@ export class RtdbService {
   }
 
   presenceConnection(){
-    
+    this.userConnectionRef = this.db.database.refFromURL('https://napior-firebase.firebaseio.com/users/' + this.authService.uid);
+    this.userConnectionRef.onDisconnect().update({signedIn: false});
   }
 
   calculateTrial() {

@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
           console.log(signInUser);
           if (signInUser === true) {
             // If all auth and sign in conditions are met, then route to home.
+            this.rtdb.presenceConnection();
             this.router.navigate(['/home']);
             this.checkPaymentService.checkPaymentLogin();
           } else {
