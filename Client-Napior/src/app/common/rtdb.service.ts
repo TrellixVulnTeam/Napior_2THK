@@ -112,7 +112,7 @@ export class RtdbService {
       .concatMap((): any => {
         const newCompany = new CompanyInfo(
           this.companyName,
-          14,
+          30,
           1,
           'none',
           'none',
