@@ -9,5 +9,5 @@ export const environment = {
     messagingSenderId: "1068757474109"
   },
   logOutOnExit: true,
-  stripeKey: 'pk_test_srCBU6I3eLaNzy6BX2U5m9ur'
+  stripeKey: 'pk_test_srCBU6I3eLaNzy6BX2U5m9ur' 
 };

@@ -63,13 +63,13 @@ class Wind_Loads(Calculation):
 
     def wind_perpindicular_to(self, direction):
         self.direction_outputs = {}
-        V = self.get_input("V")
+        V = float(self.get_input("V"))
         enclosureType = self.get_input("enclosureType")
-        width = self.get_input("buildingWidth")
-        length = self.get_input("buildingLength")
+        width = float(self.get_input("buildingWidth"))
+        length = float(self.get_input("buildingLength"))
         riskCategory = self.get_input("riskCategory")
         exposureCategory = self.get_input("expCategory")
-        period = self.get_input("period")
+        period = float(self.get_input("period"))
         assumeRigid = self.get_input("assumeRigid")
         st_hn = self.get_input('storyHeights')
         st_hn = list(st_hn)
@@ -79,9 +79,9 @@ class Wind_Loads(Calculation):
         topography = self.get_input("topography")
         slope = float(self.get_input("roofSlope"))
         roofType = self.get_input("roofType")
-        x = self.get_input("crestToBuilding")
-        L_h = self.get_input("halfHeightToCrest")
-        H = self.get_input("hillHeight")
+        x = float(self.get_input("crestToBuilding"))
+        L_h = float(self.get_input("halfHeightToCrest"))
+        H = float(self.get_input("hillHeight"))
         roofTribB = float(self.get_input("roofTribB"))
         roofTribL = float(self.get_input("roofTribL"))
         HillShape = self.get_input("hillShape")
@@ -173,7 +173,7 @@ class Wind_Loads(Calculation):
             if kztSwitch:
                 K1HLh = Wind_Coeff.K1_tab(self, exposureCategory)
                 K1HLh_val = K1HLh[HillShape]
-                K1 = K1HLh_val * (H / L_h)
+                K1 = K1HLh_val * (float(H) / float(L_h))
                 topo_factors = Wind_Coeff.topo_factors(self)
                 mu = topo_factors[HillShape]['mu']
                 K2 = (1 - (abs(x) / (mu * L_h)))

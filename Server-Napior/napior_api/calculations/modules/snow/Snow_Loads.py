@@ -133,19 +133,19 @@ class Snow_Loads(Calculation):
     def main(self):
 
         roof_slope = 0
-        pg = self.get_input('groundSnowLoad')
+        pg = float(self.get_input('groundSnowLoad'))
         Ct = self.get_input('temperatureFactor')
         Ct = '%0.2f' %Ct
         terrain_category = self.get_input('terrainCategory')
         roof_exposure = self.get_input('roofExposure')
         risk_category = self.get_input('riskCategory')
         roof_type = self.get_input('roofType')
-        roof_slope = self.get_input('roofSlope')
+        roof_slope = float(self.get_input('roofSlope'))
         roof_surface_type = self.get_input('roofSurfaceType')
-        dist_eave_to_ridge = self.get_input('distEaveToRidge')
-        length_upper_roof = self.get_input('lengthUpperRoof')
-        length_lower_roof = self.get_input('lengthLowerRoof')
-        hc = self.get_input('stepHeight')
+        dist_eave_to_ridge = float(self.get_input('distEaveToRidge'))
+        length_upper_roof = float(self.get_input('lengthUpperRoof'))
+        length_lower_roof = float(self.get_input('lengthLowerRoof'))
+        hc = float(self.get_input('stepHeight'))
 
         if roof_type == 'Flat':
             roof_slope = 0
@@ -167,9 +167,9 @@ class Snow_Loads(Calculation):
             dist_eave_to_ridge = 0
 
         exposure_factor_table = {
-                                 "Fully Exposed":{"B":0.9, "C":0.9, "D":0.8, "Windswept Mountains":0.7, "Alaska Treeless":0.7},
-                                 "Partially Exposed":{"B":1.0, "C":1.0, "D":0.9, "Windswept Mountains":0.8, "Alaska Treeless":0.8},
-                                 "Sheltered":{"B":1.2, "C":1.1, "D":1.0, "Windswept Mountains":0.8, "Alaska Treeless":0.8}
+                                 "Fully Exposed":{"B":0.9, "C":0.9, "D":0.8, "Windswept Mountains":0.7, "Alaskan Tundra":0.7},
+                                 "Partially Exposed":{"B":1.0, "C":1.0, "D":0.9, "Windswept Mountains":0.8, "Alaskan Tundra":0.8},
+                                 "Sheltered":{"B":1.2, "C":1.1, "D":1.0, "Windswept Mountains":0.8, "Alaskan Tundra":0.8}
                                  }
         importance_factor_table = {"I":0.8,"II":1.0,"III":1.1,"IV":1.2}
 
