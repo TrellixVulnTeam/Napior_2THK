@@ -68,6 +68,8 @@ CORS_ORIGIN_WHITELIST = (
     'google.com',
     '0.0.0.0:8080',
     'localhost:8080',
+    'napior.com',
+    'www.napior.com'
 )
 
 TEMPLATES = [
@@ -137,3 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 STATICFILES_DIRS = [(os.path.join(BASE_DIR, "static"))]
 STATIC_URL = '/static/'
+
+# Stripe API key.
+
+STRIPE_KEY = 'sk_test_9jzyuDjSs3Et67hHdQZzcSqA'

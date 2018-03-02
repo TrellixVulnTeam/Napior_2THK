@@ -1,5 +1,7 @@
 import stripe
-stripe.api_key = 'sk_test_9jzyuDjSs3Et67hHdQZzcSqA'
+from django.conf import settings
+
+stripe.api_key = settings.STRIPE_KEY
 
 class Subscription(object):
 
