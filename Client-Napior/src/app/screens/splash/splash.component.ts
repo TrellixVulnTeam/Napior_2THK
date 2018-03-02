@@ -6,7 +6,7 @@ import { ReportDialogComponent } from './report-dialog/report-dialog.component';
 import { UserInterfaceDialogComponent } from './user-interface-dialog/user-interface-dialog.component';
 import { TryitService } from './tryit.service'
 import { TermsPrivacyService } from '../../common/terms-privacy/terms-privacy.service';
-import { SeismicModuleLogo, Background } from '../../common/napior-images';
+import { SplashLaptopGraphic, SplashCloudGraphic, SplashCityGraphic, Background } from '../../common/napior-images';
 import { LoginCardsService } from '../login/login-cards.service';
 
 @Component({
@@ -24,6 +24,12 @@ export class SplashComponent implements OnInit {
   private dialogHeight: number;
   public backgroundImageObject = new Background();
   public backgroundCSS = this.backgroundImageObject.backgroundCSSJSONTop;
+  public cityImageObject = new SplashCityGraphic();
+  public cityImageString = this.cityImageObject.imageElement;
+  public cloudImageObject = new SplashCloudGraphic();
+  public cloudImageString = this.cloudImageObject.imageElement;
+  public laptopImageObject = new SplashLaptopGraphic();
+  public laptopImageString = this.laptopImageObject.imageElement;
 
   constructor(
     public splashStyles: SplashStylesService, 

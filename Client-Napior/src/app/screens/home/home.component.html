@@ -20,7 +20,7 @@
             <mat-spinner></mat-spinner>
           </div>
           <div *ngIf="rtdb.companyData.paid === false" class="calc-module-unavailable">{{ checkPayment.blockModuleMessage }}</div>
-          <img class="calculation-icon" src="/assets/Images/module-icons/wind-module-icon.png" id="menu-napior-logo">
+          <img class="calculation-icon" src="{{this.windImageString}}" id="menu-napior-logo">
           <h2 class="calculation-title">Wind Loads</h2>
         </div>
       </a>
@@ -30,7 +30,7 @@
             <mat-spinner></mat-spinner>
           </div>
           <div *ngIf="rtdb.companyData.paid === false" class="calc-module-unavailable">{{ checkPayment.blockModuleMessage }}</div>
-          <img class="calculation-icon" src="/assets/Images/module-icons/snow-module-icon.png" id="menu-napior-logo">
+          <img class="calculation-icon" src="{{this.snowImageString}}" id="menu-napior-logo">
           <h2 class="calculation-title">Snow Loads</h2>
         </div>
       </a>

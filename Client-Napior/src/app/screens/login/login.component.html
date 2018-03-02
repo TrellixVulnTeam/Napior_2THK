@@ -1,7 +1,7 @@
 <div class="screen-container" [ngStyle]="this.backgroundCSS" fxLayout="row" fxLayoutAlign="center start">
   <mat-card *ngIf="loginCard.currentCard == 'login'" id="login-card" fxLayout="column" fxLayoutAlign="start center">
     <div fxLayout="row" fxLayoutAlign="center center">
-      <img src="/assets/Images/napior-logos/Napior - Logo (Color).svg" id="login-logo">
+      <img src="{{this.napiorLogoString}}" id="login-logo">
       <div id="login-title">Napior</div>
     </div>
     <div id="sign-in">

@@ -8,6 +8,7 @@ import { TryitService } from '../screens/splash/tryit.service';
 import { NavigationCancel, NavigationStart, ResolveEnd } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { LoginCardsService } from '../screens/login/login-cards.service';
+import { NapiorLogoWhiteGreen } from '../common/napior-images';
 
 @Component({
   selector: 'app-menu-bar',
@@ -17,6 +18,9 @@ import { LoginCardsService } from '../screens/login/login-cards.service';
   
 })
 export class MenuBarComponent implements OnInit {
+
+  public napiorLogoObject = new NapiorLogoWhiteGreen();
+  public napiorLogoString = this.napiorLogoObject.imageElement;
 
   public authAgainst = 'napior-firebase.firebaseapp.com';
   public controlButtonConfig: {} = {

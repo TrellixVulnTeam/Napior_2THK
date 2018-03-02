@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { TryitService } from '../splash/tryit.service';
 import { TermsPrivacyService } from '../../common/terms-privacy/terms-privacy.service';
-import { Background } from '../../common/napior-images';
+import { Background, NapiorLogoColor } from '../../common/napior-images';
 import { LoginCardsService } from './login-cards.service';
 
 @Component({
@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit {
   agreeToTerms = false;
   public backgroundImageObject = new Background();
   public backgroundCSS = this.backgroundImageObject.backgroundCSSJSONTop;
+  public napiorLogoObject = new NapiorLogoColor();
+  public napiorLogoString = this.napiorLogoObject.imageElement;
 
   constructor(
     public authService: AuthService,
