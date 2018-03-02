@@ -1,3 +1,6 @@
 .c9
 /Client-Napior/src/environments/environment.prod.ts
 /Client-Napior/src/environments/environment.ts
+/Server-Napior/napior_api/subscriptions/dev_stripe_key.py
+/Server-Napior/napior_api/subscriptions/prod_stripe_key.py
+/Server-Napior/napior_api/subscriptions/stripe_key.py

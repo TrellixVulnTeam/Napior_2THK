@@ -1,7 +1,9 @@
 import stripe
 from django.conf import settings
+from napior_api.subscriptions.stripe_key import STRIPE_KEY
 
-stripe.api_key = settings.STRIPE_KEY
+stripe.api_key = STRIPE_KEY
+print(stripe.api_key)
 
 class Subscription(object):
 
