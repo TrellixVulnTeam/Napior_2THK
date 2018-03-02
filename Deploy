@@ -27,3 +27,13 @@ kubectl get pods
 kubectl expose deployment napior-web --type=LoadBalancer --port 80 --target-port 8080
 
 kubectl get service
+
+
+
+
+
+docker tag napior_napior:latest gcr.io/napior-app/napior-app:v1.0.5
+
+gcloud docker -- push gcr.io/napior-app/napior-app:v1.0.5
+
+gcloud app deploy ~/Napior/app.yaml --image-url gcr.io/napior-app/napior-app:v1.0.5

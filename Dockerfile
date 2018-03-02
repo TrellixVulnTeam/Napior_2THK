@@ -33,6 +33,7 @@ CMD if [ $ng_env = prod ]; \
     && cp -r /usr/src/app/Client-Napior/dist /usr/src/build \
     && nginx \
     & cd /usr/src/app/Server-Napior \
+    && cp /usr/src/app/Server-Napior/napior_api/subscriptions/prod_stripe_key.py /usr/src/app/Server-Napior/napior_api/subscriptions/stripe_key.py \
     && python3 manage.py runserver 0.0.0.0:8081; \
     # Run app in development mode.
     else \
@@ -42,6 +43,7 @@ CMD if [ $ng_env = prod ]; \
     & cd /usr/src/app/Client-Napior \
     && ng serve --aot --host 0.0.0.0 --port 8082 --disable-host-check \
     & cd /usr/src/app/Server-Napior \
+    && cp /usr/src/app/Server-Napior/napior_api/subscriptions/dev_stripe_key.py /usr/src/app/Server-Napior/napior_api/subscriptions/stripe_key.py \
     && python3 manage.py runserver 0.0.0.0:8081; \
     fi
 

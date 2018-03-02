@@ -141,5 +141,3 @@ STATICFILES_DIRS = [(os.path.join(BASE_DIR, "static"))]
 STATIC_URL = '/static/'
 
 # Stripe API key.
-
-STRIPE_KEY = 'sk_test_9jzyuDjSs3Et67hHdQZzcSqA'
