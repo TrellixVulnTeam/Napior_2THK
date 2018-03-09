@@ -16,8 +16,15 @@ RUN npm i -g @angular/cli@1.7.0 --silent
 COPY ./Server-Napior/requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 COPY . .
+WORKDIR /usr/src/app/Client-Napior
 
-#Set build arguments.
+# Build application for production.
+RUN ng build --aot -prod \
+    && mkdir -p /usr/src/build \
+    && cd /usr/src/build \
+    && cp -r /usr/src/app/Client-Napior/dist /usr/src/build
+
+#Set build arguments (i.e. production or development).
 ARG ng_arg=prod
 ENV ng_env $ng_arg
 
@@ -26,11 +33,6 @@ CMD if [ $ng_env = prod ]; \
     then \
     echo "Building Angular application for production..." \
     && cp /usr/src/app/prod-nginx.conf /etc/nginx/nginx.conf \
-    && cd /usr/src/app/Client-Napior \
-    && ng build --aot -prod \
-    && mkdir -p /usr/src/build \
-    && cd /usr/src/build \
-    && cp -r /usr/src/app/Client-Napior/dist /usr/src/build \
     && nginx \
     & cd /usr/src/app/Server-Napior \
     && cp /usr/src/app/Server-Napior/napior_api/subscriptions/prod_stripe_key.py /usr/src/app/Server-Napior/napior_api/subscriptions/stripe_key.py \
