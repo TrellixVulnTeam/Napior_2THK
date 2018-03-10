@@ -21,7 +21,8 @@ export class WindComponentsCladdingComponent implements OnInit {
     this.roofTypes = [
       'Flat',
       'Monoslope',
-      'Hip/Gable'
+      'Hip',
+      'Gable'
     ]
   }
 

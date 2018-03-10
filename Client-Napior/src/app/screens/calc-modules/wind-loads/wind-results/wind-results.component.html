@@ -170,6 +170,17 @@
           </div>
         </div>
       </mat-card>
+      <mat-card class="component-card" fxLayout="column" fxLayoutAlign="start center">
+        <h2 class="direction-title">Zone Definitions</h2>
+        <table id="individual-results">
+          <tr class=ind-result-row>
+            <td class="ind-result-name">a</td>
+            <td class="ind-result-equal">=</td>
+            <td class="ind-result">{{calc.results.B.a}}'</td>
+          </tr>
+        </table>
+        <img class="cc-zone-image" src="{{this.ccGraphicUrl}}">
+      </mat-card>
     </div>
   </mat-tab>
 </mat-tab-group>

@@ -732,14 +732,24 @@
                     </div>-->
                 <!--Wall Pressures -and Story Forces Perp B-->
                     <div class="report-section-title" [hidden]="!this.calc.inputs.calcCandC">4 - Components and Cladding</div>
-                    <div class="math-line" [hidden]="!this.calc.inputs.calcCandC">
+                    <div class="math-line" [hidden]="!this.calc.inputs.calcCandC || calc.results.B.MeanRoofHeight > 60">
                         <span class="left-equals">p</span>
                         <span> = q<sub>h</sub>[GC<sub>p</sub>-GC<sub>pi</sub>]</span>
                         <span class="reference">ASCE 7-10 Eqn. 30.4-1</span>
                     </div>
+                    <div class="math-line" [hidden]="!this.calc.inputs.calcCandC || calc.results.B.MeanRoofHeight < 60">
+                        <span class="left-equals">p<sub>windward</sub></span>
+                        <span> = q<sub>z</sub>[GC<sub>p</sub>-GC<sub>pi</sub>]</span>
+                        <span class="reference">ASCE 7-10 Eqn. 30.6-1</span>
+                    </div>
+                    <div class="math-line" [hidden]="!this.calc.inputs.calcCandC || calc.results.B.MeanRoofHeight < 60">
+                        <span class="left-equals">p<sub>leeward</sub></span>
+                        <span> = q<sub>h</sub>[GC<sub>p</sub>-GC<sub>pi</sub>]</span>
+                        <span class="reference">ASCE 7-10 Eqn. 30.6-1</span>
+                    </div>
                     <div class="math-line" [hidden]="!this.calc.inputs.calcCandC">
                         <span class="left-equals">GC<sub>pi</sub></span>
-                        <span> = 0<!--{{calc.results.B.CandC_results[0].componentResults.GCpi}}--></span>
+                        <span> = {{calc.results.B.CandC_results[0].componentResults.GCpi}}</span>
                         <span class="reference">ASCE 7-10 Tab. 26.11-1</span>
                     </div>
                     <div class="math-line" [hidden]="!this.calc.inputs.calcCandC">
@@ -755,7 +765,7 @@
                             Zone GC<sub>p</sub>
                         </span>
                         <div class="component-tables">
-                            <table class ="wide-report-table" *ngIf="calc.results.B.MeanRoofHeight < 60">
+                            <table class ="wide-report-table">
                                 <tr class = "report-table-header">
                                     <th>Type</th>
                                     <th *ngFor="let zone of component.componentResults.zones">
@@ -772,29 +782,6 @@
                                     <td>Leeward</td>
                                     <td *ngFor="let zone of component.componentResults.zones; let j = index">
                                         {{component.componentResults.GCp_negative[j] | number : '1.2-2'}} psf
-                                    </td>
-                                </tr>
-                            </table>
-                            <table class ="wide-report-table" *ngIf="calc.results.B.MeanRoofHeight >= 60">
-                                <tr class = "report-table-header">
-                                    <th>Type</th>
-                                    <th>Height</th>
-                                    <th *ngFor="let zone of component.componentResults.zones">
-                                    {{zone}}
-                                    </th>
-                                </tr>
-                                <tr class = "report-table-row" *ngFor="let height of calc.inputs.storyHeights; let i = index">
-                                    <td>Windward</td>
-                                    <td>{{height}}</td>
-                                    <td *ngFor="let zone of component.componentResults.zones; let j = index">
-                                    {{component.componentResults.positive_pressures[j][0][i] | number : '1.1-1'}} psf
-                                    </td>
-                                </tr>
-                                <tr class = "report-table-row">
-                                    <td>Leeward</td>
-                                    <td>All</td>
-                                    <td *ngFor="let zone of component.componentResults.zones; let j = index">
-                                    {{component.componentResults.negative_pressures[j] | number : '1.1-1'}} psf
                                     </td>
                                 </tr>
                             </table>

@@ -91,6 +91,12 @@ class Wind_Loads(Calculation):
         CandCNames = CandCNames
         CandCAreas = self.get_input("componentAreas")
         CandCAreas = CandCAreas
+        roofDesignation = self.get_input("roofType")
+
+        if roofDesignation == 'Hip' or roofDesignation == 'Gable':
+            roofType = 'Hip/Gable'
+        else:
+            roofType = roofDesignation
 
         velocity = V
 
@@ -531,6 +537,14 @@ class Wind_Loads(Calculation):
                     'componentName': CandCNames[i], 'componentResults': CandC_component.CandC_Data}
                 CandC_results.append(CandC_component_results)
             self.set_direction_output('CandC_results', CandC_results)
+        
+        # Determine Components and cladding zone dim.
+        forty_h = 0.4 * h_n[0]
+        ten_min_BandL = min(B, L) * 0.1
+        four_min_BandL = min(B, L) * 0.04
+        a = max(3, four_min_BandL,min(forty_h, ten_min_BandL))
+        self.set_direction_output('a', a)
+
 
         direction_outputs = self.direction_outputs
         self.set_output(direction, direction_outputs)
@@ -610,7 +624,10 @@ class Wind_Loads(Calculation):
             'w_roof': '%0.1f' % widths[-1],
             'A_roof_trib': '%0.0f' % roof_area_trib,
             'F_roof': '%0.2f' % F_roof,
-            'base_shear': float('%0.1f' % V[0])
+            'base_shear': float('%0.1f' % V[0]),
+            'forty_h': forty_h,
+            'ten_min_BandL': ten_min_BandL,
+            'four_min_BandL': four_min_BandL
         }
         self.set_direction_output('reportValues', self.reportValues)
         
