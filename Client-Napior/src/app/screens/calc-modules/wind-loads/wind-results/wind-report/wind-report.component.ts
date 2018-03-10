@@ -18,6 +18,7 @@ export class WindReportComponent implements OnInit {
   public inputs = this.calc.inputs;
   private reportSubscription;
   public rigid: boolean;
+  public ccGraphicUrl: string;
   public graphicWidth = (window.innerWidth - 500) * 0.39;
   public graphicHeight = (window.innerWidth - 500) * 0.2;
 
@@ -108,6 +109,7 @@ export class WindReportComponent implements OnInit {
     this.CandC = `q_{h}[GC_{p} - GC_{pi}]`;
 
     this.genReport.generateReportList();
+    this.setCCgraphic();
     setTimeout(() => {
       this.cd.detectChanges();
       this.genReport.thickenFracLines();
@@ -119,6 +121,26 @@ export class WindReportComponent implements OnInit {
     setTimeout(() => {
       this.genReport.controlSqrtLines();
     }, 500);
+  }
+  
+  setCCgraphic(){
+    if (this.calc.inputs.roofType === 'Flat'){
+      this.ccGraphicUrl = '/assets/Images/wind-icons/flat.png';
+    } else if (this.calc.inputs.roofType === 'Monoslope' && this.calc.inputs.roofSlope < 3){
+      this.ccGraphicUrl = '/assets/Images/wind-icons/flat.png';
+    } else if (this.calc.inputs.roofType === 'Monoslope' && this.calc.inputs.roofSlope >= 3 && this.calc.inputs.roofSlope < 10){
+      this.ccGraphicUrl = '/assets/Images/wind-icons/monoslope-3-10.png';
+    } else if (this.calc.inputs.roofType === 'Monoslope' && this.calc.inputs.roofSlope >= 10){
+      this.ccGraphicUrl = '/assets/Images/wind-icons/monoslope-greater-10.png';
+    } else if (this.calc.inputs.roofType === 'Gable' && this.calc.inputs.roofSlope < 7){
+      this.ccGraphicUrl = '/assets/Images/wind-icons/gable-less-7.png';
+    } else if (this.calc.inputs.roofType === 'Gable' && this.calc.inputs.roofSlope > 7){
+      this.ccGraphicUrl = '/assets/Images/wind-icons/gable-greater-7.png';
+    } else if (this.calc.inputs.roofType === 'Hip'){
+      this.ccGraphicUrl = '/assets/Images/wind-icons/hip.png';
+    } else {
+      this.ccGraphicUrl = '/assets/Images/wind-icons/flat.png';
+    }
   }
 
   ngOnInit() {

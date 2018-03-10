@@ -74,6 +74,20 @@
     position: relative;
 }
 
+.report-picture {
+    position: relative;
+    height: calc((100vw - 500px)*0.2);
+    width: 80%;
+    margin: 0% 10% 0% 10%;
+}
+
+.report-picture-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
 .report-section-title {
     font-weight: bold;
     color:#3c5c6c;
