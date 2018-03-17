@@ -34,6 +34,16 @@
           <h2 class="calculation-title">Snow Loads</h2>
         </div>
       </a>
+      <a routerLink="/wood-beam">
+        <div class="calculation-card" fxLayout="column" fxLayoutAlign="center center">
+          <div *ngIf="checkPayment.checkingPaymentStatus" class="checking-payment-status" fxLayout="column" fxLayoutAlign="center center">
+            <mat-spinner></mat-spinner>
+          </div>
+          <div *ngIf="rtdb.companyData.paid === false" class="calc-module-unavailable">{{ checkPayment.blockModuleMessage }}</div>
+          <img class="calculation-icon" src="{{this.woodBeamImageString}}" id="menu-napior-logo">
+          <h2 class="calculation-title">Wood Beam</h2>
+        </div>
+      </a>
     </div>
   </div>
   <div class="copyright-statement-container">

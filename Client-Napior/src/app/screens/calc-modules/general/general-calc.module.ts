@@ -28,7 +28,6 @@ import {
   MatCardModule,
   MatSnackBarModule,
   MatFormFieldModule,
-  //MATERIAL_COMPATIBILITY_MODE,
   MatTabsModule
 } from '@angular/material';
 

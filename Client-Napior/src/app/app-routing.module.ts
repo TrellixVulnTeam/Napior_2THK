@@ -11,6 +11,7 @@ import { SplashComponent } from 'app/screens/splash/splash.component';
 import { SeismicLoadsComponent } from './screens/calc-modules/seismic-loads/seismic-loads.component';
 import { WindLoadsComponent } from './screens/calc-modules/wind-loads/wind-loads.component';
 import { SnowLoadsComponent } from './screens/calc-modules/snow-loads/snow-loads.component';
+import { WoodBeamComponent } from './screens/calc-modules/beams/wood-beam/wood-beam.component';
 
 const routes: Routes = [
     {path: '', redirectTo: 'splash', pathMatch: 'full'},
@@ -21,7 +22,8 @@ const routes: Routes = [
     {path: 'subscription', component: SubscriptionComponent, canActivate: [AuthGuardsService]},
     {path: 'seismic-loads', component: SeismicLoadsComponent, canActivate: [AuthGuardsService, PaidGuardsService]},
     {path: 'wind-loads', component: WindLoadsComponent, canActivate: [AuthGuardsService, PaidGuardsService]},
-    {path: 'snow-loads', component: SnowLoadsComponent, canActivate: [AuthGuardsService, PaidGuardsService]}
+    {path: 'snow-loads', component: SnowLoadsComponent, canActivate: [AuthGuardsService, PaidGuardsService]},
+    {path: 'wood-beam', component: WoodBeamComponent, canActivate: [AuthGuardsService, PaidGuardsService]}
 ];
 
 @NgModule({

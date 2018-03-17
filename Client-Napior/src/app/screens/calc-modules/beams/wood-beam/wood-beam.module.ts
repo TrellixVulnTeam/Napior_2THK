@@ -5,8 +5,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AppModule } from '../../../app.module';
-import { GeneralCalcModule } from '../general/general-calc.module';
+import { AppModule } from '../../../../app.module';
+import { GeneralCalcModule } from '../../general/general-calc.module';
 
 // Imported modules
 import { AngularSvgIconModule } from 'angular-svg-icon';
@@ -32,15 +32,8 @@ import {
 } from '@angular/material';
 
 // Self-made components and services
-import { WindLoadsComponent } from './wind-loads.component';
-import { WindGraphicsComponent } from './wind-graphics/wind-graphics.component';
-import { WindCalculationInfoComponent } from './wind-inputs/wind-calculation-info/wind-calculation-info.component';
-import { WindBuildingCriteriaComponent } from './wind-inputs/wind-building-criteria/wind-building-criteria.component';
-import { WindSiteCriteriaComponent } from './wind-inputs/wind-site-criteria/wind-site-criteria.component';
-import { WindComponentsCladdingComponent } from './wind-inputs/wind-components-cladding/wind-components-cladding.component';
-import { WindResultsComponent } from './wind-results/wind-results.component';
-import { WindReportComponent } from './wind-results/wind-report/wind-report.component';
-import { WindGraphicsControlsComponent } from './wind-graphics/wind-graphics-controls/wind-graphics-controls.component';
+import { WoodBeamComponent } from './wood-beam.component';
+
 
 @NgModule({
   imports: [
@@ -70,16 +63,8 @@ import { WindGraphicsControlsComponent } from './wind-graphics/wind-graphics-con
     MatTabsModule
   ],
   declarations: [
-    WindLoadsComponent,
-    WindGraphicsComponent,
-    WindCalculationInfoComponent,
-    WindBuildingCriteriaComponent,
-    WindSiteCriteriaComponent,
-    WindComponentsCladdingComponent,
-    WindResultsComponent,
-    WindReportComponent,
-    WindGraphicsControlsComponent,
+    WoodBeamComponent,
   ],
-  exports: [WindLoadsComponent],
+  exports: [WoodBeamComponent],
 })
-export class WindLoadsModule { }
+export class WoodBeamModule { }

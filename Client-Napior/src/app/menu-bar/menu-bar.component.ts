@@ -167,6 +167,19 @@ export class MenuBarComponent implements OnInit {
       'logoRoute': '/home',
       'pageTitle': '| Snow Load Calculation'
     },
+    '/wood-beam': {
+      'homeButton': true,
+      'signInButton': false,
+      'signOutButton': true,
+      'accountButton': false,
+      'blogButton': false,
+      'aboutButton': false,
+      'pricingButton': false,
+      'featuresButton': false,
+      'tryItButton': false,
+      'logoRoute': '/home',
+      'pageTitle': '| Wood Beam'
+    },
   };
   public activeButtonConfig = {
     'homeButton': false,

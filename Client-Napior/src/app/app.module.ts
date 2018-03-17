@@ -134,9 +134,6 @@ import { LoginCardsService } from './screens/login/login-cards.service';
     AngularFireAuth,
     AngularFireDatabase,
     LoginCardsService,
-    //{ provide: MATERIAL_COMPATIBILITY_MODE, useValue: true },
-    // { provide: ErrorHandler, useClass: RollbarService },
-    // { provide: Rollbar, useFactory: rollbarFactory}
   ],
   bootstrap: [AppComponent]
 })
