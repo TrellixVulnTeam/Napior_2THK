@@ -1,7 +1,7 @@
 <div id="menu-container" fxLayout="row" fxLayoutAlign="start center">
     <div id="logo-container" fxLayout="row" fxLayoutAlign="start center" fxFlex="50%">
-        <img src="{{this.napiorLogoString}}" id="menu-napior-logo">
-        <h1 id="app-title">
+        <img src="{{this.napiorLogoString}}" id="menu-napior-logo" routerLink="{{activeButtonConfig.logoRoute}}">
+        <h1 id="app-title" routerLink="{{activeButtonConfig.logoRoute}}">
             Napior
         </h1>
         <span id="page-title">

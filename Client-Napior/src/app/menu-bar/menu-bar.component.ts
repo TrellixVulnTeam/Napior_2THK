@@ -34,7 +34,7 @@ export class MenuBarComponent implements OnInit {
       'pricingButton': false,
       'featuresButton': false,
       'tryItButton': true,
-      'logoRoute': '',
+      'logoRoute': '/splash',
       'pageTitle': ''
     },
     '/': {
@@ -47,8 +47,8 @@ export class MenuBarComponent implements OnInit {
       'pricingButton': false,
       'featuresButton': false,
       'tryItButton': true,
-      'logoRoute': '',
-      'pageTitle': ''
+      'logoRoute': '/splash',
+      'pageTitle': '| Structural Software'
     },
     '/splash': {
       'homeButton': false,
@@ -60,8 +60,8 @@ export class MenuBarComponent implements OnInit {
       'pricingButton': false,
       'featuresButton': false,
       'tryItButton': true,
-      'logoRoute': '',
-      'pageTitle': ''
+      'logoRoute': '/splash',
+      'pageTitle': '| Structural Software'
     },
     '/login': {
       'homeButton': false,
@@ -73,8 +73,8 @@ export class MenuBarComponent implements OnInit {
       'pricingButton': false,
       'featuresButton': false,
       'tryItButton': false,
-      'logoRoute': '',
-      'pageTitle': ''
+      'logoRoute': '/splash',
+      'pageTitle': '| Structural Software'
     },
     '/create-account': {
       'homeButton': false,
@@ -86,7 +86,7 @@ export class MenuBarComponent implements OnInit {
       'pricingButton': false,
       'featuresButton': false,
       'tryItButton': false,
-      'logoRoute': '',
+      'logoRoute': '/splash',
       'pageTitle': ''
     },
     '/home': {
@@ -99,7 +99,7 @@ export class MenuBarComponent implements OnInit {
       'pricingButton': false,
       'featuresButton': false,
       'tryItButton': false,
-      'logoRoute': '',
+      'logoRoute': '/home',
       'pageTitle': '| Home'
     },
     '/account-settings': {
@@ -112,7 +112,7 @@ export class MenuBarComponent implements OnInit {
       'pricingButton': false,
       'featuresButton': false,
       'tryItButton': false,
-      'logoRoute': '',
+      'logoRoute': '/home',
       'pageTitle': '| Account Settings'
     },
     '/subscription': {
@@ -125,7 +125,7 @@ export class MenuBarComponent implements OnInit {
       'pricingButton': false,
       'featuresButton': false,
       'tryItButton': false,
-      'logoRoute': '',
+      'logoRoute': '/home',
       'pageTitle': '| Subscription'
     },
     '/seismic-loads': {
@@ -138,7 +138,7 @@ export class MenuBarComponent implements OnInit {
       'pricingButton': false,
       'featuresButton': false,
       'tryItButton': false,
-      'logoRoute': '',
+      'logoRoute': '/home',
       'pageTitle': '| Seismic Load Calculation'
     },
     '/wind-loads': {
@@ -151,7 +151,7 @@ export class MenuBarComponent implements OnInit {
       'pricingButton': false,
       'featuresButton': false,
       'tryItButton': false,
-      'logoRoute': '',
+      'logoRoute': '/home',
       'pageTitle': '| Wind Load Calculation'
     },
     '/snow-loads': {
@@ -164,7 +164,7 @@ export class MenuBarComponent implements OnInit {
       'pricingButton': false,
       'featuresButton': false,
       'tryItButton': false,
-      'logoRoute': '',
+      'logoRoute': '/home',
       'pageTitle': '| Snow Load Calculation'
     },
   };

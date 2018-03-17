@@ -2,6 +2,7 @@
     font-weight: normal;
     font-size: 40px;
     margin:0px;
+    cursor: pointer;
 }
 #page-title{
     font-size: 35px;
@@ -13,6 +14,7 @@
     width: 33.188px;
     padding-left: 10px;
     padding-right: 8px;
+    cursor: pointer;
 }
 #menu-container{
     height: 60px
