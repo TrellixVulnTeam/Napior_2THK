@@ -1,0 +1,15 @@
+{
+  "inputs": {
+    "type": "woodBeam",
+    "typeName": "Wood Beam",
+    "company": "",
+    "project": "Wood Beam",
+    "description": "Check Wood Beam",
+    "engineer": ""
+  },
+  "results": {
+    "reportValues":{
+      "hchb": 0
+    }
+  }
+}

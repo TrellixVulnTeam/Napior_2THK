@@ -77,7 +77,7 @@ export class WindLoadsComponent implements OnInit {
     this.inputTabs.activeTab = {
       title: 'Calculation Info',
       active: true,
-      icon: '/assets/seismic-icons/Images/site-criteria.svg'
+      icon: '/assets/Images/seismic-icons/calculation-info.svg'
     };
     this.calc.inputs = inputsResultsData['inputs'];
     this.calc.results = inputsResultsData['results'];
