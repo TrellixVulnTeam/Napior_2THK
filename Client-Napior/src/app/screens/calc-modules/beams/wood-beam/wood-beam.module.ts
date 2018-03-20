@@ -33,6 +33,8 @@ import {
 
 // Self-made components and services
 import { WoodBeamComponent } from './wood-beam.component';
+import { WoodBeamResultsComponent } from './wood-beam-results/wood-beam-results.component';
+import { WoodBeamGraphicsComponent } from './wood-beam-graphics/wood-beam-graphics.component';
 
 
 @NgModule({
@@ -64,6 +66,8 @@ import { WoodBeamComponent } from './wood-beam.component';
   ],
   declarations: [
     WoodBeamComponent,
+    WoodBeamResultsComponent,
+    WoodBeamGraphicsComponent,
   ],
   exports: [WoodBeamComponent],
 })
