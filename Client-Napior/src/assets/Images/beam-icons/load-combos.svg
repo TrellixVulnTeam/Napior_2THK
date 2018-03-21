@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="no"?>
+<!-- Generator: Gravit.io -->
+<svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 55 55" width="55" height="55">
+    <g id="null">
+        <g id="Group">
+            <path d=" M 41 37.914 L 41 13.201 L 50 13.201 L 50 37.914" fill="none" vector-effect="non-scaling-stroke" stroke-width="1.5"  stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+            <path d=" M 37.938 32.828 L 41 38.951 L 44.062 32.828" fill="none"  stroke-width="1.5"/>
+            <path d=" M 46.938 32.478 L 50 38.601 L 53.062 32.478" fill="none"  stroke-width="1.5"/>
+            <g transform="matrix(1,0,0,1,12,11.201)">
+                <text transform="matrix(1,0,0,1,0,32.245)" style="font-family:&quot;Open Sans&quot;;font-weight:700;font-size:46px;font-style:normal;stroke:none;">+</text>
+            </g>
+            <line x1="8" y1="9.468" x2="8" y2="40" vector-effect="non-scaling-stroke" stroke-width="2.5"  stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+            <path d=" M 4.047 33.401 L 8 41.307 L 11.953 33.401" fill="none"  stroke-width="2.5"/>
+        </g>
+    </g>
+</svg>

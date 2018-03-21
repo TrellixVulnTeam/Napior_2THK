@@ -48,6 +48,26 @@ export class WoodBeamComponent implements OnInit {
         title: 'Calculation Info',
         active: true,
         icon: '/assets/Images/seismic-icons/calculation-info.svg'
+      },
+      {
+        title: 'Sections & Materials',
+        active: false,
+        icon: '/assets/Images/beam-icons/wood-sections-mats.svg'
+      },
+      {
+        title: 'Spans',
+        active: false,
+        icon: '/assets/Images/beam-icons/spans.svg'
+      },
+      {
+        title: 'Loads Applied',
+        active: false,
+        icon: '/assets/Images/beam-icons/loads.svg'
+      },
+      {
+        title: 'Load Combos',
+        active: false,
+        icon: '/assets/Images/beam-icons/load-combos.svg'
       }
     ];
     
