@@ -63,6 +63,10 @@ import { TermsPrivacyComponent } from './common/terms-privacy/terms-privacy.comp
 import { PrintStatusComponent } from './screens/calc-modules/general/report/print-status/print-status.component';
 import { HelpDialogComponent } from './screens/calc-modules/general/help-tip/help-dialog/help-dialog.component';
 import { LoginCardsService } from './screens/login/login-cards.service';
+import { BeamCalculationInfoComponent } from './screens/calc-modules/beams/common-beam-components/beam-calculation-info/beam-calculation-info.component';
+import { BeamSpansComponent } from './screens/calc-modules/beams/common-beam-components/beam-spans/beam-spans.component';
+import { BeamLoadsComponent } from './screens/calc-modules/beams/common-beam-components/beam-loads/beam-loads.component';
+import { BeamLoadCombosComponent } from './screens/calc-modules/beams/common-beam-components/beam-load-combos/beam-load-combos.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +85,7 @@ import { LoginCardsService } from './screens/login/login-cards.service';
     CloudDialogComponent,
     TermsPrivacyComponent,
     PrintStatusComponent,
-    HelpDialogComponent,
+    HelpDialogComponent
   ],
   imports: [
     BrowserModule,
