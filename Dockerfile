@@ -31,7 +31,7 @@ ENV ng_env $ng_arg
 CMD if [ $ng_env = prod ]; \
     # Run app in production mode.
     then \
-    echo "Building Angular application for production..." \
+    echo "Running Napior in production mode..." \
     && cp /usr/src/app/prod-nginx.conf /etc/nginx/nginx.conf \
     && nginx \
     & cd /usr/src/app/Server-Napior \
@@ -39,7 +39,7 @@ CMD if [ $ng_env = prod ]; \
     && python3 manage.py runserver 0.0.0.0:8081; \
     # Run app in development mode.
     else \
-    echo "Serving Angular application with the Angular CLI..." \
+    echo "Running Napior in development mode..." \
     && cp /usr/src/app/dev-nginx.conf /etc/nginx/nginx.conf \
     && nginx \
     & cd /usr/src/app/Client-Napior \

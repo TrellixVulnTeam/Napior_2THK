@@ -30,6 +30,7 @@ import {
   MatSnackBarModule,
   MatTabsModule,
 } from '@angular/material';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 // Self-made components and services
 import { WoodBeamComponent } from './wood-beam.component';
@@ -40,6 +41,7 @@ import { BeamCalculationInfoComponent } from '../common-beam-components/beam-cal
 import { BeamSpansComponent } from '../common-beam-components/beam-spans/beam-spans.component';
 import { BeamLoadsComponent } from '../common-beam-components/beam-loads/beam-loads.component';
 import { BeamLoadCombosComponent } from '../common-beam-components/beam-load-combos/beam-load-combos.component';
+import { BeamSectionsMaterialsComponent } from '../common-beam-components/beam-sections-materials/beam-sections-materials.component';
 
 
 @NgModule({
@@ -67,7 +69,8 @@ import { BeamLoadCombosComponent } from '../common-beam-components/beam-load-com
     MatSnackBarModule,
     ResizableModule,
     ClickOutsideModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule
   ],
   declarations: [
     WoodBeamComponent,
@@ -78,6 +81,7 @@ import { BeamLoadCombosComponent } from '../common-beam-components/beam-load-com
     BeamSpansComponent,
     BeamLoadsComponent,
     BeamLoadCombosComponent,
+    BeamSectionsMaterialsComponent
   ],
   exports: [WoodBeamComponent],
 })
