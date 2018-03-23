@@ -60,7 +60,7 @@ export class WoodBeamComponent implements OnInit {
         icon: '/assets/Images/beam-icons/spans.svg'
       },
       {
-        title: 'Loads Applied',
+        title: 'Loads',
         active: false,
         icon: '/assets/Images/beam-icons/loads.svg'
       },

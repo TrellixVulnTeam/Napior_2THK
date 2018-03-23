@@ -1,6 +1,10 @@
 <div class="screen-container" fxLayout="row" fxLayoutAlign="start start">
     <app-inputs [moduleType] = "this.calc.inputs.type">
-        <!--<app-wind-calculation-info *ngIf="inputTabs.activeTab.title == 'Calculation Info'"></app-wind-calculation-info>-->
+        <app-beam-calculation-info *ngIf="inputTabs.activeTab.title == 'Calculation Info'"></app-beam-calculation-info>
+        <app-beam-sections-materials *ngIf="inputTabs.activeTab.title == 'Sections & Materials'"></app-beam-sections-materials>
+        <app-beam-spans *ngIf="inputTabs.activeTab.title == 'Spans'"></app-beam-spans>
+        <app-beam-loads *ngIf="inputTabs.activeTab.title == 'Loads'"></app-beam-loads>
+        <app-beam-load-combos *ngIf="inputTabs.activeTab.title == 'Load Combos'"></app-beam-load-combos>
         <button id="run-button" mat-raised-button color="accent" (click)="calc.runCalculation('post')">
             <i class="fa fa-play" aria-hidden="true"></i> RUN</button>
     </app-inputs>
