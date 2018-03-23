@@ -1,5 +1,21 @@
 <div class="input-tab-content">
-  <div id="accordion-margin"></div>
+  <div class="adjustment-factors" fxLayout="column">
+    <mat-slide-toggle class="prop-toggle">
+      C<sub>fu</sub> = 1.0
+    </mat-slide-toggle>
+    <mat-slide-toggle class="prop-toggle">
+      C<sub>r</sub> = 1.0
+    </mat-slide-toggle>
+    <mat-slide-toggle class="prop-toggle">
+      C<sub>i</sub> = 1.0
+    </mat-slide-toggle>
+    <mat-slide-toggle class="prop-toggle">
+      C<sub>M</sub> = 1.0
+    </mat-slide-toggle>
+    <mat-slide-toggle class="prop-toggle">
+      C<sub>t</sub> = 1.0
+    </mat-slide-toggle>
+  </div>
   <mat-accordion>
     <mat-expansion-panel *ngFor="let section of sections; let i = index">
       <mat-expansion-panel-header>
@@ -12,7 +28,7 @@
       </mat-expansion-panel-header>
       <app-wood-beam-sections-materials></app-wood-beam-sections-materials>
       <div class="delete-entity-button-container">
-        <button mat-button color="primary" class="delete-entity-button" (click)="deleteSection(i)">
+        <button mat-button color="primary" class="delete-entity-button" *ngIf="sections.length > 1" (click)="deleteSection(i)">
           <i class="fa fa-minus" aria-hidden="true"></i> DELETE SECTION
         </button>
       </div>

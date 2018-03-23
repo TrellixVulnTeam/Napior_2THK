@@ -1,4 +1,7 @@
-#accordion-margin {
-    width: 100%;
-    height: 30px;
+.adjustment-factors {
+    margin: 10px 0px 10px 0px;
+}
+
+.prop-toggle {
+    margin: 10px 0px 10px 0px;
 }
