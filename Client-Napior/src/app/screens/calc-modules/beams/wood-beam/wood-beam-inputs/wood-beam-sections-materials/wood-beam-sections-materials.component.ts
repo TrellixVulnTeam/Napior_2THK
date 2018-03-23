@@ -7,6 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WoodBeamSectionsMaterialsComponent implements OnInit {
 
+  public sectionTypes = [
+    {'tag': 'sawnLumber', 'title': 'Sawn Lumber'},
+    {'tag': 'glulam', 'title': 'Glulam'}
+  ];
+  public sections= [
+    {'tag': '2x4', 'title': '2 X 4'},
+    {'tag': '2x6', 'title': '2 X 6'}
+  ];
+  public speciesArray = [
+    {'tag': 'dfl', 'title': 'Douglas Fir-Larch'},
+    {'tag': 'spf', 'title': 'Spruce Pine Fir'},
+    {'tag': 'sp', 'title': 'Southern Pine'}
+  ];
+  public grades = [
+    {'tag': 'no1', 'title': 'No. 1'},
+    {'tag': 'no2', 'title': 'No. 2'}
+  ]
+
+
   constructor() { }
 
   ngOnInit() {

@@ -1,3 +1,39 @@
-<p>
-  wood-beam-sections-materials works!
-</p>
+<mat-form-field>
+  <mat-select placeholder="Section Type">
+    <mat-option *ngFor="let type of sectionTypes" [value]="type.tag">
+      {{ type.title }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="4%">
+  <mat-form-field fxFlex="31%">
+    <mat-select placeholder="Breadth">
+      <mat-option *ngFor="let section of sections" [value]="section.tag">
+        {{ section.title }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field fxFlex="64%">
+    <mat-select placeholder="Section">
+      <mat-option *ngFor="let section of sections" [value]="section.tag">
+        {{ section.title }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="4%">
+  <mat-form-field fxFlex="48%">
+    <mat-select placeholder="Species">
+      <mat-option *ngFor="let species of speciesArray" [value]="species.tag">
+        {{ species.title }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field fxFlex="48%">
+    <mat-select placeholder="Grade">
+      <mat-option *ngFor="let grade of grades" [value]="grade.tag">
+        {{ grade.title }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

@@ -10,15 +10,10 @@
           {{section.materialName}}
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <mat-form-field>
-        <input matInput placeholder="Section Type">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Section">
-      </mat-form-field>
+      <app-wood-beam-sections-materials></app-wood-beam-sections-materials>
       <div class="delete-entity-button-container">
-        <button mat-button color="warn" class="delete-entity-button" (click)="deleteSection(i)">
-          <i class="fa fa-minus" aria-hidden="true"></i> DELETE
+        <button mat-button color="primary" class="delete-entity-button" (click)="deleteSection(i)">
+          <i class="fa fa-minus" aria-hidden="true"></i> DELETE SECTION
         </button>
       </div>
     </mat-expansion-panel>
