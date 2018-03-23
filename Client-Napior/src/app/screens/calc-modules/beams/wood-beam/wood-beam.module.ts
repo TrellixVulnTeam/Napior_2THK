@@ -42,6 +42,7 @@ import { BeamSpansComponent } from '../common-beam-components/beam-spans/beam-sp
 import { BeamLoadsComponent } from '../common-beam-components/beam-loads/beam-loads.component';
 import { BeamLoadCombosComponent } from '../common-beam-components/beam-load-combos/beam-load-combos.component';
 import { BeamSectionsMaterialsComponent } from '../common-beam-components/beam-sections-materials/beam-sections-materials.component';
+import { WoodBeamSectionSettingsComponent } from './wood-beam-inputs/wood-beam-section-settings/wood-beam-section-settings.component';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { BeamSectionsMaterialsComponent } from '../common-beam-components/beam-s
     BeamSpansComponent,
     BeamLoadsComponent,
     BeamLoadCombosComponent,
-    BeamSectionsMaterialsComponent
+    BeamSectionsMaterialsComponent,
+    WoodBeamSectionSettingsComponent
   ],
   exports: [WoodBeamComponent],
 })

@@ -187,3 +187,24 @@ mat-dialog-container {
 .input-radio-button {
   margin: 7px 0px 7px 0px;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  width: 10px;
+  background: #ffffff; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(60, 92, 108, 0.6);
+  border-radius: 4px; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(60, 92, 108, 1); 
+}

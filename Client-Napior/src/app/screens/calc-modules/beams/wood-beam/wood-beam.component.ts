@@ -8,6 +8,7 @@ import { RunCalcService } from '../../general/run-calc/run-calc.service';
 import { ReportService } from '../../general/report/report.service';
 import { InputTabsService } from '../../general/input-tabs/input-tabs.service';
 import { RtdbService } from '../../../../common/rtdb.service';
+import { BeamSection } from '../common-beam-components/beam-sections-materials/beam-section';
 
 import * as inputsResultsData from './wood-beam-inputs-results.json';
 
@@ -84,6 +85,15 @@ export class WoodBeamComponent implements OnInit {
     
 
   ngOnInit() {
+    const section0 = new BeamSection(
+      '2x4',
+      '2X4',
+      {},
+      'dflno2',
+      'No. 2 DF-L',
+      {}
+    )
+    this.calc.inputs.sections.push(section0);
     this.calc.getUserData();
   }
 

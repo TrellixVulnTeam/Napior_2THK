@@ -1,0 +1,73 @@
+<div class="adjustment-factors" fxLayout="column">
+  <div class="input-sub-title adjustment-factors-title">
+      Adjustment Factors:
+  </div>
+  <div fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="4%">
+    <mat-slide-toggle class="prop-toggle" fxFlex="90%" [(ngModel)]="this.calc.inputs.wetService">
+      <span *ngIf="this.calc.inputs.wetService">
+        <strong>C<sub>M</sub></strong> , Wet Service Factor <strong class="applies">Applies</strong>
+      </span>
+      <span *ngIf="!this.calc.inputs.wetService">
+        <strong>C<sub>M</sub></strong> , Wet Service Factor = 1.0
+      </span>
+    </mat-slide-toggle>
+    <app-help-tip [title]="'test'" [image]="''" [subTitle]="'test'" [text]="'test'"></app-help-tip>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="4%">
+    <mat-slide-toggle class="prop-toggle" fxFlex="90%" [(ngModel)]="this.calc.inputs.flatUse">
+      <span *ngIf="this.calc.inputs.flatUse">
+        <strong>C<sub>fu</sub></strong> , Flat Use Factor <strong class="applies">Applies</strong>
+      </span>
+      <span *ngIf="!this.calc.inputs.flatUse">
+        <strong>C<sub>fu</sub></strong> , Flat Use Factor = 1.0
+      </span>
+    </mat-slide-toggle>
+    <app-help-tip [title]="'test'" [image]="''" [subTitle]="'test'" [text]="'test'"></app-help-tip>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="4%">
+    <mat-slide-toggle class="prop-toggle" fxFlex="90%" [(ngModel)]="this.calc.inputs.incising">
+      <span *ngIf="this.calc.inputs.incising">
+        <strong>C<sub>i</sub></strong> , Incising Factor <strong class="applies">Applies</strong>
+      </span>
+      <span *ngIf="!this.calc.inputs.incising">
+        <strong>C<sub>i</sub></strong> , Incising Factor = 1.0
+      </span>
+    </mat-slide-toggle>
+    <app-help-tip [title]="'test'" [image]="''" [subTitle]="'test'" [text]="'test'"></app-help-tip>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="4%">
+    <mat-slide-toggle class="prop-toggle" fxFlex="90%" [(ngModel)]="this.calc.inputs.repetitiveMember">
+      <span *ngIf="this.calc.inputs.repetitiveMember">
+        <strong>C<sub>r</sub></strong> , Repetitive Member Factor <strong class="applies">Applies</strong>
+      </span>
+      <span *ngIf="!this.calc.inputs.repetitiveMember">
+        <strong>C<sub>r</sub></strong> , Repetitive Member Factor = 1.0
+      </span>
+    </mat-slide-toggle>
+    <app-help-tip [title]="'test'" [image]="''" [subTitle]="'test'" [text]="'test'"></app-help-tip>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="4%">
+    <mat-slide-toggle class="prop-toggle" fxFlex="90%" [(ngModel)]="this.calc.inputs.temperature">
+      <span *ngIf="this.calc.inputs.temperature">
+        <strong>C<sub>t</sub></strong> , Temperature Member Factor <strong class="applies">Applies</strong>
+      </span>
+      <span *ngIf="!this.calc.inputs.temperature">
+        <strong>C<sub>t</sub></strong> , Temperature Member Factor = 1.0
+      </span>
+    </mat-slide-toggle>
+    <app-help-tip [title]="'test'" [image]="''" [subTitle]="'test'" [text]="'test'"></app-help-tip>
+  </div>
+  <mat-form-field *ngIf="this.calc.inputs.temperature">
+    <mat-select placeholder="Temperature Range" [(ngModel)]="this.calc.inputs.temperatureRange">
+      <mat-option [value]="'less100'">
+        T < 100&deg; F
+      </mat-option>
+      <mat-option [value]="'100to125'">
+        100&deg;F < T < 125&deg;F
+      </mat-option>
+      <mat-option [value]="'125to150'">
+        125&deg;F < T < 150&deg;F
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

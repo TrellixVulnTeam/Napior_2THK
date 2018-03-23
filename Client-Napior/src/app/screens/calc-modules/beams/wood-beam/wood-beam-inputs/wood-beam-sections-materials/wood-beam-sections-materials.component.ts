@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { RunCalcService } from '../../../../general/run-calc/run-calc.service';
 
 @Component({
   selector: 'app-wood-beam-sections-materials',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wood-beam-sections-materials.component.css']
 })
 export class WoodBeamSectionsMaterialsComponent implements OnInit {
+
+  @Input() sectionIndex: number;
 
   public sectionTypes = [
     {'tag': 'sawnLumber', 'title': 'Sawn Lumber'},
@@ -26,7 +29,7 @@ export class WoodBeamSectionsMaterialsComponent implements OnInit {
   ]
 
 
-  constructor() { }
+  constructor(public calc: RunCalcService) { }
 
   ngOnInit() {
   }

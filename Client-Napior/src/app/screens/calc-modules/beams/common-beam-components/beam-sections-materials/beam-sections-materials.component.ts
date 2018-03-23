@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BeamSection } from './beam-section';
+import { RunCalcService } from '../../../general/run-calc/run-calc.service';
 
 @Component({
   selector: 'app-beam-sections-materials',
@@ -10,38 +11,22 @@ export class BeamSectionsMaterialsComponent implements OnInit {
   
   public sections = [];
 
-  constructor() {
+  constructor(
+    public calc: RunCalcService,
+  ) {
 
   }
   
   addSection():void {
-    this.sections.push(this.sections[this.sections.length - 1]);
+    this.calc.inputs.sections.push(this.calc.inputs.sections[this.calc.inputs.sections.length - 1]);
   }
   
   deleteSection(i) {
-    this.sections.splice(i, 1);
-    console.log(this.sections);
+    this.calc.inputs.sections.splice(i, 1);
   }
 
   ngOnInit() {
-    const section1 = new BeamSection(
-      '2x4',
-      '2X4',
-      {},
-      'dflno2',
-      'No. 2 DF-L',
-      {}
-    )
-    const section2 = new BeamSection(
-      'gl4x15',
-      'GL 4X15',
-      {},
-      '24fv4',
-      '24F - V4',
-      {}
-    )
-    this.sections = [section1, section2];
-    console.log(this.sections)
+
   }
 
 }

@@ -5,7 +5,14 @@
     "company": "",
     "project": "Wood Beam",
     "description": "Check Wood Beam",
-    "engineer": ""
+    "engineer": "",
+    "wetService": false,
+    "flatUse": false,
+    "incising": false,
+    "repetitiveMember": false,
+    "temperature": false,
+    "temperatureRange": "less100",
+    "sections": []
   },
   "results": {
     "reportValues":{
