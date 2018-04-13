@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BeamSection } from './beam-section';
 import { RunCalcService } from '../../../general/run-calc/run-calc.service';
 import { WoodBeamSectionsMaterialsComponent } from '../../wood-beam/wood-beam-inputs/wood-beam-sections-materials/wood-beam-sections-materials.component';
@@ -11,7 +11,6 @@ import { WoodBeamSectionsMaterialsComponent } from '../../wood-beam/wood-beam-in
 export class BeamSectionsMaterialsComponent implements OnInit {
   
   public sections = [];
-  @ViewChild(WoodBeamSectionsMaterialsComponent) woodComponent: WoodBeamSectionsMaterialsComponent;
 
   constructor(
     public calc: RunCalcService,
@@ -38,11 +37,6 @@ export class BeamSectionsMaterialsComponent implements OnInit {
   
   deleteSection(i) {
     this.calc.inputs.sections.splice(i, 1);
-  }
-
-  changeSection(i){
-    this.woodComponent.currentSection = this.calc.inputs.sections[i];
-    console.log(this.calc.inputs.sections);
   }
 
   ngOnInit() {

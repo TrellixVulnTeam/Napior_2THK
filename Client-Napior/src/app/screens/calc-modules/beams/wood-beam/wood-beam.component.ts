@@ -9,6 +9,9 @@ import { ReportService } from '../../general/report/report.service';
 import { InputTabsService } from '../../general/input-tabs/input-tabs.service';
 import { RtdbService } from '../../../../common/rtdb.service';
 import { BeamSection } from '../common-beam-components/beam-sections-materials/beam-section';
+import { BeamSpan } from '../common-beam-components/beam-spans/beam-span';
+import { CommonBeamService } from '../common-beam-components/common-beam.service';
+import { WoodBeamService } from './wood-beam.service';
 
 import * as inputsResultsData from './wood-beam-inputs-results.json';
 
@@ -20,7 +23,9 @@ import * as inputsResultsData from './wood-beam-inputs-results.json';
     GenericDialogService,
     RunCalcService,
     ReportService,
-    InputTabsService
+    InputTabsService,
+    CommonBeamService,
+    WoodBeamService
   ]
 })
 export class WoodBeamComponent implements OnInit {
@@ -97,7 +102,10 @@ export class WoodBeamComponent implements OnInit {
         'grade': 'No. 2'
       }
     )
+    this.calc.inputs.nodes = ['Pinned', 'Pinned'];
     this.calc.inputs.sections.push(section0);
+    const span0 = new BeamSpan(10, '2 x 4', 0, 1);
+    this.calc.inputs.spans.push(span0);
     this.calc.getUserData();
   }
 

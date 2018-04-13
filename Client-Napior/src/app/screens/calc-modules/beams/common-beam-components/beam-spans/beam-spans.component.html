@@ -1,3 +1,30 @@
-<p>
-  beam-spans works!
-</p>
+<div class="input-tab-content">
+  <div class="input-sub-title">
+      Spans:
+  </div>
+  <button class="add-entity-button" mat-raised-button color="accent" (click)="this.beam.addSpanLeft()">
+    <i class="fa fa-plus" aria-hidden="true"></i> SPAN (LEFT)
+  </button>
+  <div class="section-accordion-container">
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let span of this.calc.inputs.spans; let i = index">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{this.calc.inputs.spans[i].length}}'
+            </mat-panel-title>
+            <mat-panel-description>
+              {{this.calc.inputs.spans[i].section}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="delete-entity-button-container">
+            <button mat-button color="primary" class="delete-entity-button" *ngIf="this.calc.inputs.spans.length > 1" (click)="this.beam.deleteSpan(i)">
+              <i class="fa fa-minus" aria-hidden="true"></i> DELETE
+            </button>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+  </div>
+  <button class="add-entity-button" mat-raised-button color="accent" (click)="this.beam.addSpanRight()">
+    <i class="fa fa-plus" aria-hidden="true"></i> SPAN (RIGHT)
+  </button>
+</div>

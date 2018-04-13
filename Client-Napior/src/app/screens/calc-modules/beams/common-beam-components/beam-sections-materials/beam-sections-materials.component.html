@@ -6,7 +6,7 @@
   <div class="section-accordion-container">
     <mat-accordion>
         <mat-expansion-panel *ngFor="let section of this.calc.inputs.sections; let i = index">
-          <mat-expansion-panel-header (click)="changeSection(i)">
+          <mat-expansion-panel-header>
             <mat-panel-title>
               {{this.calc.inputs.sections[i].section}}
             </mat-panel-title>
@@ -24,6 +24,6 @@
       </mat-accordion>
   </div>
   <button class="add-entity-button" mat-raised-button color="accent" (click)="addSection()">
-    <i class="fa fa-plus" aria-hidden="true"></i> ADD SECTION
+    <i class="fa fa-plus" aria-hidden="true"></i> SECTION
   </button>
 </div>

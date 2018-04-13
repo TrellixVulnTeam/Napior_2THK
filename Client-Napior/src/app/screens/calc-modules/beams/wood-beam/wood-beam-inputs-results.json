@@ -12,7 +12,9 @@
     "repetitiveMember": false,
     "temperature": false,
     "temperatureRange": "less100",
-    "sections": []
+    "sections": [],
+    "spans": [],
+    "nodes": []
   },
   "results": {
     "reportValues":{

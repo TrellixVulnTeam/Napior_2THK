@@ -32,8 +32,8 @@ kubectl get service
 
 
 
-docker tag napior_napior:latest gcr.io/napior-app/napior-app:v1.0.9
+docker tag napior_napior:latest gcr.io/napior-app/napior-app:v1.0.10
 
-gcloud docker -- push gcr.io/napior-app/napior-app:v1.0.9
+gcloud docker -- push gcr.io/napior-app/napior-app:v1.0.10
 
-gcloud app deploy ~/Napior/app.yaml --image-url gcr.io/napior-app/napior-app:v1.0.9
+gcloud app deploy ~/Napior/app.yaml --image-url gcr.io/napior-app/napior-app:v1.0.10
