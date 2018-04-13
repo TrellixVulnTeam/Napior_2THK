@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RunCalcService } from '../../../../general/run-calc/run-calc.service';
 
+import * as properties from '../wood-beam-properties.json';
+
 @Component({
   selector: 'app-wood-beam-sections-materials',
   templateUrl: './wood-beam-sections-materials.component.html',
@@ -28,10 +30,17 @@ export class WoodBeamSectionsMaterialsComponent implements OnInit {
     {'tag': 'no2', 'title': 'No. 2'}
   ]
 
-
   constructor(public calc: RunCalcService) { }
 
+  enumerateSections(type){
+    const propertiesLib = properties['sections'][type]['properties'];
+    for (let prop in propertiesLib){
+      console.log(prop);
+    }
+  }
+
   ngOnInit() {
+    this.enumerateSections('sawnLumber');
   }
 
 }

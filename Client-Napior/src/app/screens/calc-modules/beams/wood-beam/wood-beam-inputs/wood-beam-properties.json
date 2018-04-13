@@ -1,0 +1,24 @@
+{
+    "sections":{
+        "sawnLumber":{
+            "title": "Sawn Lumber",
+            "properties":{
+                "2x4":{
+                    "tag": "2x4",
+                    "title":"2 X 4"
+                },
+                "2x6":{
+                    "tag": "2x6",
+                    "title":"2 X 4"
+                },
+                "2x8":{
+                    "tag": "2x8",
+                    "title": "2 X 8"
+                }
+            }
+        }
+    },
+    "materials":[
+
+    ]
+}

@@ -8,7 +8,7 @@
         <mat-expansion-panel *ngFor="let section of this.calc.inputs.sections; let i = index">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{section.sectionName}}
+              {{this.calc.inputs.sections[i].sectionTag}}
             </mat-panel-title>
             <mat-panel-description>
               {{section.materialName}}
