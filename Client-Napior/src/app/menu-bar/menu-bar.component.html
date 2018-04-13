@@ -4,7 +4,7 @@
         <h1 id="app-title" routerLink="{{activeButtonConfig.logoRoute}}">
             Napior
         </h1>
-        <span id="page-title">
+        <span id="page-title" *ngIf="window.innerWidth >= 933">
             {{activeButtonConfig.pageTitle}}
         </span>
     </div>

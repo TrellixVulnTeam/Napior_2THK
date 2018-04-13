@@ -21,6 +21,7 @@ export class MenuBarComponent implements OnInit {
 
   public napiorLogoObject = new NapiorLogoWhiteGreen();
   public napiorLogoString = this.napiorLogoObject.imageElement;
+  public window = window;
 
   public authAgainst = 'napior-firebase.firebaseapp.com';
   public controlButtonConfig: {} = {
