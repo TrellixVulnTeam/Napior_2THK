@@ -1,38 +1,38 @@
 <mat-form-field>
-  <mat-select placeholder="Section Type">
-    <mat-option *ngFor="let type of sectionTypes" [value]="type.tag">
-      {{ type.title }}
+  <mat-select placeholder="Section Type" [(ngModel)]="this.calc.inputs.sections[this.sectionIndex].sectionData.type">
+    <mat-option *ngFor="let type of sectionTypes" [value]="type">
+      {{ type }}
     </mat-option>
   </mat-select>
 </mat-form-field>
 <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="4%">
   <mat-form-field fxFlex="31%">
-    <mat-select placeholder="Breadth">
-      <mat-option *ngFor="let section of sections" [value]="section.tag">
-        {{ section.title }}
+    <mat-select placeholder="Breadth" [(ngModel)]="this.calc.inputs.sections[this.sectionIndex].sectionData.breadth">
+      <mat-option *ngFor="let breadth of breadths[this.calc.inputs.sections[this.sectionIndex].sectionData.type]" [value]="breadth">
+        {{ breadth }}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field fxFlex="64%">
-    <mat-select placeholder="Section" [(ngModel)]="this.calc.inputs.sections[this.sectionIndex].sectionTag">
-      <mat-option *ngFor="let section of sections" [value]="section.tag">
-        {{ section.title }}
+    <mat-select placeholder="Section" [(ngModel)]="this.calc.inputs.sections[this.sectionIndex].section">
+      <mat-option *ngFor="let section of sections[this.calc.inputs.sections[this.sectionIndex].sectionData.breadth]" [value]="section">
+        {{ section }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 </div>
 <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="4%">
   <mat-form-field fxFlex="48%">
-    <mat-select placeholder="Species">
-      <mat-option *ngFor="let species of speciesArray" [value]="species.tag">
-        {{ species.title }}
+    <mat-select placeholder="Species" [(ngModel)]="this.calc.inputs.sections[this.sectionIndex].materialData.species" (ngModelChange)="changeMaterial()">
+      <mat-option *ngFor="let species of speciesArray[this.calc.inputs.sections[this.sectionIndex].sectionData.type]" [value]="species">
+        {{ species }}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field fxFlex="48%">
-    <mat-select placeholder="Grade">
-      <mat-option *ngFor="let grade of grades" [value]="grade.tag">
-        {{ grade.title }}
+    <mat-select placeholder="Grade" [(ngModel)]="this.calc.inputs.sections[this.sectionIndex].materialData.grade" (ngModelChange)="changeMaterial()">
+      <mat-option *ngFor="let grade of grades[this.calc.inputs.sections[this.sectionIndex].sectionData.type]" [value]="grade">
+        {{ grade }}
       </mat-option>
     </mat-select>
   </mat-form-field>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RunCalcService } from '../../../../general/run-calc/run-calc.service';
+import { BeamSection } from '../../../common-beam-components/beam-sections-materials/beam-section';
 
 import * as properties from '../wood-beam-properties.json';
 
@@ -11,36 +12,67 @@ import * as properties from '../wood-beam-properties.json';
 export class WoodBeamSectionsMaterialsComponent implements OnInit {
 
   @Input() sectionIndex: number;
+  public currentSection: BeamSection;
 
   public sectionTypes = [
-    {'tag': 'sawnLumber', 'title': 'Sawn Lumber'},
-    {'tag': 'glulam', 'title': 'Glulam'}
+    'Sawn Lumber',
+    'Glulam'
   ];
-  public sections= [
-    {'tag': '2x4', 'title': '2 X 4'},
-    {'tag': '2x6', 'title': '2 X 6'}
-  ];
-  public speciesArray = [
-    {'tag': 'dfl', 'title': 'Douglas Fir-Larch'},
-    {'tag': 'spf', 'title': 'Spruce Pine Fir'},
-    {'tag': 'sp', 'title': 'Southern Pine'}
-  ];
-  public grades = [
-    {'tag': 'no1', 'title': 'No. 1'},
-    {'tag': 'no2', 'title': 'No. 2'}
-  ]
+  public breadths= {
+    'Sawn Lumber': [
+      '2 x',
+      '4 x',
+      '6 x',
+    ],
+    'Glulam': [
+      '3 1/8 x',
+      '3 1/2 x',
+      '5 1/8 x',
+      '5 1/2 x',
+      '6 3/4 x',
+      '8 3/4 x'
+    ]
+  };
+  public sections = properties['sectionArrays'];
+  public speciesArray = {
+    'Sawn Lumber':[
+      'Douglas Fir-Larch',
+      'Hem-Fir',
+      'Southern Pine',
+      'Spruce-Pine-Fir'
+    ],
+    'Glulam':[
+      'Douglas Fir'
+    ]
+  }
+  
+  public speciesAbbreviations = {
+    'Douglas Fir-Larch': 'DF-L',
+    'Hem-Fir': 'HF',
+    'Southern Pine': 'SP',
+    'Spruce-Pine-Fir': 'SPF',
+    'Douglas Fir': 'DF'
+  }
+  public grades = {
+    'Sawn Lumber':[
+      'No. 1',
+      'No. 2'
+    ],
+    'Glulam':[
+      '24F-V4',
+      '24F-V8'
+    ]
+  }
 
-  constructor(public calc: RunCalcService) { }
+  constructor(public calc: RunCalcService) {
+    this.currentSection = this.calc.inputs.sections[0];
+  }
 
-  enumerateSections(type){
-    const propertiesLib = properties['sections'][type]['properties'];
-    for (let prop in propertiesLib){
-      console.log(prop);
-    }
+  changeMaterial(i){
+    this.calc.inputs.sections[this.sectionIndex].material = `${this.speciesAbbreviations[this.calc.inputs.sections[this.sectionIndex].materialData.species]} ${this.calc.inputs.sections[this.sectionIndex].materialData.grade}`;
   }
 
   ngOnInit() {
-    this.enumerateSections('sawnLumber');
   }
 
 }

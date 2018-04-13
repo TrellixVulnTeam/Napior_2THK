@@ -6,18 +6,18 @@
   <div class="section-accordion-container">
     <mat-accordion>
         <mat-expansion-panel *ngFor="let section of this.calc.inputs.sections; let i = index">
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header (click)="changeSection(i)">
             <mat-panel-title>
-              {{this.calc.inputs.sections[i].sectionTag}}
+              {{this.calc.inputs.sections[i].section}}
             </mat-panel-title>
             <mat-panel-description>
-              {{section.materialName}}
+              {{section.material}}
             </mat-panel-description>
           </mat-expansion-panel-header>
           <app-wood-beam-sections-materials [sectionIndex]="i"></app-wood-beam-sections-materials>
           <div class="delete-entity-button-container">
             <button mat-button color="primary" class="delete-entity-button" *ngIf="this.calc.inputs.sections.length > 1" (click)="deleteSection(i)">
-              <i class="fa fa-minus" aria-hidden="true"></i> DELETE SECTION
+              <i class="fa fa-minus" aria-hidden="true"></i> DELETE
             </button>
           </div>
         </mat-expansion-panel>

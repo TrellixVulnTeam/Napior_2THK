@@ -14,7 +14,7 @@
             <mat-button-toggle [disabled]="!calc.calculationStatus.haveResults" value="report">REPORT</mat-button-toggle><!--!calc.calculationStatus.haveResults -->
         </mat-button-toggle-group>
         <div id="results-container" fxLayout="column" *ngIf="resultsOrReport == 'results'">
-            <app-graphics-controls [ngStyle]="graphicControlStyle">
+            <app-graphics-controls >
                 <!--<app-wind-graphics-controls></app-wind-graphics-controls>--><!-- MODULE SPECIFIC -->
             </app-graphics-controls>
             <app-wood-beam-graphics class = "module-graphics"></app-wood-beam-graphics><!-- MODULE SPECIFIC -->

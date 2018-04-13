@@ -86,12 +86,16 @@ export class WoodBeamComponent implements OnInit {
 
   ngOnInit() {
     const section0 = new BeamSection(
-      '2x4',
-      '2X4',
-      {},
-      'dflno2',
+      '2 x 4',
+      { 
+        'type': 'Sawn Lumber',
+        'breadth': '2 x'
+      },
       'No. 2 DF-L',
-      {}
+      {
+        'species': 'Douglas Fir-Larch',
+        'grade': 'No. 2'
+      }
     )
     this.calc.inputs.sections.push(section0);
     this.calc.getUserData();

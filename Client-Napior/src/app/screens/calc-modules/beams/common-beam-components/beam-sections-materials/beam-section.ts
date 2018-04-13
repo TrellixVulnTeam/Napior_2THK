@@ -1,10 +1,8 @@
 export class BeamSection {
     constructor(
-        public sectionTag: string,
-        public sectionName: string,
+        public section: string,
         public sectionData: {},
-        public materialTag: string,
-        public materialName: string,
+        public material: string,
         public materialData: {}
     ){
         
