@@ -10,12 +10,41 @@
         <mat-expansion-panel *ngFor="let span of this.calc.inputs.spans; let i = index">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{this.calc.inputs.spans[i].length}}'
+              Span {{i + 1}}
             </mat-panel-title>
             <mat-panel-description>
-              {{this.calc.inputs.spans[i].section}}
+              {{this.calc.inputs.spans[i].length}}'
             </mat-panel-description>
           </mat-expansion-panel-header>
+          <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="4%">
+            <mat-form-field fxFlex="31%">
+              <input type="tel" matInput placeholder="Span Length" [(ngModel)]="this.calc.inputs.spans[i].length">
+              <span matSuffix>ft</span>
+            </mat-form-field>
+            <mat-form-field fxFlex="64%">
+              <mat-select placeholder="Section" [(ngModel)]="this.calc.inputs.spans[i].section">
+                <mat-option *ngFor="let section of this.calc.inputs.sections" [value]="section.section">
+                  {{ section.section }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="4%">
+            <mat-form-field fxFlex="48%">
+              <mat-select placeholder="Left Support" [(ngModel)]="this.calc.inputs.nodes[this.calc.inputs.spans[i].startNode]">
+                <mat-option *ngFor="let support of this.beam.supportTypes" [value]="support">
+                  {{ support }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="48%">
+              <mat-select placeholder="Right Support" [(ngModel)]="this.calc.inputs.nodes[this.calc.inputs.spans[i].endNode]">
+                <mat-option *ngFor="let support of this.beam.supportTypes" [value]="support">
+                  {{ support }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
           <div class="delete-entity-button-container">
             <button mat-button color="primary" class="delete-entity-button" *ngIf="this.calc.inputs.spans.length > 1" (click)="this.beam.deleteSpan(i)">
               <i class="fa fa-minus" aria-hidden="true"></i> DELETE

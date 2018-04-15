@@ -68,7 +68,7 @@ export class WoodBeamSectionsMaterialsComponent implements OnInit {
     this.currentSection = this.calc.inputs.sections[0];
   }
 
-  changeMaterial(i){
+  changeMaterial(){
     this.calc.inputs.sections[this.sectionIndex].material = `${this.speciesAbbreviations[this.calc.inputs.sections[this.sectionIndex].materialData.species]} ${this.calc.inputs.sections[this.sectionIndex].materialData.grade}`;
   }
 
