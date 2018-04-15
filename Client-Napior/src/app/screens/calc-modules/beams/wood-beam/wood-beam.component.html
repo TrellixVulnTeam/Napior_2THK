@@ -15,9 +15,15 @@
         </mat-button-toggle-group>
         <div id="results-container" fxLayout="column" *ngIf="resultsOrReport == 'results'">
             <app-graphics-controls >
-                <!--<app-wind-graphics-controls></app-wind-graphics-controls>--><!-- MODULE SPECIFIC -->
+                <app-beam-graphics-controls></app-beam-graphics-controls><!-- MODULE SPECIFIC -->
             </app-graphics-controls>
-            <app-wood-beam-graphics class = "module-graphics"></app-wood-beam-graphics><!-- MODULE SPECIFIC -->
+            <app-beam-graphics 
+                class = "module-graphics"
+                [graphicControl]="{}"
+                [type]="'ui'" 
+                [width]="graphicWidth" 
+                [height]="graphicHeight">
+            </app-beam-graphics><!-- MODULE SPECIFIC -->
             <app-results>
                 <app-wood-beam-results></app-wood-beam-results><!-- MODULE SPECIFIC -->
             </app-results>

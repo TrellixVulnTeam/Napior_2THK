@@ -81,7 +81,7 @@ import { LoginCardsService } from './screens/login/login-cards.service';
     CloudDialogComponent,
     TermsPrivacyComponent,
     PrintStatusComponent,
-    HelpDialogComponent
+    HelpDialogComponent,
   ],
   imports: [
     BrowserModule,

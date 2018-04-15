@@ -12,6 +12,7 @@ import { BeamSection } from '../common-beam-components/beam-sections-materials/b
 import { BeamSpan } from '../common-beam-components/beam-spans/beam-span';
 import { CommonBeamService } from '../common-beam-components/common-beam.service';
 import { WoodBeamService } from './wood-beam.service';
+import { InputChangeService } from '../../general/inputs/input-change.service';
 
 import * as inputsResultsData from './wood-beam-inputs-results.json';
 
@@ -25,7 +26,8 @@ import * as inputsResultsData from './wood-beam-inputs-results.json';
     ReportService,
     InputTabsService,
     CommonBeamService,
-    WoodBeamService
+    WoodBeamService,
+    InputChangeService
   ]
 })
 export class WoodBeamComponent implements OnInit {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { RunCalcService } from '../../general/run-calc/run-calc.service';
 import { BeamSpan } from './beam-spans/beam-span';
+import { InputChangeService } from '../../general/inputs/input-change.service';
 
 @Injectable()
 export class CommonBeamService {
@@ -12,15 +13,14 @@ export class CommonBeamService {
     'Free'
   ]
 
-  constructor(public calc: RunCalcService) { }
+  constructor(public calc: RunCalcService, public inputs:InputChangeService) { }
 
   addSpanRight(){
     this.calc.inputs.nodes.push('Pinned');
     const newSpanSection = this.calc.inputs.sections[0].section;
     const newSpan = new BeamSpan(10, newSpanSection, this.calc.inputs.nodes.length-2, this.calc.inputs.nodes.length-1);
     this.calc.inputs.spans.push(newSpan);
-    console.log(this.calc.inputs.nodes);
-    console.log(this.calc.inputs.spans);
+    this.inputs.redrawGraphic();
   }
 
   addSpanLeft(){
@@ -29,12 +29,14 @@ export class CommonBeamService {
     const newSpan = new BeamSpan(10, newSpanSection, this.calc.inputs.nodes.length-2, this.calc.inputs.nodes.length-1);
     this.calc.inputs.spans.unshift(newSpan);
     this.sequenceSupports();
+    this.inputs.redrawGraphic();
   }
 
   deleteSpan(i){
     this.calc.inputs.spans.splice(i, 1);
     this.calc.inputs.nodes.splice(i, 1)
     this.sequenceSupports();
+    this.inputs.redrawGraphic();
   }
 
   sequenceSupports(){

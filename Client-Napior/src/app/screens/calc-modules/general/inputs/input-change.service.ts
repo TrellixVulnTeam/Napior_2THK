@@ -9,4 +9,8 @@ export class InputChangeService {
 
   constructor() { }
 
+  redrawGraphic(){
+    this.inputChangeSource.next('graphic');
+  }
+
 }

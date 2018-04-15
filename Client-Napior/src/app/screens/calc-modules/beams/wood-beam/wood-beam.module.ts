@@ -43,6 +43,8 @@ import { BeamLoadsComponent } from '../common-beam-components/beam-loads/beam-lo
 import { BeamLoadCombosComponent } from '../common-beam-components/beam-load-combos/beam-load-combos.component';
 import { BeamSectionsMaterialsComponent } from '../common-beam-components/beam-sections-materials/beam-sections-materials.component';
 import { WoodBeamSectionSettingsComponent } from './wood-beam-inputs/wood-beam-section-settings/wood-beam-section-settings.component';
+import { BeamGraphicsComponent } from '../common-beam-components/beam-graphics/beam-graphics.component';
+import { BeamGraphicsControlsComponent } from '../common-beam-components/beam-graphics/beam-graphics-controls/beam-graphics-controls.component';
 
 
 @NgModule({
@@ -83,7 +85,9 @@ import { WoodBeamSectionSettingsComponent } from './wood-beam-inputs/wood-beam-s
     BeamLoadsComponent,
     BeamLoadCombosComponent,
     BeamSectionsMaterialsComponent,
-    WoodBeamSectionSettingsComponent
+    WoodBeamSectionSettingsComponent,
+    BeamGraphicsComponent,
+    BeamGraphicsControlsComponent
   ],
   exports: [WoodBeamComponent],
 })
