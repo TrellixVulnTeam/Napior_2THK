@@ -21,16 +21,38 @@ export class BeamGraphicsService {
   //Method to initialize graphic with scales, cameraShifts and other miscellaneous properties
   initGraphic() {
     this.gr.drawScene(); // Draw the scene.
+
+    let spanLength = 0;
+    this.inputs.spans.map((span)=>{
+      spanLength += span.length;
+    })
+    let asymptoticScale = Math.atan(0.15 * spanLength + 0.1) * 0.45; //Function that allows span length to increase while asymptotically approaching max window width.
+    this.gr.horizontalScale = this.gr.width / spanLength * asymptoticScale;;
+    this.gr.verticalScale = this.gr.horizontalScale;
+    this.gr.horizontalCameraShift = spanLength/2;
   }
 
   drawGraphic(options) {
     this.initGraphic();
+    var cumulativeBeamLength = 0
     for(let i=0; i<this.inputs.spans.length; i++){
-      this.drawSpan(i);
+      this.drawSpan(i, cumulativeBeamLength);
+      cumulativeBeamLength += this.inputs.spans[0].length;
     }
   }
 
-  drawSpan(i){
-    this.gr.scene.rect(100,100).move(110*i,0);
+  drawSpan(i, beamXLocation){
+    const beam = this.gr.scene.rect(this.gr.xLength(10),this.gr.yLength(10/12))
+      .move(this.gr.x(beamXLocation), this.gr.y(0))
+      .style('cursor', 'pointer')
+      .fill({ color: '#EAC78D'})
+      .stroke({ color: '#AE7D2C', width: 2 })
+
+    beam.mouseover(()=>{
+      beam.stroke({ color: '#AE7D2C', width: 3 })
+    })
+    beam.mouseout(()=>{
+      beam.stroke({ color: '#AE7D2C', width: 2 })
+    })
   }
 }

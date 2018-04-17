@@ -21,6 +21,7 @@ export class BeamGraphicsComponent implements OnInit {
   @Input() type;
   @Input() width;
   @Input() height;
+  @Input() beamType;
   @ViewChild('svgScene') svgElement;
   private calcSubscription;
   private inputsChangeSubscription;
