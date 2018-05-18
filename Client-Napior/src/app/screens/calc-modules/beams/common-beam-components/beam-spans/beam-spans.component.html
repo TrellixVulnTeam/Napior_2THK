@@ -18,7 +18,7 @@
           </mat-expansion-panel-header>
           <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="4%">
             <mat-form-field fxFlex="31%">
-              <input type="tel" matInput placeholder="Span Length" [(ngModel)]="this.calc.inputs.spans[i].length">
+              <input napiorInput [updateGraphic]="true" type="tel" matInput placeholder="Span Length" [(ngModel)]="this.calc.inputs.spans[i].length">
               <span matSuffix>ft</span>
             </mat-form-field>
             <mat-form-field fxFlex="64%">

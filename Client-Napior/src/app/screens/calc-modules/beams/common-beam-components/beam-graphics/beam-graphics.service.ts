@@ -24,7 +24,8 @@ export class BeamGraphicsService {
 
     let spanLength = 0;
     this.inputs.spans.map((span)=>{
-      spanLength += span.length;
+      spanLength += parseFloat(span.length);
+      console.log(spanLength);
     })
     let asymptoticScale = Math.atan(0.15 * spanLength + 0.1) * 0.45; //Function that allows span length to increase while asymptotically approaching max window width.
     this.gr.horizontalScale = this.gr.width / spanLength * asymptoticScale;;
@@ -37,22 +38,23 @@ export class BeamGraphicsService {
     var cumulativeBeamLength = 0
     for(let i=0; i<this.inputs.spans.length; i++){
       this.drawSpan(i, cumulativeBeamLength);
-      cumulativeBeamLength += this.inputs.spans[0].length;
+      cumulativeBeamLength += parseFloat(this.inputs.spans[i].length);
     }
   }
 
   drawSpan(i, beamXLocation){
-    const beam = this.gr.scene.rect(this.gr.xLength(10),this.gr.yLength(10/12))
+    const length = this.inputs.spans[i].length;
+    const beam = this.gr.scene.rect(this.gr.xLength(length),this.gr.yLength(10/12))
       .move(this.gr.x(beamXLocation), this.gr.y(0))
       .style('cursor', 'pointer')
       .fill({ color: '#EAC78D'})
-      .stroke({ color: '#AE7D2C', width: 2 })
+      .stroke({ color: '#AE7D2C', width: 2 });
 
     beam.mouseover(()=>{
-      beam.stroke({ color: '#AE7D2C', width: 3 })
+      beam.stroke({ color: '#AE7D2C', width: 3 }).fill({ color: '#ffd899'});
     })
     beam.mouseout(()=>{
-      beam.stroke({ color: '#AE7D2C', width: 2 })
+      beam.stroke({ color: '#AE7D2C', width: 2 }).fill({ color: '#EAC78D'});
     })
   }
 }
