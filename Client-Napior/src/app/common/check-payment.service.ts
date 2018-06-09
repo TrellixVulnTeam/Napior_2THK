@@ -4,7 +4,7 @@ import { RtdbService } from './rtdb.service';
 import { setTimeout } from 'timers';
 import { UserInfo, CompanyInfo } from './firebase-classes';
 import { AuthService } from './auth.service';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class CheckPaymentService {
@@ -18,7 +18,7 @@ export class CheckPaymentService {
     public authService: AuthService,
     public trialDaysSnackBar: MatSnackBar,
     public rtdb: RtdbService,
-    private http: Http,
+    private http: HttpClient,
   ) {}
 
   public checkPaymentLogin(): void {
@@ -98,8 +98,8 @@ export class CheckPaymentService {
         customerId: companyData.stripeId
       };
       const apiUrl = '/subscription_api';
-      const headers = new Headers({ 'Content-Type': 'application/json' });
-      const options = new RequestOptions({ headers: headers });
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      const options = { headers: headers }
       return this.http.post(apiUrl, data, options).subscribe({
         next: (response: any) => {
           const customer: any = JSON.parse(response._body);

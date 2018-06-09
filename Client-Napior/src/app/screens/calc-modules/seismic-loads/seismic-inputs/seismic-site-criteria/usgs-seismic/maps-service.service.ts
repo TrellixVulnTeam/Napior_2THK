@@ -1,7 +1,7 @@
 import { Injectable,  NgZone } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 import * as xml2js from 'xml2js';
 
@@ -9,7 +9,7 @@ declare const google: any;
 
 @Injectable()
 export class MapsService {
-  constructor(private __loader: MapsAPILoader, private http: Http, private _zone: NgZone ) {
+  constructor(private __loader: MapsAPILoader, private http: HttpClient, private _zone: NgZone ) {
 
   }
 
@@ -48,8 +48,8 @@ export class MapsService {
             'riskCategory': riskCategoryIndex[riskCategory]
           }
           let usgsUrl = '/usgs_api';
-          const headers = new Headers({ 'Content-Type': 'application/json' });
-          const options = new RequestOptions({ headers: headers });
+          const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+          const options ={ headers: headers };
           this.http.post(usgsUrl, usgsPostData, options)
           .subscribe(
             data => {

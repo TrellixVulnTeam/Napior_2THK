@@ -1,7 +1,7 @@
 // @angular modules.
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -51,7 +51,7 @@ import { BeamGraphicsControlsComponent } from '../common-beam-components/beam-gr
   imports: [
     GeneralCalcModule,
     CommonModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,

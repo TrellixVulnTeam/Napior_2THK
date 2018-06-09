@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ErrorHandler } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -109,7 +109,7 @@ import { LoginCardsService } from './screens/login/login-cards.service';
       apiKey: 'AIzaSyD1OHNGDlf4L769UocCrq6u2fhkbtM-z9Y'
     }),
     Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
-    HttpModule,
+    HttpClientModule,
     ClickOutsideModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),

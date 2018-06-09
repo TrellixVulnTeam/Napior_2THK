@@ -5,7 +5,7 @@ import {
   Validators,
   ReactiveFormsModule
 } from '@angular/forms';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RtdbService } from '../../common/rtdb.service';
 import { AuthService } from '../../common/auth.service';
 import {
@@ -72,7 +72,7 @@ export class SubscriptionComponent implements OnInit {
     public rtdb: RtdbService,
     private fb: FormBuilder,
     private stripeService: StripeService,
-    private http: Http,
+    private http: HttpClient,
     public authService: AuthService
   ) {}
 
@@ -129,8 +129,8 @@ export class SubscriptionComponent implements OnInit {
       companyName: this.rtdb.companyData.name
     };
     const apiUrl = '/subscription_api';
-    const headers = new Headers({ 'Content-Type': 'application/json' });
-    const options = new RequestOptions({ headers: headers });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const options = { headers: headers };
     return this.http.post(apiUrl, data, options);
   }
 
@@ -190,8 +190,8 @@ export class SubscriptionComponent implements OnInit {
       subscriptionId: this.rtdb.companyData.stripeSubscriptionId
     };
     const apiUrl = '/subscription_api';
-    const headers = new Headers({ 'Content-Type': 'application/json' });
-    const options = new RequestOptions({ headers: headers });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const options = { headers: headers };
     return this.http.post(apiUrl, data, options);
   }
 

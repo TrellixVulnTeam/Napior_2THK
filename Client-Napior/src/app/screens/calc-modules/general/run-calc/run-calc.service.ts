@@ -1,5 +1,5 @@
 import { Injectable, ChangeDetectorRef } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
 import { RtdbService } from '../,,/../../../../common/rtdb.service';
 import { GenericDialogService } from '../generic-dialog/generic-dialog.service';
@@ -18,7 +18,7 @@ export class RunCalcService {
   ranCalc$ = this.ranCalcSource.asObservable();
   
 
-  constructor(private http: Http, public rtdb: RtdbService, public genericDialogService: GenericDialogService,) { }
+  constructor(private http: HttpClient, public rtdb: RtdbService, public genericDialogService: GenericDialogService,) { }
 
   runCalculation(post: string): void {
     this.calculationStatus.noResults = false;
@@ -26,8 +26,8 @@ export class RunCalcService {
     console.log(this.inputs);
     console.log('Calculating Results...');
     const apiUrl = '/napior_api';
-    const headers = new Headers({ 'Content-Type': 'application/json' });
-    const options = new RequestOptions({ headers: headers });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const options = { headers: headers };
     this.http.post(apiUrl, this.inputs, options)
       .subscribe(
         data => {

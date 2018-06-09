@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, HostListener } from '@angular/core';
 import { ResizeEvent } from 'angular-resizable-element';
 import { Tab } from '../general/input-tabs/tab';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { GenericDialogService } from '../general/generic-dialog/generic-dialog.service';
 import { MatDialog } from '@angular/material';
 import { RunCalcService } from '../general/run-calc/run-calc.service';
@@ -38,7 +37,6 @@ export class SnowLoadsComponent implements OnInit {
   public graphicControlStyle: {} = {'width': '190px'};
 
   constructor(
-    private http: Http,
     public genericDialogService: GenericDialogService,
     public calc: RunCalcService,
     public genReport: ReportService,
