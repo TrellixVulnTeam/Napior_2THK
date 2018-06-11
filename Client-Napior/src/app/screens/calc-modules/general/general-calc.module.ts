@@ -8,7 +8,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppModule } from '../../../app.module';
 
 // Imported modules
-import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ResizableModule } from 'angular-resizable-element';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { AgmCoreModule } from '@agm/core';
@@ -55,7 +54,6 @@ import { NapiorInputDirective } from './inputs/napior-input.directive';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularSvgIconModule,
     FlexLayoutModule,
     AppModule,
     MatButtonToggleModule,

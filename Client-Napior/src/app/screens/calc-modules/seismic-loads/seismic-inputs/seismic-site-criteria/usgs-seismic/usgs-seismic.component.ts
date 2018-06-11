@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MapsAPILoader, GoogleMapsAPIWrapper } from '@agm/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { MapsService } from './maps-service.service';
 import { UsgsData } from './usgs-data'
 import * as xml2js from 'xml2js';

@@ -1,8 +1,8 @@
 import { Injectable,  NgZone } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import 'rxjs/add/operator/toPromise';
+
 import * as xml2js from 'xml2js';
 
 declare const google: any;

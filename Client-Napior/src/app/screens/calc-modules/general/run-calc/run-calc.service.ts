@@ -1,6 +1,6 @@
 import { Injectable, ChangeDetectorRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { RtdbService } from '../,,/../../../../common/rtdb.service';
 import { GenericDialogService } from '../generic-dialog/generic-dialog.service';
 

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { AuthService } from './auth.service';
 import { UserInfo, CompanyInfo } from './firebase-classes';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable ,  Subject, of } from 'rxjs';
+import { concatMap, concat, take } from 'rxjs/operators'
 
 @Injectable()
 export class RtdbService {
@@ -62,8 +62,10 @@ export class RtdbService {
   // Concatenate observables to get user and company data.
   getCoAndUserData() {
     const userAndCompany = this.authService.user // Get authstate
-      .concatMap(authData => this.getUserData(authData)) // Get user data
-      .concatMap(userData => this.getCompanyData(userData)); // Get company data
+      .pipe(
+        concatMap(authData => this.getUserData(authData)), // Get user data
+        concatMap(userData => this.getCompanyData(userData)) // Get company data
+      )
     userAndCompany.subscribe({
       next: (companyData: CompanyInfo) => {
         this.companyData = companyData;
@@ -89,12 +91,14 @@ export class RtdbService {
     );
     const createCompanyObservable = this.createCompany();
     // const createUserObservable = this.db.object(userDbString).set(newUser);
-    const createCompanyAndUser = createCompanyObservable.concatMap(
-      (companyId: any): any => {
-        newUser.companyId = this.newCompanyId;
-        return this.db.object(userDbString).update(newUser);
-      }
-    );
+    const createCompanyAndUser = createCompanyObservable.pipe(
+      concatMap(
+        (companyId: any): any => {
+          newUser.companyId = this.newCompanyId;
+          return this.db.object(userDbString).update(newUser);
+        }
+      )
+    )
     return createCompanyAndUser;
   }
 
@@ -104,33 +108,36 @@ export class RtdbService {
     const createCompanyObservable = this.db
       .object(companyMetaString)
       .valueChanges()
-      .take(1)
-      .concatMap((companyId: number): any => {
-        this.newCompanyId = Number(companyId) + 1;
-        return this.db.object(companyMetaString).set(this.newCompanyId);
-      })
-      .concatMap((): any => {
-        const newCompany = new CompanyInfo(
-          this.companyName,
-          30,
-          1,
-          'none',
-          'none',
-          'trial',
-          0,
-          true,
-          0,
-          0
-        );
-        return this.db
-          .object('/companies/' + this.newCompanyId)
-          .set(newCompany);
-      })
-      .concat(
-        Observable.create(observer => {
-          observer.next(this.newCompanyId);
-        })
+      .pipe(
+        take(1),
+        concatMap((companyId: number): any => {
+          this.newCompanyId = Number(companyId) + 1;
+          return this.db.object(companyMetaString).set(this.newCompanyId);
+        }),
+        concatMap((): any => {
+          const newCompany = new CompanyInfo(
+            this.companyName,
+            30,
+            1,
+            'none',
+            'none',
+            'trial',
+            0,
+            true,
+            0,
+            0
+          );
+          return this.db
+            .object('/companies/' + this.newCompanyId)
+            .set(newCompany);
+        }),
+        concat(
+          Observable.create(observer => {
+            observer.next(this.newCompanyId);
+          })
+        )
       );
+      
     return createCompanyObservable;
   }
 
@@ -170,17 +177,14 @@ export class RtdbService {
   userIsSignedOut(uid) {
     const authData: any = uid;
     const userDbRoute = '/users/' + authData.uid;
-    const userSignOut = Observable.of(
-      this.db
-        .object(userDbRoute)
-        .update({ signedIn: false })
-        .then(() => {
-          console.log('Changed status to signed out.');
-        })
-        .catch(err => {
-          console.log(err);
-        })
-    );
+    const userSignOut = this.db.object(userDbRoute)
+      .update({ signedIn: false })
+      .then(() => {
+        console.log('Changed status to signed out.');
+      })
+      .catch(err => {
+        console.log(err);
+      })
     return userSignOut;
   }
 

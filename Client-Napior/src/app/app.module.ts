@@ -12,7 +12,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ResizableModule } from 'angular-resizable-element';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 import { MatRadioModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -30,8 +29,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 import { NgxStripeModule } from 'ngx-stripe';
-import { Angulartics2Module } from 'angulartics2';
-import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
+
 // import * as Rollbar from 'rollbar';
 import 'hammerjs';
 import 'katex';
@@ -92,7 +90,6 @@ import { LoginCardsService } from './screens/login/login-cards.service';
     FlexLayoutModule,
     MatCardModule,
     ResizableModule,
-    AngularSvgIconModule,
     MatRadioModule,
     FormsModule,
     ReactiveFormsModule,
@@ -108,7 +105,6 @@ import { LoginCardsService } from './screens/login/login-cards.service';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD1OHNGDlf4L769UocCrq6u2fhkbtM-z9Y'
     }),
-    Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
     HttpClientModule,
     ClickOutsideModule,
     AppRoutingModule,

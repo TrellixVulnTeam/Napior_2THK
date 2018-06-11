@@ -1,7 +1,6 @@
 import { Injectable, NgZone, ChangeDetectorRef } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/count';
+import { Subject , Observable} from 'rxjs';
+
 import * as domToImage from 'dom-to-image';
 import * as html2canvas from 'html2canvas';
 import * as jsPDF from 'jspdf';

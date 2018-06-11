@@ -3,9 +3,10 @@ import { AuthService } from '../../common/auth.service';
 import { RtdbService } from '../../common/rtdb.service';
 import { CheckPaymentService } from '../../common/check-payment.service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/concatMap';
-import 'rxjs/add/operator/concat';
+import { Observable } from 'rxjs';
+import { concatMap } from 'rxjs/operators';
+
+
 import { MatDialog } from '@angular/material';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { TryitService } from '../splash/tryit.service';
@@ -50,9 +51,11 @@ export class LoginComponent implements OnInit {
     this.loggingIn = true;
     try {
       const authInfo = this.authService
-        .login(this.email, this.password) // Authenticate.
-        .concatMap(authData => this.rtdb.getUserData(authData)) // Get userdata.
-        .concatMap((userData): any => this.rtdb.userIsSignedIn(userData)); // Check if user is already signed in.
+        .login(this.email, this.password).pipe( // Authenticate.
+          concatMap(authData => this.rtdb.getUserData(authData)), // Get userdata.
+          concatMap((userData): any => this.rtdb.userIsSignedIn(userData)) // Check if user is already signed in.
+        ); 
+        
       authInfo.subscribe({
         next: signInUser => {
           console.log(signInUser);
@@ -93,7 +96,7 @@ export class LoginComponent implements OnInit {
       try {
         const createAccount = this.authService
           .signup(this.email, this.password)
-          .concatMap((authData): any => this.rtdb.createUser(authData));
+          .pipe(concatMap((authData): any => this.rtdb.createUser(authData)));
         createAccount.subscribe({
           next: userData => {
             this.login();

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ChangeDetectorRef } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Tab } from '../input-tabs/tab';
 import { SaveLoadService } from '../save-load/save-load.service';
 import { RunCalcService } from '../run-calc/run-calc.service';

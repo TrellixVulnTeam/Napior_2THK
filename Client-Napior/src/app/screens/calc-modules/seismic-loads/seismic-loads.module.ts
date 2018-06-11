@@ -9,7 +9,6 @@ import { AppModule } from '../../../app.module';
 import { GeneralCalcModule } from '../general/general-calc.module';
 
 // Imported modules
-import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ResizableModule } from 'angular-resizable-element';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { AgmCoreModule } from '@agm/core';
@@ -50,7 +49,6 @@ import { SeismicGraphicsComponent } from './seismic-graphics/seismic-graphics.co
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularSvgIconModule,
     FlexLayoutModule,
     AppModule,
     MatButtonToggleModule,

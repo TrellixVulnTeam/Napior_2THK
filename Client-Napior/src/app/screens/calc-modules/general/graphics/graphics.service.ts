@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import * as SVG from 'svg.js';
 import * as canvg from 'canvg-browser';
 

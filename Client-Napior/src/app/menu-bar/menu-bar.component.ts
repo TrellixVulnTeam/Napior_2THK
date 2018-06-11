@@ -2,8 +2,9 @@ import { Component, OnInit, DoCheck, ChangeDetectionStrategy, ChangeDetectorRef,
 import { AuthService } from '../common/auth.service';
 import { RtdbService } from '../common/rtdb.service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/take';
+import { Observable, of } from 'rxjs';
+import { concat, take } from 'rxjs/operators';
+
 import { TryitService } from '../screens/splash/tryit.service';
 import { NavigationCancel, NavigationStart, ResolveEnd } from '@angular/router';
 import { environment } from '../../environments/environment';
@@ -222,9 +223,9 @@ export class MenuBarComponent implements OnInit {
     const authData: any = this.authService.userInfo;
     this.authService.userInfo = {};
     // this.rtdb.userIsSignedOut(authData.uid);
-    const signOut = this.rtdb.userIsSignedOut(authData);
+    const signOut = of(this.rtdb.userIsSignedOut(authData));
     const logOut = this.authService.logout();
-    signOut.concat(logOut);
+    signOut.pipe(concat(logOut));
     signOut.subscribe(
       // tslint:disable-next-line:no-unused-expression
       () => { this.router.navigate['/login']; }
@@ -244,7 +245,7 @@ export class MenuBarComponent implements OnInit {
         }
       }
     );
-    this.authService.user.take(1).subscribe({
+    this.authService.user.pipe(take(1)).subscribe({
       next: (userInfo) => {this.authService.userInfo = userInfo; }
     });
   }

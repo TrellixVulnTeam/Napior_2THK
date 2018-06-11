@@ -18,6 +18,7 @@ import {
 } from 'ngx-stripe';
 import { Plans } from './plans';
 import { Background } from '../../common/napior-images';
+import { concatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-subscription',
@@ -96,9 +97,11 @@ export class SubscriptionComponent implements OnInit {
   // Start or update a subscription.
   updatePlan() {
     this.subscribingStatus = 'subscribing';
-    this.createPaymentToken(this.card) // 1) Create stripe token.
-      .concatMap(token => this.createUserAndSubscription(token)) // 2) Create user and subscription in stripe.
-      .concatMap(response => this.subscriptionToDatabase(response)) // 3) Update data in Firebase.
+    this.createPaymentToken(this.card).pipe( // 1) Create stripe token.
+      concatMap(token => this.createUserAndSubscription(token)), // 2) Create user and subscription in stripe.
+      concatMap(response => this.subscriptionToDatabase(response)) // 3) Update data in Firebase.
+    ) 
+      
       .subscribe({
         next: () => {
           this.subscribingStatus = 'subscribed';
@@ -159,7 +162,7 @@ export class SubscriptionComponent implements OnInit {
       this.cancelError = '';
       this.cancellingStatus = 'cancelling';
       this.cancelStripeSub()
-        .concatMap(response => this.cancelSubInDatabase(response))
+        .pipe(concatMap(response => this.cancelSubInDatabase(response)))
         .subscribe({
           next: response => {
             if (this.rtdb.companyData.plan === 'cancelled') {

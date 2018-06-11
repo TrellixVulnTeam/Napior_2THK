@@ -3,9 +3,9 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from '../../common/auth.service';
 import { RtdbService } from '../../common/rtdb.service';
 import { UserInfo, UserI } from '../../common/firebase-classes';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Plans } from '../subscription/plans'
-import 'rxjs/add/operator/concatMap';
+
 import { TermsPrivacyService } from '../../common/terms-privacy/terms-privacy.service';
 import { Background } from '../../common/napior-images';
 

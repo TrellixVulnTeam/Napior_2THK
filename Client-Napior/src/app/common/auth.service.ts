@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthService {
@@ -54,12 +54,10 @@ export class AuthService {
 
   //Sets the user to not authenticated on firebase.
   logout() {
-    const logOutObservable = Observable.of(
-      this.firebaseAuth
+    const logOutObservable = this.firebaseAuth
       .auth
       .signOut()
-      .then(()=>{this.userInfo = {}})
-    )
+      .then(()=>{this.userInfo = {}});
     return logOutObservable;
   }
 

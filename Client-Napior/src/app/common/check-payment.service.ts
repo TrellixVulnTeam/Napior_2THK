@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { RtdbService } from './rtdb.service';
-import { setTimeout } from 'timers';
 import { UserInfo, CompanyInfo } from './firebase-classes';
 import { AuthService } from './auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { concatMap } from 'rxjs/operators';
 
 @Injectable()
 export class CheckPaymentService {
@@ -22,10 +22,11 @@ export class CheckPaymentService {
   ) {}
 
   public checkPaymentLogin(): void {
-    const userAndCompany = this.authService.user // Get authstate
-      .concatMap(authData => this.rtdb.getUserData(authData)) // Get user data
-      .concatMap(userData => this.rtdb.getCompanyData(userData));
-
+    const userAndCompany = this.authService.user.pipe( // Get authstate
+      concatMap(authData => this.rtdb.getUserData(authData)), // Get user data
+      concatMap(userData => this.rtdb.getCompanyData(userData))
+    );
+      
     userAndCompany.subscribe({
       next: (companyData: CompanyInfo) => {
         this.rtdb.companyData = companyData;

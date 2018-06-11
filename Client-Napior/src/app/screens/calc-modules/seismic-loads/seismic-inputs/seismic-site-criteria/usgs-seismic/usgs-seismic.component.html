@@ -1,5 +1,5 @@
 <mat-form-field>
-    <mat-select placeholder="Site Class" [(ngModel)]="inputs.siteClass" (change)="changeAddress(inputs, map)">
+    <mat-select placeholder="Site Class" [(ngModel)]="inputs.siteClass" (selectionChange)="changeAddress(inputs, map)">
         <mat-option *ngFor="let class of siteClasses" [value]="class">
             {{class}}
         </mat-option>

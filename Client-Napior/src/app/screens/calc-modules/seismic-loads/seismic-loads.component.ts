@@ -11,7 +11,7 @@ import { RtdbService } from '../../../common/rtdb.service';
 import * as inputsResultsData from './seismic-inputs-results.json';
 import * as xml2js from 'xml2js';
 
-import 'rxjs/add/operator/toPromise';
+
 
 @Component({
   selector: 'app-seismic-loads',

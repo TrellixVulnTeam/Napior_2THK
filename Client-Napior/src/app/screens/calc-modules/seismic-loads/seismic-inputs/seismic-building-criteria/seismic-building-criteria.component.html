@@ -7,14 +7,14 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field>
-    <mat-select placeholder="Lateral System Category" [(ngModel)]="systemCategoryData" (change)="changeCategory()">
+    <mat-select placeholder="Lateral System Category" [(ngModel)]="systemCategoryData" (selectionChange)="changeCategory()">
       <mat-option *ngFor="let systemCategory of systemsByCategory" [value]="systemCategory">
         {{systemCategory.name}}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
-    <mat-select placeholder="Lateral System" [(ngModel)]="system" (change)="changeSystem()">
+    <mat-select placeholder="Lateral System" [(ngModel)]="system" (selectionChange)="changeSystem()">
       <mat-option *ngFor="let system of systemCategoryData.data" [value]="system">
         {{system.system}}
       </mat-option>
