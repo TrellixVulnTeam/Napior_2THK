@@ -76,7 +76,6 @@ export class CheckPaymentService {
         duration: 4000,
         horizontalPosition: 'right',
         verticalPosition: 'top',
-        extraClasses: ['trial-snackbar']
       });
     }, 1000);
   }

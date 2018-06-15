@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="no"?>
+<!-- Generator: Gravit.io -->
+<svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 55 55" width="55" height="55">
+    <g id="null">
+        <g id="Group">
+            <path d=" M 13.918 41.818 C 19.859 41.818 24.683 44.814 24.683 48.505" fill="none" vector-effect="non-scaling-stroke" stroke-width="1.5" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+            <path d=" M 13.918 37.639 C 23.573 37.639 31.411 42.508 31.411 48.505" fill="none" vector-effect="non-scaling-stroke" stroke-width="1.5" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+            <path d=" M 13.918 33.351 C 27.286 33.351 38.139 40.092 38.139 48.396" fill="none" vector-effect="non-scaling-stroke" stroke-width="1.5" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+            <path d=" M 13.918 29.172 C 26.357 29.172 36.977 33.475 41.082 39.51" fill="none" vector-effect="non-scaling-stroke" stroke-width="1.5" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+            <path d=" M 13.918 24.993 C 25.494 24.993 35.619 27.972 41.082 32.406" fill="none" vector-effect="non-scaling-stroke" stroke-width="1.5"  stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+            <path d=" M 14.591 20.813 C 25.213 20.813 34.725 23.045 41.082 26.555" fill="none" vector-effect="non-scaling-stroke" stroke-width="1.5"  stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+            <path d=" M 14.591 16.634 C 24.679 16.634 33.924 18.48 41.082 21.54" fill="none" vector-effect="non-scaling-stroke" stroke-width="1.5"  stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+            <path d=" M 14.591 12.455 C 24.25 12.455 33.304 13.939 41.082 16.525" fill="none" vector-effect="non-scaling-stroke" stroke-width="1.5"  stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+            <path d=" M 13.918 8.276 C 23.636 8.276 32.847 9.587 41.082 11.928" fill="none" vector-effect="non-scaling-stroke" stroke-width="1.5"  stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+            <path d=" M 13.918 45.997 C 16.146 45.997 17.955 47.121 17.955 48.505" fill="none" vector-effect="non-scaling-stroke" stroke-width="1.5"  stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+            <path d="M 14.754 6.187 L 40.246 6.187 C 40.938 6.187 41.5 6.748 41.5 7.44 L 41.5 47.56 C 41.5 48.252 40.938 48.813 40.246 48.813 L 14.754 48.813 C 14.062 48.813 13.5 48.252 13.5 47.56 L 13.5 7.44 C 13.5 6.748 14.062 6.187 14.754 6.187 Z" style="fill:none;stroke-width:2.5;stroke-linecap:square;stroke-miterlimit:3;"/>
+        </g>
+    </g>
+</svg>

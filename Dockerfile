@@ -19,7 +19,7 @@ COPY . .
 WORKDIR /usr/src/app/Client-Napior
 
 # Build application for production.
-RUN ng build --aot -prod \
+RUN ng build --aot --prod \
     && mkdir -p /usr/src/build \
     && cd /usr/src/build \
     && cp -r /usr/src/app/Client-Napior/dist /usr/src/build

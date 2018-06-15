@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="no"?>
+<!-- Generator: Gravit.io -->
+<svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 55 55" width="55" height="55">
+    <g id="null">
+        <rect x="8.5" y="22.5" width="38" height="12" stroke-width="2" transform="matrix(1,0,0,1,0,0)" fill="none"/>
+        <polygon points="9.562,34.5,15.624,45,3.5,45" fill="none"/>
+        <polygon points="45.438,34.5,51.5,45,39.376,45" fill="none"/>
+        <line x1="8.5" y1="14" x2="46.5" y2="14" vector-effect="non-scaling-stroke" stroke-width="2"  stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+        <path d=" M 7.91 8.697 L 7.91 19.303" fill="none"  stroke-width="2"/>
+        <path d=" M 47.03 19.303 L 47.03 8.697" fill="none"  stroke-width="2"/>
+    </g>
+</svg>

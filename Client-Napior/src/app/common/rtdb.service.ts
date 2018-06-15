@@ -4,6 +4,8 @@ import { AuthService } from './auth.service';
 import { UserInfo, CompanyInfo } from './firebase-classes';
 import { Observable ,  Subject, of } from 'rxjs';
 import { concatMap, concat, take } from 'rxjs/operators'
+import * as firebase from 'firebase/database';
+
 
 @Injectable()
 export class RtdbService {

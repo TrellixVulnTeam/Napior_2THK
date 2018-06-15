@@ -29,6 +29,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 import { NgxStripeModule } from 'ngx-stripe';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 // import * as Rollbar from 'rollbar';
 import 'hammerjs';
@@ -109,6 +110,7 @@ import { LoginCardsService } from './screens/login/login-cards.service';
     ClickOutsideModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularSvgIconModule
   ],
   entryComponents: [
     SaveLoadComponent,

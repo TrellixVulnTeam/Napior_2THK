@@ -1,17 +1,19 @@
-<div id="tab-columns" fxFlex="80px">
-    <app-input-tabs>
-    </app-input-tabs>
-    <div id = "standard-controls" fxLayout="column" fxLayoutAlign="start center">
-        <div class = "save-load" fxFlex = "50%" (click)="saveLoad.openSaveDialog(calc.inputs)" fxLayout="column" fxLayoutAlign="center center" matTooltip="SAVE" [matTooltipPosition]="'right'" [matTooltipShowDelay]="500">
-                <i class="fa fa-floppy-o fa-2x" aria-hidden="true" ></i>
-        </div>
-        <div class  = "save-load" fxFlex = "50%" (click)="triggerLoadCalc()"fxLayout="column" fxLayoutAlign="center center" matTooltip="LOAD" [matTooltipPosition]="'right'" [matTooltipShowDelay]="500">
-                <i class="fa fa-folder-open-o fa-2x" aria-hidden="true" ></i>
-                <input id="loadCalculationInputButton" style='display:none' type='file' accept='.npr' (change)="loadCalc($event)">
+<div id="inputs-container" fxLayout="row">
+    <div id="tab-columns" fxFlex="80px">
+        <app-input-tabs>
+        </app-input-tabs>
+        <div id = "standard-controls" fxLayout="column" fxLayoutAlign="start center">
+            <div class = "save-load" fxFlex = "50%" (click)="saveLoad.openSaveDialog(calc.inputs)" fxLayout="column" fxLayoutAlign="center center" matTooltip="SAVE" [matTooltipPosition]="'right'" [matTooltipShowDelay]="500">
+                    <i class="fa fa-floppy-o fa-2x" aria-hidden="true" ></i>
+            </div>
+            <div class  = "save-load" fxFlex = "50%" (click)="triggerLoadCalc()"fxLayout="column" fxLayoutAlign="center center" matTooltip="LOAD" [matTooltipPosition]="'right'" [matTooltipShowDelay]="500">
+                    <i class="fa fa-folder-open-o fa-2x" aria-hidden="true" ></i>
+                    <input id="loadCalculationInputButton" style='display:none' type='file' accept='.npr' (change)="loadCalc($event)">
+            </div>
         </div>
     </div>
-</div>
-<div id="input-fields" fxFlex="420px">
-    <h2>Inputs - {{inputTabs.activeTab.title}}</h2>
-    <ng-content></ng-content>
+    <div id="input-fields" fxFlex="420px">
+        <h2>Inputs - {{inputTabs.activeTab.title}}</h2>
+        <ng-content></ng-content>
+    </div>
 </div>

@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="no"?>
+<!-- Generator: Gravit.io -->
+<svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 55 55" width="55" height="55">
+    <g id="null">
+        <g id="Group">
+            <path d=" M 8 39.196 L 8 19.191 L 32 19.191 L 32 39.196" fill="none" vector-effect="non-scaling-stroke" stroke-width="1.5"  stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+            <path d=" M 4.938 34.11 L 8 40.234 L 11.062 34.11" fill="none"  stroke-width="1.5"/>
+            <path d=" M 28.938 33.76 L 32 39.884 L 35.062 33.76" fill="none"  stroke-width="1.5"/>
+            <line x1="20" y1="20.025" x2="20" y2="39.196" vector-effect="non-scaling-stroke" stroke-width="1.5"  stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+            <path d=" M 16.938 34.285 L 20 40.409 L 23.062 34.285" fill="none"  stroke-width="1.5"/>
+            <line x1="46" y1="7.468" x2="46" y2="38.363" vector-effect="non-scaling-stroke" stroke-width="2.5"  stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+            <path d=" M 42.047 31.764 L 46 39.67 L 49.953 31.764" fill="none"  stroke-width="2.5"/>
+            <rect x="6" y="43.364" width="43" height="4.168" transform="matrix(1,0,0,1,0,0)" fill=""/>
+        </g>
+    </g>
+</svg>

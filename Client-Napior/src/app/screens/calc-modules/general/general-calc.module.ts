@@ -11,6 +11,7 @@ import { AppModule } from '../../../app.module';
 import { ResizableModule } from 'angular-resizable-element';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { AgmCoreModule } from '@agm/core';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 // Angular material modules.
 import {
@@ -72,6 +73,7 @@ import { NapiorInputDirective } from './inputs/napior-input.directive';
     MatFormFieldModule,
     ResizableModule,
     ClickOutsideModule,
+    AngularSvgIconModule
   ],
   declarations: [
     InputTabsComponent,
