@@ -183,6 +183,7 @@
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   font-size: 14px;
   font-weight: 500;
+  color: #ffffff;
 }
 .mat-button-toggle {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
@@ -730,7 +731,7 @@ input.mat-input-element {
 .mat-stroked-button.mat-primary[disabled],
 .mat-stroked-button.mat-warn[disabled],
 .mat-stroked-button[disabled][disabled] {
-  color: rgba(0, 0, 0, 0.26);
+  color: rgba(255, 255, 255, 0.26);
 }
 .mat-fab,
 .mat-mini-fab,
