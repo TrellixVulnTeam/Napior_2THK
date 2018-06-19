@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WoodBeamComponent } from './wood-beams.component';
+import { WoodBeamComponent } from './wood-beam.component';
 
-describe('WoodBeamsComponent', () => {
+describe('WoodBeamComponent', () => {
   let component: WoodBeamComponent;
   let fixture: ComponentFixture<WoodBeamComponent>;
 
